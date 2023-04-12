@@ -1,0 +1,569 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:scrollbars="vertical">
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:orientation="vertical">
+
+            <TextView
+
+                android:id="@+id/textViewHeading"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginStart="34dp"
+                android:layout_marginTop="42dp"
+                android:fontFamily="@font/amiri_bold"
+                android:text="Search Location And Hotel"
+                android:textColor="@color/black"
+                android:textSize="20sp" />
+
+            <androidx.appcompat.widget.SearchView
+                android:id="@+id/search"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                app:queryHint="Search Location And Hotel"
+
+                android:background="@drawable/border"
+
+                app:iconifiedByDefault="false"
+                app:queryBackground="@null"
+
+                app:submitBackground="@null"
+                />
+
+            <TextView
+
+                android:id="@+id/textViewsubtitles1"
+                android:textSize="18sp"
+                android:fontFamily="@font/amiri_bold"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/search_bar"
+                android:layout_alignParentStart="true"
+                android:layout_marginStart="34dp"
+                android:layout_marginTop="10dp"
+                android:text="Sort By" />
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <CheckBox
+                    android:id="@+id/checkBox1Sub1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="36dp"
+                    android:layout_below="@+id/textViewsubtitles1"
+                    android:layout_alignParentStart="true"
+                    android:layout_marginStart="50dp"
+                    android:layout_marginTop="0dp"
+                    android:text="Sort form low price to high price"
+                    tools:ignore="TouchTargetSizeCheck" />
+
+
+                <TextView
+                    android:id="@+id/textViewPrice1Sub1"
+
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/textViewsubtitles1"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginStart="45dp"
+                    android:layout_marginTop="0dp"
+                    android:layout_marginEnd="20dp"
+                    android:layout_toEndOf="@+id/checkBox1Sub1"
+                    android:text="108 $" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <CheckBox
+                    android:id="@+id/checkBox2Sub1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="32dp"
+                    android:layout_below="@+id/checkBox1Sub1"
+                    android:layout_alignParentStart="true"
+                    android:layout_marginStart="50dp"
+                    android:layout_marginTop="0dp"
+                    android:text="Sort form high price to low price"
+                    tools:ignore="TouchTargetSizeCheck" />
+
+
+                <TextView
+                    android:id="@+id/textViewPrice2Sub1"
+
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/textViewPrice1Sub1"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginStart="45dp"
+                    android:layout_marginTop="0dp"
+                    android:layout_marginEnd="20dp"
+                    android:layout_toEndOf="@+id/checkBox1Sub1"
+                    android:text="108 $" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <CheckBox
+                    android:id="@+id/checkBox3Sub1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="36dp"
+                    android:layout_below="@+id/checkBox2Sub1"
+                    android:layout_alignParentStart="true"
+                    android:layout_marginStart="50dp"
+                    android:layout_marginTop="0dp"
+                    android:text="Sort by popularity"
+                    tools:ignore="TouchTargetSizeCheck" />
+
+                <TextView
+                    android:id="@+id/textViewPrice3Sub1"
+
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/textViewPrice2Sub1"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginStart="136dp"
+                    android:layout_marginTop="0dp"
+                    android:layout_marginEnd="20dp"
+                    android:layout_toEndOf="@+id/checkBox1Sub1"
+                    android:text="108 $" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <CheckBox
+                    android:id="@+id/checkBox4Sub1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="37dp"
+                    android:layout_below="@+id/checkBox3Sub1"
+                    android:layout_alignParentStart="true"
+                    android:layout_marginStart="50dp"
+                    android:layout_marginTop="0dp"
+                    android:text="Sort to rating"
+                    tools:ignore="TouchTargetSizeCheck" />
+
+                <TextView
+                    android:id="@+id/textViewPrice4Sub1"
+
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/textViewPrice3Sub1"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginStart="165dp"
+                    android:layout_marginTop="0dp"
+                    android:layout_marginEnd="20dp"
+                    android:layout_toEndOf="@+id/checkBox1Sub1"
+                    android:text="108 $" />
+            </LinearLayout>
+            <View
+                android:id="@+id/lineEndSub1"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_below="@+id/checkBox4Sub1"
+                android:layout_alignParentStart="true"
+                android:layout_marginStart="34dp"
+                android:layout_marginEnd="42dp"
+                android:layout_marginTop="15dp"
+                android:background="@android:color/darker_gray" />
+            <TextView
+
+                android:id="@+id/textViewsubtitles2"
+                android:textSize="18sp"
+                android:fontFamily="@font/amiri_bold"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/lineEndSub1"
+                android:layout_alignParentStart="true"
+                android:layout_marginStart="34dp"
+                android:layout_marginTop="10dp"
+                android:text="Your budget" />
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <CheckBox
+                    android:id="@+id/checkBox1Sub2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="36dp"
+                    android:layout_below="@+id/textViewsubtitles2"
+                    android:layout_alignParentStart="true"
+                    android:layout_marginStart="50dp"
+                    android:layout_marginTop="0dp"
+                    android:text="Less than $50"
+                    tools:ignore="TouchTargetSizeCheck,TouchTargetSizeCheck" />
+
+                <TextView
+                    android:id="@+id/textViewPrice1Sub2"
+
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/textViewsubtitles2"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginStart="157dp"
+                    android:layout_marginEnd="20dp"
+                    android:layout_toEndOf="@+id/checkBox1Sub1"
+                    android:text="108 $" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <CheckBox
+                    android:id="@+id/checkBox2Sub2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="32dp"
+                    android:layout_below="@+id/checkBox1Sub2"
+                    android:layout_alignParentStart="true"
+                    android:layout_marginStart="50dp"
+                    android:layout_marginTop="0dp"
+                    android:text="$50 to $150"
+                    tools:ignore="TouchTargetSizeCheck" />
+
+
+                <TextView
+                    android:id="@+id/textViewPrice2Sub2"
+
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/textViewPrice1Sub2"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginStart="170dp"
+                    android:layout_marginEnd="20dp"
+                    android:layout_toEndOf="@+id/checkBox1Sub1"
+                    android:text="108 $" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <CheckBox
+                    android:id="@+id/checkBox3Sub2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="36dp"
+                    android:layout_below="@+id/checkBox2Sub2"
+                    android:layout_alignParentStart="true"
+                    android:layout_marginStart="50dp"
+                    android:layout_marginTop="0dp"
+                    android:text="$150 to $250"
+                    tools:ignore="TouchTargetSizeCheck" />
+
+                <TextView
+                    android:id="@+id/textViewPrice3Sub2"
+
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/textViewPrice2Sub2"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginStart="161dp"
+
+                    android:layout_marginEnd="20dp"
+                    android:layout_toEndOf="@+id/checkBox1Sub1"
+                    android:text="108 $" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <CheckBox
+                    android:id="@+id/checkBox4Sub2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="37dp"
+                    android:layout_below="@+id/checkBox3Sub2"
+                    android:layout_alignParentStart="true"
+                    android:layout_marginStart="50dp"
+                    android:layout_marginTop="0dp"
+                    android:text="More than $250"
+                    tools:ignore="TouchTargetSizeCheck" />
+
+                <TextView
+                    android:id="@+id/textViewPrice4Sub2"
+
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/textViewPrice3Sub2"
+                    android:layout_marginStart="145dp"
+                    android:layout_marginEnd="20dp"
+                    android:layout_toEndOf="@+id/checkBox1Sub1"
+                    android:text="108 $" />
+            </LinearLayout>
+            <View
+                android:id="@+id/lineEndSub2"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_below="@+id/checkBox4Sub2"
+                android:layout_alignParentStart="true"
+                android:layout_marginStart="34dp"
+                android:layout_marginEnd="42dp"
+                android:layout_marginTop="15dp"
+                android:background="@android:color/darker_gray" />
+            <TextView
+
+                android:id="@+id/textViewsubtitles3"
+                android:textSize="18sp"
+                android:fontFamily="@font/amiri_bold"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/lineEndSub2"
+                android:layout_alignParentStart="true"
+                android:layout_marginStart="34dp"
+                android:layout_marginTop="10dp"
+                android:text="Price Range" />
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <SeekBar
+                    android:id="@+id/SeekBar"
+                    android:layout_below="@+id/textViewsubtitles3"
+                    android:layout_marginStart="60dp"
+                    android:layout_width="250dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:max="200"
+                    android:progress="60"
+                    />
+
+                <TextView
+                    android:id="@+id/textViewSeekBar"
+                    android:layout_below="@+id/SeekBar"
+                    android:background="@drawable/border"
+                    android:layout_marginTop="2dp"
+                    android:layout_marginStart="10dp"
+                    android:layout_width="30dp"
+                    android:layout_height="wrap_content"
+
+                    android:gravity="center"
+                    android:textStyle="bold"
+                    android:textColor="@color/purple_700"
+                    android:text="60" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:id="@+id/textViewSeekBar1"
+                    android:layout_below="@+id/SeekBar"
+                    android:layout_marginStart="70dp"
+                    android:layout_width="20dp"
+                    android:layout_height="wrap_content"
+                    android:textStyle="bold"
+                    android:text="0" />
+                <TextView
+                    android:id="@+id/textViewSeekBar2"
+                    android:layout_below="@+id/textViewSeekBar1"
+                    android:layout_marginStart="190dp"
+                    android:layout_width="30dp"
+                    android:layout_height="wrap_content"
+                    android:textStyle="bold"
+                    android:text="200" />
+            </LinearLayout>
+            <View
+                android:id="@+id/lineEndSub3"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_below="@+id/checkBox4Sub2"
+                android:layout_alignParentStart="true"
+                android:layout_marginStart="34dp"
+                android:layout_marginEnd="42dp"
+                android:layout_marginTop="15dp"
+                android:background="@android:color/darker_gray" />
+            <TextView
+
+                android:id="@+id/textViewsubtitles4"
+                android:textSize="18sp"
+                android:fontFamily="@font/amiri_bold"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/lineEndSub3"
+                android:layout_alignParentStart="true"
+                android:layout_marginStart="34dp"
+                android:layout_marginTop="10dp"
+                android:text="Property Type" />
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <CheckBox
+                    android:id="@+id/checkBox1Sub4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="36dp"
+                    android:layout_below="@+id/textViewsubtitles4"
+                    android:layout_alignParentStart="true"
+                    android:layout_marginStart="50dp"
+                    android:layout_marginTop="0dp"
+                    android:text="Hotel"
+                    tools:ignore="TouchTargetSizeCheck" />
+
+                <TextView
+                    android:id="@+id/textViewPrice1Sub4"
+
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/textViewsubtitles4"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginStart="210dp"
+                    android:layout_marginEnd="20dp"
+                    android:layout_toEndOf="@+id/checkBox1Sub1"
+                    android:text="108 $" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <CheckBox
+                    android:id="@+id/checkBox2Sub4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="32dp"
+                    android:layout_below="@+id/checkBox1Sub4"
+                    android:layout_alignParentStart="true"
+                    android:layout_marginStart="50dp"
+                    android:layout_marginTop="0dp"
+                    android:text="Apertments"/>
+
+
+                <TextView
+                    android:id="@+id/textViewPrice2Sub4"
+
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/textViewPrice1Sub4"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginStart="168dp"
+                    android:layout_marginEnd="20dp"
+                    android:layout_toEndOf="@+id/checkBox1Sub1"
+                    android:text="108 $" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <CheckBox
+                    android:id="@+id/checkBox3Sub4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="36dp"
+                    android:layout_below="@+id/checkBox2Sub4"
+                    android:layout_alignParentStart="true"
+                    android:layout_marginStart="50dp"
+                    android:layout_marginTop="0dp"
+                    android:text="Resort" />
+
+                <TextView
+                    android:id="@+id/textViewPrice3Sub4"
+
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/textViewPrice2Sub4"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginStart="201dp"
+
+                    android:layout_marginEnd="20dp"
+                    android:layout_toEndOf="@+id/checkBox1Sub1"
+                    android:text="108 $" />
+            </LinearLayout>
+
+            <View
+                android:id="@+id/lineEndSub4"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_below="@+id/checkBox3Sub4"
+                android:layout_alignParentStart="true"
+                android:layout_marginStart="34dp"
+                android:layout_marginEnd="42dp"
+                android:layout_marginTop="15dp"
+                android:background="@android:color/darker_gray" />
+            <TextView
+
+                android:id="@+id/textViewsubtitles5"
+                android:textSize="18sp"
+                android:fontFamily="@font/amiri_bold"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/lineEndSub4"
+                android:layout_alignParentStart="true"
+                android:layout_marginStart="34dp"
+                android:layout_marginTop="10dp"
+                android:text="Beds Option" />
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <CheckBox
+                    android:id="@+id/checkBox1Sub5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="36dp"
+                    android:layout_below="@+id/textViewsubtitles5"
+                    android:layout_alignParentStart="true"
+                    android:layout_marginStart="50dp"
+                    android:layout_marginTop="0dp"
+                    android:text="Single bed" />
+
+                <TextView
+                    android:id="@+id/textViewPrice1Sub3"
+
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/textViewsubtitles2"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginStart="175dp"
+                    android:layout_marginEnd="20dp"
+                    android:layout_toEndOf="@+id/checkBox1Sub1"
+                    android:text="108 $" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <CheckBox
+                    android:id="@+id/checkBox2Sub5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="32dp"
+                    android:layout_below="@+id/checkBox1Sub5"
+                    android:layout_alignParentStart="true"
+                    android:layout_marginStart="50dp"
+                    android:layout_marginTop="0dp"
+                    android:text="Double bed"/>
+
+
+                <TextView
+                    android:id="@+id/textViewPrice2Sub3"
+
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/textViewPrice1Sub2"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginStart="168dp"
+                    android:layout_marginEnd="20dp"
+                    android:layout_toEndOf="@+id/checkBox1Sub1"
+                    android:text="108 $" />
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+
+
+</RelativeLayout>
