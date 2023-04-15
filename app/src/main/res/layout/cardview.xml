@@ -38,10 +38,10 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/alegreya_bold"
+                    android:fontFamily="@font/b612_bold"
                     android:text="Amanoi, NinhThuan"
                     android:textColor="@color/black"
-                    android:textSize="32sp"></TextView>
+                    android:textSize="32sp"/>
             </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"
@@ -63,9 +63,9 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="2dp"
                         android:layout_marginTop="2.5dp"
-                        android:fontFamily="@font/b612_bold"
+                        android:fontFamily="@font/alegreya_bold"
                         android:text="4.8"
-                        android:textSize="13sp"></TextView>
+                        android:textSize="13sp"/>
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -90,7 +90,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="3dp"
-                        android:fontFamily="@font/b612_bold"
+                        android:fontFamily="@font/alegreya_bold"
                         android:text="Ninh Thuan"
                         android:textSize="13sp">
 
@@ -194,13 +194,14 @@
                             android:layout_height="19dp"
                             android:src="@drawable/icon_parking">
                         </ImageView>
+
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="10dp"
+                            android:fontFamily="@font/actor"
                             android:text="Free parking"
-                            android:textSize="15sp">
-                        </TextView>
+                            android:textSize="15sp"></TextView>
                     </LinearLayout>
                     <LinearLayout
                         android:layout_width="wrap_content"
@@ -251,13 +252,13 @@
                         android:orientation="horizontal"
                         android:layout_marginStart="12dp"
                         android:layout_marginTop="30dp">
+
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="$320"
                             android:fontFamily="@font/b612_bold"
-                            android:textSize="22sp">
-                        </TextView>
+                            android:text="$320"
+                            android:textSize="22sp"></TextView>
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -266,7 +267,7 @@
                     </LinearLayout>
                     <Button
                         android:layout_width="120dp"
-                        android:layout_height="40dp"
+                        android:layout_height="48dp"
                         android:shadowColor="#48000000"
                         android:background="@drawable/border"
                         android:text="Book Now"
