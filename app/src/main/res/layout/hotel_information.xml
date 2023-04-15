@@ -151,7 +151,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="3"
                     android:background="#F9F7F7"
-                    android:fontFamily="More Fonts..."
+                    android:fontFamily="@font/alegreya_sans_bold"
                     android:gravity="center"
                     android:text="Description"
                     android:textColor="#99000000"
