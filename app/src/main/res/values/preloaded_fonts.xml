@@ -1,6 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <array name="preloaded_fonts" translatable="false">
+        <item>@font/alegreya_bold</item>
+        <item>@font/alegreya_sans_bold</item>
+        <item>@font/alegreya_sans_light</item>
+        <item>@font/alegreya_sans_thin</item>
         <item>@font/aleo</item>
+        <item>@font/aleo_bold</item>
+        <item>@font/aleo_light</item>
+        <item>@font/amiri_bold</item>
+        <item>@font/b612_bold</item>
+        <item>@font/baloo_bhai_2_medium</item>
     </array>
 </resources>

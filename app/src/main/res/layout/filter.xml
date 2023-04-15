@@ -49,15 +49,15 @@
             <TextView
 
                 android:id="@+id/textViewsubtitles1"
-                android:textSize="18sp"
-                android:fontFamily="@font/amiri_bold"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/search_bar"
                 android:layout_alignParentStart="true"
                 android:layout_marginStart="34dp"
                 android:layout_marginTop="10dp"
-                android:text="Sort By" />
+                android:fontFamily="@font/amiri_bold"
+                android:text="Sort By"
+                android:textSize="18sp" />
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
