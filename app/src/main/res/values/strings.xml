@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">Hotel Booking</string>
+    <string-array name="lang">
+        <item>Vietnam</item>
+        <item>English</item>
+    </string-array>
 </resources>
