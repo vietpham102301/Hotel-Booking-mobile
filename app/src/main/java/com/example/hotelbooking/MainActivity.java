@@ -185,6 +185,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
                 month = month + 1;
                 String date = makeDateString(day, month, year);
                 checkInButton.setText(date);
+                checkOutButton.setText(date);
 
             }
 
@@ -208,9 +209,12 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         int day = cal.get(Calendar.DAY_OF_MONTH);
 
         int style = AlertDialog.THEME_HOLO_LIGHT;
+        cal.set(year,month,day);
 
         datePickerDialog = new DatePickerDialog(this, style, dateSetListener, year, month, day);
+        datePickerDialog.getDatePicker().setMinDate(cal.getTimeInMillis());
         datePickerDialog1 = new DatePickerDialog(this, style, dateSetListener1, year, month, day);
+        datePickerDialog1.getDatePicker().setMinDate(cal.getTimeInMillis());
         //datePickerDialog.getDatePicker().setMaxDate(System.currentTimeMillis());
 
     }

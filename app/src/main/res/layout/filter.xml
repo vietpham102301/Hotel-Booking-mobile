@@ -42,6 +42,73 @@
                 android:padding="12dp"
                 android:textSize="16sp">
             </TextView>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="34dp"
+                android:orientation="horizontal">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+                    <TextView
+                        android:id="@+id/textView1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/search_bar"
+                        android:layout_alignParentStart="true"
+                        android:layout_marginTop="10dp"
+                        android:fontFamily="@font/amiri_bold"
+                        android:text="Check In"
+                        android:textSize="18sp"
+                        />
+                    <Button
+                        android:id="@+id/checkInButtonSearch"
+                        android:layout_width="150dp"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/border_load"
+                        android:text="JAN 01 2020"
+                        android:textSize="12sp"
+                        android:textColor="@color/black"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintRight_toRightOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/textView"
+                        android:onClick="openCheckInPicker"/>
+
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_marginStart="40dp">
+                    <TextView
+                        android:id="@+id/textView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/search_bar"
+                        android:layout_alignParentStart="true"
+                        android:layout_marginTop="10dp"
+                        android:fontFamily="@font/amiri_bold"
+                        android:text="Check Out"
+                        android:textSize="18sp"
+                        />
+                    <Button
+                        android:id="@+id/checkOutButtonSearch"
+                        android:layout_width="150dp"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/border_load"
+                        android:text="JAN 01 2020"
+                        android:textSize="12sp"
+                        android:textColor="@color/black"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintRight_toRightOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/textView"
+                        android:onClick="openCheckInPicker"/>
+
+                </LinearLayout>
+
+
+            </LinearLayout>
 
             <TextView
 
@@ -53,7 +120,7 @@
                 android:layout_marginStart="34dp"
                 android:layout_marginTop="10dp"
                 android:fontFamily="@font/amiri_bold"
-                android:text="Sort By"
+                android:text="Ratting"
                 android:textSize="18sp" />
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -62,20 +129,20 @@
 
                 <CheckBox
                     android:id="@+id/checkBox1Sub1"
+                    android:gravity="center_vertical"
                     android:layout_width="wrap_content"
-                    android:layout_height="36dp"
+                    android:layout_height="40dp"
                     android:layout_below="@+id/textViewsubtitles1"
                     android:layout_alignParentStart="true"
                     android:layout_marginStart="50dp"
                     android:layout_marginTop="0dp"
-                    android:text="Sort form low price to high price"
+                    android:drawableEnd="@drawable/icon_star_2"
                     tools:ignore="TouchTargetSizeCheck" />
             </LinearLayout>
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
-
                 <CheckBox
                     android:id="@+id/checkBox2Sub1"
                     android:layout_width="wrap_content"
@@ -140,7 +207,7 @@
                 android:layout_alignParentStart="true"
                 android:layout_marginStart="34dp"
                 android:layout_marginTop="10dp"
-                android:text="Your budget" />
+                android:text="Price" />
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -154,14 +221,13 @@
                     android:layout_alignParentStart="true"
                     android:layout_marginStart="50dp"
                     android:layout_marginTop="0dp"
-                    android:text="Less than $50"
+                    android:text="0 - 500.000"
                     tools:ignore="TouchTargetSizeCheck,TouchTargetSizeCheck" />
             </LinearLayout>
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
-
                 <CheckBox
                     android:id="@+id/checkBox2Sub2"
                     android:layout_width="wrap_content"
@@ -170,7 +236,7 @@
                     android:layout_alignParentStart="true"
                     android:layout_marginStart="50dp"
                     android:layout_marginTop="0dp"
-                    android:text="$50 to $150"
+                    android:text="500.000 - 2.000.000"
                     tools:ignore="TouchTargetSizeCheck" />
             </LinearLayout>
             <LinearLayout
@@ -186,7 +252,7 @@
                     android:layout_alignParentStart="true"
                     android:layout_marginStart="50dp"
                     android:layout_marginTop="0dp"
-                    android:text="$150 to $250"
+                    android:text="2.000.000 - 5.000.000"
                     tools:ignore="TouchTargetSizeCheck" />
             </LinearLayout>
             <LinearLayout
@@ -202,7 +268,7 @@
                     android:layout_alignParentStart="true"
                     android:layout_marginStart="50dp"
                     android:layout_marginTop="0dp"
-                    android:text="More than $250"
+                    android:text="More than 5.000.000"
                     tools:ignore="TouchTargetSizeCheck" />
             </LinearLayout>
             <View
