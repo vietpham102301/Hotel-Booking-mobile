@@ -143,9 +143,7 @@
             android:layout_marginStart="12dp"
             android:layout_marginTop="20dp"
             android:layout_marginEnd="20dp"
-            android:layout_marginBottom="800dp"
             android:background="@drawable/corner"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/cardView3">
@@ -415,9 +413,9 @@
                 app:layout_constraintTop_toTopOf="parent">
 
                 <ImageView
-                    android:id="@+id/imageView"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:id="@+id/hotelImgView"
+                    android:layout_width="300dp"
+                    android:layout_height="200dp"
                     android:scaleType="center"
                     android:src="@drawable/sample_hotel_02"
                     app:layout_constraintTop_toBottomOf="@+id/hotelNameTxtView" />
@@ -518,6 +516,7 @@
             android:layout_marginStart="15dp"
             android:layout_marginTop="20dp"
             android:layout_marginEnd="30dp"
+            android:visibility="gone"
             android:background="@drawable/corner_with_color2"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -573,6 +572,7 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/constraintLayout2"
             android:layout_width="335dp"
+            android:visibility="gone"
             android:layout_height="137dp"
             android:layout_marginStart="15dp"
             android:layout_marginTop="20dp"
@@ -635,13 +635,13 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="12dp"
             android:layout_marginTop="20dp"
-            android:text="Credit Cards"
             android:fontFamily="@font/andada"
-            android:textStyle="bold"
+            android:text="Credit Cards"
             android:textColor="@color/black"
             android:textSize="24sp"
+            android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/constraintLayout" />
+            app:layout_constraintTop_toBottomOf="@+id/paymentCheckbox" />
 
         <ImageView
             android:id="@+id/imageView5"
@@ -683,7 +683,7 @@
             app:layout_constraintTop_toBottomOf="@+id/textView38">
 
             <EditText
-                android:id="@+id/editTextTextPersonName"
+                android:id="@+id/editTxtCardNumber"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginStart="10dp"
@@ -751,7 +751,7 @@
             app:layout_constraintTop_toBottomOf="@+id/textView39">
 
             <EditText
-                android:id="@+id/editTextTextPersonName2"
+                android:id="@+id/editTxtExpiry"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="@android:color/transparent"
@@ -774,7 +774,7 @@
             app:layout_constraintTop_toBottomOf="@+id/textView40">
 
             <EditText
-                android:id="@+id/editTextTextPassword"
+                android:id="@+id/editTxtCVC"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="@android:color/transparent"
@@ -817,16 +817,30 @@
             android:layout_marginStart="70dp"
             android:layout_marginTop="20dp"
             android:layout_marginEnd="70dp"
+            android:layout_marginBottom="20dp"
             android:background="@drawable/border"
             android:outlineAmbientShadowColor="@color/black"
             android:shadowColor="#48000000"
             android:text="Confirm and reserve"
             android:textColor="@color/white"
             android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView41"
             tools:ignore="TouchTargetSizeCheck"></Button>
+
+        <CheckBox
+            android:id="@+id/paymentCheckbox"
+            android:layout_width="wrap_content"
+            android:layout_height="48dp"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="20dp"
+            android:text="Pay when arrived"
+            android:fontFamily="@font/aleo"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/constraintLayout" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

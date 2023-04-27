@@ -9,12 +9,18 @@ import android.os.Looper;
 import android.os.Message;
 import android.util.Log;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.bumptech.glide.Glide;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -47,6 +53,7 @@ public class PaymentActivity extends AppCompatActivity implements AdapterView.On
     public static final String USERNAME = "username";
     public static final String QUANTITY = "quantity";
     public static final String HOTEL_ID = "hotel_id";
+    public static final String HOTEL_IMG_URL = "hotel_img_url";
 
 
 
@@ -66,6 +73,7 @@ public class PaymentActivity extends AppCompatActivity implements AdapterView.On
     private String username;
     private Integer hotelID;
     private Integer quantity;
+    private String hotelImgURL;
 
     private TextView checkInTxtView1;
     private TextView travellerTxtView;
@@ -81,6 +89,11 @@ public class PaymentActivity extends AppCompatActivity implements AdapterView.On
     private TextView totalTxtView;
     private TextView priceCalTxtView;
     private Button confirmButton;
+    private ImageView hotelImg;
+    private CheckBox paymentCheckBox;
+    private EditText editTxtCardNumber;
+    private EditText editTextExpiry;
+    private EditText editTxtCVC;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -89,7 +102,10 @@ public class PaymentActivity extends AppCompatActivity implements AdapterView.On
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.lang, R.layout.payment_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
+        spinner.setSelected(false);
+        spinner.setSelection(0,true);
         spinner.setOnItemSelectedListener(this);
+
 
         saveData();
         checkInTxtView1 = findViewById(R.id.checkinTxtView1);
@@ -105,6 +121,7 @@ public class PaymentActivity extends AppCompatActivity implements AdapterView.On
         feeTxtView = findViewById(R.id.serviceFeeTxtView);
         totalTxtView = findViewById(R.id.totalFeeTxtView);
         priceCalTxtView = findViewById(R.id.calPriceTxtView);
+        hotelImg = findViewById(R.id.hotelImgView);
 
 
         showDataToConsole();
@@ -171,92 +188,119 @@ public class PaymentActivity extends AppCompatActivity implements AdapterView.On
         totalTxtView.setText("$"+total);
 
 
-
-
-
         confirmButton = findViewById(R.id.confirmButton);
+
+        paymentCheckBox = findViewById(R.id.paymentCheckbox);
+        editTextExpiry = findViewById((R.id.editTxtExpiry));
+        editTxtCardNumber = findViewById(R.id.editTxtCardNumber);
+        editTxtCVC = findViewById((R.id.editTxtCVC));
 
         confirmButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Thread thread = new Thread(() -> {
-                    try  {
-                        URL url = new URL("http://14.225.255.238/booking/api/v1/order");
-                        HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-                        connection.setRequestMethod("POST");
-                        connection.setRequestProperty("Content-Type", "application/json");
-                        connection.setDoOutput(true);
 
-                        String requestBody = String.format("{\n" +
-                                "    \"checkin\": \"%s\",\n" +
-                                "    \"checkout\": \"%s\",\n" +
-                                "    \"hotelId\": %d,\n" +
-                                "    \"name\": \"%s\",\n" +
-                                "    \"orderDetails\": [\n" +
-                                "        {\n" +
-                                "            \"quantity\": %d,\n" +
-                                "            \"roomTypeId\": %d\n" +
-                                "        }\n" +
-                                "    ],\n" +
-                                "    \"phone\": \"%s\",\n" +
-                                "    \"userId\": %d\n" +
-                                "}", checkIn, checkOut, hotelID, username, quantity, roomTypeID, phone, userID);
-                        Log.d("Request Body", requestBody);
+                if(paymentCheckBox.isChecked()){
+                    makeOrderRequest();
+                }else{
+                    String cardNumber = editTxtCardNumber.getText().toString().trim();
+                    String expiry = editTextExpiry.getText().toString().trim();
+                    String CVC = editTxtCVC.getText().toString().trim();
 
-                        OutputStream outputStream = connection.getOutputStream();
-                        outputStream.write(requestBody.getBytes());
-                        outputStream.flush();
-                        outputStream.close();
-
-                        int responseCode = connection.getResponseCode();
-                        System.out.println("Response code: " + responseCode);
-
-                        BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
-                        String line;
-                        StringBuilder responseBody = new StringBuilder();
-                        while ((line = in.readLine()) != null) {
-                            responseBody.append(line);
-                        }
-                        in.close();
-
-                        Log.d("Response body ", responseBody.toString());
-                        new Handler(Looper.getMainLooper()).post(new Runnable() {
-                            @Override
-                            public void run() {
-                                Toast.makeText(getApplicationContext(), "Order Successful", Toast.LENGTH_SHORT).show();
-                            }
-                        });
-
-                    } catch (Exception e) {
-//                        Toast.makeText(PaymentActivity.this, "ORDER SUCCESSUL",Toast.LENGTH_SHORT).show();
-                        //fail but want a Toast message to show the fail
-                        new Handler(Looper.getMainLooper()).post(() -> Toast.makeText(getApplicationContext(), "ERR WHEN MAKE ORDER PLEASE TRY AGAIN", Toast.LENGTH_SHORT).show());
-                        e.printStackTrace();
+                    if(!cardNumber.equals("") && !expiry.equals("") && !CVC.equals("")){
+                        makeOrderRequest();
+                    }else{
+                        Toast.makeText(PaymentActivity.this, "Please fill card information for payment", Toast.LENGTH_SHORT).show();
                     }
-                });
+                }
 
-                thread.start();
+
 
 //                Toast.makeText(PaymentActivity.this, "ORDER SUCCESSUL",Toast.LENGTH_SHORT).show();
 
 
             }
         });
+
+        //bit map
+//        String imgURL = "https://media-cdn.tripadvisor.com/media/photo-s/23/ca/38/3a/au-lac-charner-hotel.jpg";
+        Glide.with(this).asBitmap().load(hotelImgURL).into(hotelImg);
+
     }
-    public void showToast(final String toast)
-    {
-        runOnUiThread(() -> Toast.makeText(PaymentActivity.this, toast, Toast.LENGTH_SHORT).show());
+
+
+    public void makeOrderRequest(){
+        Thread thread = new Thread(() -> {
+            try  {
+                URL url = new URL("http://14.225.255.238/booking/api/v1/order");
+                HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+                connection.setRequestMethod("POST");
+                connection.setRequestProperty("Content-Type", "application/json");
+                connection.setDoOutput(true);
+
+                String requestBody = String.format("{\n" +
+                        "    \"checkin\": \"%s\",\n" +
+                        "    \"checkout\": \"%s\",\n" +
+                        "    \"hotelId\": %d,\n" +
+                        "    \"name\": \"%s\",\n" +
+                        "    \"orderDetails\": [\n" +
+                        "        {\n" +
+                        "            \"quantity\": %d,\n" +
+                        "            \"roomId\": %d\n" +
+                        "        }\n" +
+                        "    ],\n" +
+                        "    \"phone\": \"%s\",\n" +
+                        "    \"userId\": %d\n" +
+                        "}", checkIn, checkOut, hotelID, username, quantity, roomTypeID, phone, userID);
+                Log.d("Request Body", requestBody);
+
+                OutputStream outputStream = connection.getOutputStream();
+                outputStream.write(requestBody.getBytes());
+                outputStream.flush();
+                outputStream.close();
+
+                int responseCode = connection.getResponseCode();
+                System.out.println("Response code: " + responseCode);
+
+                BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+                String line;
+                StringBuilder responseBody = new StringBuilder();
+                while ((line = in.readLine()) != null) {
+                    responseBody.append(line);
+                }
+                in.close();
+
+                Log.d("Response body ", responseBody.toString());
+                new Handler(Looper.getMainLooper()).post(new Runnable() {
+                    @Override
+                    public void run() {
+                        Toast.makeText(getApplicationContext(), "Order Successful", Toast.LENGTH_SHORT).show();
+                    }
+                });
+
+            } catch (Exception e) {
+//                        Toast.makeText(PaymentActivity.this, "ORDER SUCCESSUL",Toast.LENGTH_SHORT).show();
+                //fail but want a Toast message to show the fail
+                new Handler(Looper.getMainLooper()).post(() -> Toast.makeText(getApplicationContext(), "ERR WHEN MAKE ORDER PLEASE TRY AGAIN", Toast.LENGTH_SHORT).show());
+                e.printStackTrace();
+            }
+        });
+
+        thread.start();
     }
 
     @Override
     public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-        String text = adapterView.getItemAtPosition(i).toString();
-        Toast.makeText(adapterView.getContext(), text, Toast.LENGTH_SHORT).show();
+        try {
+            String text = adapterView.getItemAtPosition(i).toString();
+            Toast.makeText(view.getContext(), text, Toast.LENGTH_SHORT).show();
+        } catch (Exception e) {
+            Log.d("toast err", "happened");
+        }
     }
 
     @Override
     public void onNothingSelected(AdapterView<?> adapterView) {
-
+        return;
     }
 
     public void saveData(){
@@ -278,6 +322,7 @@ public class PaymentActivity extends AppCompatActivity implements AdapterView.On
         editor.putString(USERNAME,"viet pham");
         editor.putInt(HOTEL_ID, 1);
         editor.putInt(QUANTITY, 1);
+        editor.putString(HOTEL_IMG_URL, "https://media-cdn.tripadvisor.com/media/photo-s/23/ca/38/3a/au-lac-charner-hotel.jpg");
         editor.apply();
     }
     public void showDataToConsole(){
@@ -297,7 +342,7 @@ public class PaymentActivity extends AppCompatActivity implements AdapterView.On
         username = sharedPreferences.getString(USERNAME, "");
         quantity = sharedPreferences.getInt(QUANTITY, 0);
         hotelID = sharedPreferences.getInt(HOTEL_ID, 0);
-
+        hotelImgURL = sharedPreferences.getString(HOTEL_IMG_URL, "");
 
         Log.d("checkIn: ", checkIn);
         Log.d("checkout: ", checkOut);
