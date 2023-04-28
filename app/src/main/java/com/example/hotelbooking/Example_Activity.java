@@ -9,9 +9,8 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.bumptech.glide.Glide;
-import com.example.hotelbooking.HotelList.Api.ApiService;
-import com.example.hotelbooking.HotelList.Model.Hotels;
+import com.example.hotelbooking.hotelList.api.ApiService;
+import com.example.hotelbooking.hotelList.model.Hotels;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -36,7 +35,7 @@ public class Example_Activity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.cardview);
+        setContentView(R.layout.hotel_list_item);
 
 
         imgViewHotel=findViewById(R.id.imgViewHotel);

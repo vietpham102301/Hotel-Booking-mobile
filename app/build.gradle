@@ -40,6 +40,9 @@ dependencies {
 //    annotationProcessor 'com.github.bumptech.glide:compiler:4.7.1'
     //RoundedImageView
     implementation 'com.makeramen:roundedimageview:2.3.0'
-    implementation 'com.google.code.gson:gson:2.8.8'
+    //Json
+    implementation 'com.squareup.retrofit2:retrofit:2.4.0'
+    implementation 'com.google.code.gson:gson:2.8.6'
+    implementation 'com.squareup.retrofit2:converter-gson:2.4.0'
 
 }

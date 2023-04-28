@@ -21,6 +21,9 @@ import androidx.viewpager2.widget.CompositePageTransformer;
 import androidx.viewpager2.widget.MarginPageTransformer;
 import androidx.viewpager2.widget.ViewPager2;
 
+import com.example.hotelbooking.hotelList.SliderItem;
+import com.example.hotelbooking.hotelList.adapter.SliderAdapter;
+
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;

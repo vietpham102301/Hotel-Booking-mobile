@@ -1,9 +1,11 @@
-package com.example.hotelbooking.HotelList.Api;
+package com.example.hotelbooking.hotelList.api;
 
-import com.example.hotelbooking.HotelList.Model.Hotels;
+import com.example.hotelbooking.hotelList.model.Hotels;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+
+import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Retrofit;
@@ -23,5 +25,7 @@ public interface ApiService {
 
     @GET("api/v1/hotels/{id}")
     Call<Hotels> hotelCardView(@Path("id") int id);
+    @GET("api/v1/hotels")
+    Call<List<Hotels>> hotelList();
 
 }

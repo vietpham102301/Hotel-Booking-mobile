@@ -1,4 +1,4 @@
-package com.example.hotelbooking.HotelList.Model;
+package com.example.hotelbooking.hotelList.model;
 
 import java.util.List;
 

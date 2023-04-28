@@ -1,4 +1,4 @@
-package com.example.hotelbooking;
+package com.example.hotelbooking.hotelList.adapter;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -8,6 +8,8 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager2.widget.ViewPager2;
 
+import com.example.hotelbooking.R;
+import com.example.hotelbooking.hotelList.SliderItem;
 import com.makeramen.roundedimageview.RoundedImageView;
 
 import java.util.List;

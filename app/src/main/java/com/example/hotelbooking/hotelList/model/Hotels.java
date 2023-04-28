@@ -1,4 +1,4 @@
-package com.example.hotelbooking.HotelList.Model;
+package com.example.hotelbooking.hotelList.model;
 
 public class Hotels {
     private String status;

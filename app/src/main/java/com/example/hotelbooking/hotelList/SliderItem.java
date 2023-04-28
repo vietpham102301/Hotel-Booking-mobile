@@ -1,4 +1,4 @@
-package com.example.hotelbooking;
+package com.example.hotelbooking.hotelList;
 
 public class SliderItem {
     private  int image;
