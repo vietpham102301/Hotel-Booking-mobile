@@ -7,7 +7,7 @@
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
-        android:layout_height="540dp"
+        android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:layout_marginEnd="30dp"
         android:layout_marginStart="30dp"
@@ -22,7 +22,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="200dp">
                 <ImageView
-                    android:id="@+id/imageViewHotel"
+                    android:id="@+id/imgViewHotel"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:scaleX="1.2"
@@ -36,10 +36,10 @@
 >
 
                 <TextView
+                    android:id="@+id/txtNameHotel"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/b612_bold"
-                    android:text="Amanoi, NinhThuan"
                     android:textColor="@color/black"
                     android:textSize="32sp"/>
             </LinearLayout>
@@ -51,48 +51,49 @@
                 >
                 <LinearLayout
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:gravity="center">
                     <ImageView
-                        android:layout_width="20dp"
-                        android:layout_height="20dp"
+                        android:layout_width="16dp"
+                        android:layout_height="16dp"
                         android:src="@drawable/icon_star">
                     </ImageView>
-
                     <TextView
+                        android:id="@+id/txtRatingHotel"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="2dp"
-                        android:layout_marginTop="2.5dp"
                         android:fontFamily="@font/alegreya_bold"
-                        android:text="4.8"
-                        android:textSize="13sp"/>
+                        android:text="2.0"
+                        android:textSize="12sp"/>
                     <TextView
+                        android:id="@+id/txtNumRatingHotel"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="2dp"
-                        android:layout_marginTop="1.5dp"
+                        android:fontFamily="@font/alegreya_sans_thin"
                         android:text="(632 reviews)"
-                        android:textSize="11sp">
+                        android:textSize="12sp">
                     </TextView>
                 </LinearLayout>
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="1.5dp"
                     android:layout_marginStart="30dp">
                     <ImageView
-                        android:layout_width="16dp"
-                        android:layout_height="16dp"
+                        android:layout_width="14dp"
+                        android:layout_height="14dp"
                         android:layout_gravity="center"
                         android:src="@drawable/icon_flag">
                     </ImageView>
                     <TextView
+                        android:id="@+id/txtProviceHotel"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="3dp"
                         android:fontFamily="@font/alegreya_bold"
-                        android:text="Ninh Thuan"
-                        android:textSize="13sp">
+                        android:text="HOCHIMINH"
+                        android:textSize="11sp">
 
                     </TextView>
                 </LinearLayout>
@@ -110,11 +111,12 @@
                     android:src="@drawable/icon_location">
                 </ImageView>
                 <TextView
+                    android:id="@+id/txtAddressHotel"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
-                    android:text="Amanoi, Ninh Thuan"
-                    android:textSize="15sp">
+                    android:text="3 Hoàng Việt, Phường 4, Tân Bình, TP.HCM"
+                    android:textSize="13sp">
                 </TextView>
 
             </LinearLayout>
@@ -134,7 +136,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
                     android:text="15.05.2001-16.05.2001"
-                    android:textSize="15sp">
+                    android:textSize="13sp">
                 </TextView>
 
             </LinearLayout>
@@ -147,14 +149,15 @@
                 <ImageView
                     android:layout_width="19dp"
                     android:layout_height="19dp"
-                    android:src="@drawable/icon_car">
+                    android:src="@drawable/icon_phone">
                 </ImageView>
                 <TextView
+                    android:id="@+id/txtPhoneHotel"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
-                    android:text="Pick up and drop off"
-                    android:textSize="15sp">
+                    android:text="0334428102"
+                    android:textSize="13sp">
                 </TextView>
             </LinearLayout>
             <LinearLayout
@@ -181,7 +184,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginStart="10dp"
                             android:text="Free wifi"
-                            android:textSize="15sp">
+                            android:textSize="13sp">
                         </TextView>
                     </LinearLayout>
                     <LinearLayout
@@ -201,7 +204,7 @@
                             android:layout_marginStart="10dp"
                             android:fontFamily="@font/actor"
                             android:text="Free parking"
-                            android:textSize="15sp"></TextView>
+                            android:textSize="13sp"></TextView>
                     </LinearLayout>
                     <LinearLayout
                         android:layout_width="wrap_content"
@@ -218,7 +221,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginStart="10dp"
                             android:text="Free breakfast"
-                            android:textSize="15sp">
+                            android:textSize="13sp">
                         </TextView>
                     </LinearLayout>
                     <LinearLayout
@@ -236,7 +239,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginStart="10dp"
                             android:text="Special offer"
-                            android:textSize="15sp">
+                            android:textSize="13sp">
                         </TextView>
                     </LinearLayout>
 
@@ -244,30 +247,32 @@
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="75dp"
+                    android:layout_marginStart="60dp"
                     android:orientation="vertical">
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal"
-                        android:layout_marginStart="12dp"
                         android:layout_marginTop="30dp">
 
                         <TextView
+                            android:id="@+id/txtPriceHotel"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/b612_bold"
-                            android:text="$320"
-                            android:textSize="22sp"></TextView>
+                            android:text="2000000 VND"
+                            android:textSize="16sp"></TextView>
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="/night">
+                            android:text="/night"
+                            android:textSize="12sp">
                         </TextView>
                     </LinearLayout>
 
                     <Button
-                        android:layout_width="120dp"
+                        android:id="@+id/btnclick1"
+                        android:layout_width="145dp"
                         android:layout_height="48dp"
                         android:background="@drawable/border"
                         android:outlineAmbientShadowColor="@color/black"
