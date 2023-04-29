@@ -1,0 +1,726 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".HomePageActivity">
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="fill_parent"
+            android:orientation="vertical">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <androidx.appcompat.widget.Toolbar
+                    android:layout_width="match_parent"
+                    android:layout_height="51dp"
+                    android:background="#ffffff">
+
+                    <ImageView
+                        android:layout_width="90dp"
+                        android:layout_height="match_parent"
+                        tools:srcCompat="@drawable/icon_logo" />
+
+                    <ImageView
+                        android:layout_width="85px"
+                        android:layout_height="85px"
+                        android:layout_marginStart="700px"
+                        tools:srcCompat="@drawable/icon_user" />
+                </androidx.appcompat.widget.Toolbar>
+            </LinearLayout>
+
+            <!--            <ImageView-->
+<!--                android:src="@drawable/background_homepage"-->
+<!--                android:scaleType="centerCrop"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="600dp"-->
+<!--                tools:ignore="MissingConstraints" />-->
+
+
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="450dp"
+                android:background="@drawable/background_homepage">
+
+                    <LinearLayout
+                        android:layout_width="310dp"
+                        android:layout_marginHorizontal="20dp"
+                        android:layout_marginTop="80dp"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/shape"
+                        android:contextClickable="true"
+                        android:orientation="vertical"
+                        >
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="50dp"
+                            android:layout_marginTop="10dp"
+                            android:orientation="horizontal"
+                            android:weightSum="2">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1">
+
+                                <ImageView
+                                    android:layout_width="32dp"
+                                    android:layout_height="32dp"
+                                    android:layout_gravity="center"
+                                    android:layout_marginStart="40dp"
+                                    android:background="@drawable/baseline_hotel_24" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center"
+                                    android:layout_marginStart="2dp"
+                                    android:fontFamily="@font/andada"
+                                    android:text="Hotel"
+                                    android:textColor="#252323"
+                                    android:textSize="22sp" />
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1">
+
+                                <ImageView
+                                    android:layout_width="32dp"
+                                    android:layout_height="32dp"
+                                    android:layout_gravity="center"
+                                    android:layout_marginStart="20dp"
+                                    android:background="@drawable/baseline_car_light" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center"
+                                    android:layout_marginStart="2dp"
+                                    android:fontFamily="@font/andada"
+                                    android:text="Car"
+                                    android:textSize="22sp" />
+                            </LinearLayout>
+                        </LinearLayout>
+                        <View
+
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:layout_alignParentStart="true"
+                            android:layout_marginStart="30dp"
+                            android:layout_marginEnd="30dp"
+                            android:background="@android:color/darker_gray" />
+
+                        <TextView
+                            android:layout_width="264dp"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_margin="10dp"
+                            android:background="@drawable/border_shape"
+                            android:maxLines="2"
+                            android:minHeight="48dp"
+                            android:paddingLeft="15dp"
+                            android:text="Location \nWhere are you from?" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_marginStart="17dp"
+                            android:layout_marginEnd="17dp">
+                            <Button
+                                android:layout_width="125dp"
+                                android:layout_height="50dp"
+                                android:background="@drawable/border_shape"
+                                android:text="check in"
+                                android:textColor="@color/black" />
+
+                            <Button
+                                android:layout_width="125dp"
+                                android:layout_height="50dp"
+                                android:layout_marginStart="16dp"
+                                android:background="@drawable/border_shape"
+                                android:text="check out"
+                                android:textColor="@color/black" />
+
+                        </LinearLayout>
+
+                        <Button
+                            android:id="@+id/btnpsg"
+                            android:layout_width="match_parent"
+                            android:layout_height="48dp"
+                            android:layout_gravity="center"
+                            android:layout_margin="17dp"
+                            android:background="@drawable/border_shape"
+                            android:paddingLeft="15dp"
+                            android:text="Passenger" />
+
+                        <Button
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_gravity="center"
+                            android:layout_marginBottom="10dp"
+                            android:background="@drawable/border_shape"
+                            android:text="search"
+                            android:layout_marginStart="17dp"
+                            android:layout_marginEnd="16dp"/>
+                    </LinearLayout>
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="30dp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:layout_gravity="center">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:fontFamily="@font/andada"
+                    android:text="Search a best place"
+                    android:textColor="#0C1F35"
+                    android:textSize="34sp"
+                    android:textStyle="bold" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="in the world"
+                    android:textSize="34sp"
+                    android:layout_gravity="center"
+                    android:fontFamily="@font/andada"
+                    android:textStyle="bold"
+                    android:textColor="#0C1F35"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:fontFamily="@font/alegreya"
+                    android:text="Whether you’re looking for place for"
+                    android:textSize="18sp" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="a vacation. We are here to Guide you"
+                    android:fontFamily="@font/alegreya"
+                    android:textSize="18sp"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="about the details you need a check in"
+                    android:fontFamily="@font/alegreya"
+                    android:textSize="18sp"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="and ease your trips in advance"
+                    android:fontFamily="@font/alegreya"
+                    android:textSize="18sp"/>
+            </LinearLayout>
+
+            <HorizontalScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal" >
+                    <LinearLayout
+                        android:layout_width="270dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginStart="20dp"
+                        android:orientation="vertical"
+                        android:background="@drawable/shape">
+                        <androidx.cardview.widget.CardView
+                            xmlns:app="http://schemas.android.com/apk/res-auto"
+                            android:layout_width="200dp"
+                            android:layout_height="200dp"
+                            android:layout_margin="10dp"
+                            app:cardCornerRadius="15dp"
+                            android:layout_gravity="center">
+                            <ImageView
+                                android:layout_width="200dp"
+                                android:layout_height="200dp"
+                                android:background="@drawable/hp_danang" />
+                        </androidx.cardview.widget.CardView>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/andada"
+                            android:textStyle="bold"
+                            android:textSize="20sp"
+                            android:text="Da Nang, Viet Nam"
+                            android:textColor="#0C1F35"
+                            android:layout_marginBottom="10dp"
+                            android:layout_gravity="center"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="124 destination"
+                            android:textSize="18sp"
+                            android:fontFamily="@font/andada"
+                            android:layout_gravity="center"
+                            android:layout_marginTop="-10dp"
+                            android:layout_marginBottom="20dp"/>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="270dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginStart="20dp"
+                        android:orientation="vertical"
+                        android:background="@drawable/shape">
+                        <androidx.cardview.widget.CardView
+                            xmlns:app="http://schemas.android.com/apk/res-auto"
+                            android:layout_width="200dp"
+                            android:layout_height="200dp"
+                            android:layout_margin="10dp"
+                            app:cardCornerRadius="15dp"
+                            android:layout_gravity="center">
+                            <ImageView
+                                android:layout_width="200dp"
+                                android:layout_height="200dp"
+                                android:background="@drawable/hp_vinhhalong" />
+                        </androidx.cardview.widget.CardView>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/andada"
+                            android:textStyle="bold"
+                            android:textSize="20sp"
+                            android:text="Vinh Ha Long, Viet Nam"
+                            android:textColor="#0C1F35"
+                            android:layout_marginBottom="10dp"
+                            android:layout_gravity="center"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="135 destination"
+                            android:textSize="18sp"
+                            android:fontFamily="@font/andada"
+                            android:layout_gravity="center"
+                            android:layout_marginTop="-10dp"
+                            android:layout_marginBottom="20dp"/>
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="270dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginStart="20dp"
+                        android:orientation="vertical"
+                        android:background="@drawable/shape">
+                        <androidx.cardview.widget.CardView
+                            xmlns:app="http://schemas.android.com/apk/res-auto"
+                            android:layout_width="200dp"
+                            android:layout_height="200dp"
+                            android:layout_margin="10dp"
+                            app:cardCornerRadius="15dp"
+                            android:layout_gravity="center">
+                            <ImageView
+                                android:layout_width="200dp"
+                                android:layout_height="200dp"
+                                android:background="@drawable/hp_dalat" />
+                        </androidx.cardview.widget.CardView>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/andada"
+                            android:textStyle="bold"
+                            android:textSize="20sp"
+                            android:text="Da Lat, Viet Nam"
+                            android:textColor="#0C1F35"
+                            android:layout_marginBottom="10dp"
+                            android:layout_gravity="center"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="157 destination"
+                            android:textSize="18sp"
+                            android:fontFamily="@font/andada"
+                            android:layout_gravity="center"
+                            android:layout_marginTop="-10dp"
+                            android:layout_marginBottom="20dp"/>
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="270dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginStart="20dp"
+                        android:orientation="vertical"
+                        android:background="@drawable/shape">
+                        <androidx.cardview.widget.CardView
+                            xmlns:app="http://schemas.android.com/apk/res-auto"
+                            android:layout_width="200dp"
+                            android:layout_height="200dp"
+                            android:layout_margin="10dp"
+                            app:cardCornerRadius="15dp"
+                            android:layout_gravity="center">
+                            <ImageView
+                                android:layout_width="200dp"
+                                android:layout_height="200dp"
+                                android:background="@drawable/hp_vungtau" />
+                        </androidx.cardview.widget.CardView>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/andada"
+                            android:textStyle="bold"
+                            android:textSize="20sp"
+                            android:text="Vung Tau, Viet Nam"
+                            android:textColor="#0C1F35"
+                            android:layout_marginBottom="10dp"
+                            android:layout_gravity="center"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="142 destination"
+                            android:textSize="18sp"
+                            android:fontFamily="@font/andada"
+                            android:layout_gravity="center"
+                            android:layout_marginTop="-10dp"
+                            android:layout_marginBottom="20dp"/>
+                    </LinearLayout>
+                </LinearLayout>
+            </HorizontalScrollView>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="25dp"
+                android:layout_marginBottom="25dp"
+                android:orientation="vertical">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:fontFamily="@font/andada"
+                    android:text="Featured"
+                    android:textColor="#0C1F35"
+                    android:textSize="34sp"
+                    android:textStyle="bold" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:fontFamily="@font/andada"
+                    android:text="Destinations"
+                    android:textColor="#0C1F35"
+                    android:textSize="34sp"
+                    android:textStyle="bold" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:fontFamily="@font/alegreya"
+                    android:text="Popular destinations open\n    to visits from VietNam"
+                    android:textSize="18sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp">
+                <androidx.viewpager2.widget.ViewPager2
+                    android:id="@+id/pager"
+                    android:paddingStart="70dp"
+                    android:paddingEnd="70dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="25dp"
+                android:layout_marginBottom="25dp"
+                android:orientation="vertical">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:fontFamily="@font/andada"
+                    android:text="Top Tour"
+                    android:textColor="#0C1F35"
+                    android:textSize="34sp"
+                    android:textStyle="bold" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:fontFamily="@font/alegreya"
+                    android:text="Keep claim - Travel on"
+                    android:textSize="18sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginBottom="20dp">
+                <androidx.cardview.widget.CardView
+                    android:layout_width="300dp"
+                    android:layout_height="400dp"
+                    app:cardCornerRadius="15dp"
+                    android:layout_gravity="center">
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/hp_hcm"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="HO CHI MINH"
+                        android:fontFamily="@font/andada"
+                        android:textColor="@color/white"
+                        android:textStyle="bold"
+                        android:textSize="36sp"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="140dp"/>
+                </androidx.cardview.widget.CardView>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginBottom="20dp">
+                <androidx.cardview.widget.CardView
+                    android:layout_width="300dp"
+                    android:layout_height="400dp"
+                    app:cardCornerRadius="15dp"
+                    android:layout_gravity="center">
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/hp_caurongdanang"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="DA NANG"
+                        android:fontFamily="@font/andada"
+                        android:textColor="@color/white"
+                        android:textStyle="bold"
+                        android:textSize="36sp"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="140dp"/>
+                </androidx.cardview.widget.CardView>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginBottom="20dp">
+                <androidx.cardview.widget.CardView
+                    android:layout_width="300dp"
+                    android:layout_height="400dp"
+                    app:cardCornerRadius="15dp"
+                    android:layout_gravity="center">
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/hp_hanoii"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="HA NOI"
+                        android:fontFamily="@font/andada"
+                        android:textColor="@color/white"
+                        android:textStyle="bold"
+                        android:textSize="36sp"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="140dp"/>
+                </androidx.cardview.widget.CardView>
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Browse By Property Type"
+                android:fontFamily="@font/andada"
+                android:textSize="28sp"
+                android:textStyle="bold"
+                android:layout_gravity="center"
+                android:textColor="#0C1F35"
+                android:layout_margin="20dp"/>
+
+            <HorizontalScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:contentDescription="@string/appbar_scrolling_view_behavior">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_marginStart="20dp"
+                        android:orientation="vertical">
+                        <androidx.cardview.widget.CardView
+                            android:layout_width="150dp"
+                            android:layout_height="200dp"
+                            android:layout_gravity="center"
+                            app:cardCornerRadius="15dp">
+                            <ImageView
+                                android:layout_width="150dp"
+                                android:layout_height="200dp"
+                                android:background="@drawable/hp_hotel" />
+                        </androidx.cardview.widget.CardView>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginBottom="10dp"
+                            android:fontFamily="@font/andada"
+                            android:text="Hotels"
+                            android:textColor="#0C1F35"
+                            android:textSize="20sp"
+                            android:textStyle="bold" />
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginTop="-10dp"
+                            android:layout_marginBottom="20dp"
+                            android:fontFamily="@font/andada"
+                            android:text="1,120 hotels"
+                            android:textSize="18sp" />
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_marginStart="20dp"
+                        android:orientation="vertical">
+                        <androidx.cardview.widget.CardView
+                            android:layout_width="150dp"
+                            android:layout_height="200dp"
+                            android:layout_gravity="center"
+                            app:cardCornerRadius="15dp">
+                            <ImageView
+                                android:layout_width="150dp"
+                                android:layout_height="200dp"
+                                android:background="@drawable/hp_apartment" />
+                        </androidx.cardview.widget.CardView>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginBottom="10dp"
+                            android:fontFamily="@font/andada"
+                            android:text="Apartment"
+                            android:textColor="#0C1F35"
+                            android:textSize="20sp"
+                            android:textStyle="bold" />
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginTop="-10dp"
+                            android:layout_marginBottom="20dp"
+                            android:fontFamily="@font/andada"
+                            android:text="879 apartment"
+                            android:textSize="18sp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_marginStart="20dp"
+                        android:orientation="vertical">
+                        <androidx.cardview.widget.CardView
+                            android:layout_width="150dp"
+                            android:layout_height="200dp"
+                            android:layout_gravity="center"
+                            app:cardCornerRadius="15dp">
+                            <ImageView
+                                android:layout_width="150dp"
+                                android:layout_height="200dp"
+                                android:background="@drawable/hp_resort" />
+                        </androidx.cardview.widget.CardView>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginBottom="10dp"
+                            android:fontFamily="@font/andada"
+                            android:text="Resorts"
+                            android:textColor="#0C1F35"
+                            android:textSize="20sp"
+                            android:textStyle="bold" />
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginTop="-10dp"
+                            android:layout_marginBottom="20dp"
+                            android:fontFamily="@font/andada"
+                            android:text="1,003 resorts"
+                            android:textSize="18sp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginEnd="20dp"
+                        android:orientation="vertical">
+                        <androidx.cardview.widget.CardView
+                            android:layout_width="150dp"
+                            android:layout_height="200dp"
+                            android:layout_gravity="center"
+                            app:cardCornerRadius="15dp">
+                            <ImageView
+                                android:layout_width="150dp"
+                                android:layout_height="200dp"
+                                android:background="@drawable/hp_villa" />
+                        </androidx.cardview.widget.CardView>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginBottom="10dp"
+                            android:fontFamily="@font/andada"
+                            android:text="Villas"
+                            android:textColor="#0C1F35"
+                            android:textSize="20sp"
+                            android:textStyle="bold" />
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginTop="-10dp"
+                            android:layout_marginBottom="20dp"
+                            android:fontFamily="@font/andada"
+                            android:text="576 villas"
+                            android:textSize="18sp" />
+                    </LinearLayout>
+                </LinearLayout>
+            </HorizontalScrollView>
+
+            <TextView
+                android:id="@+id/textView28"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="serif"
+                android:layout_gravity="center"
+                android:padding="20dp"
+                android:text="Trip Guide"
+                android:textSize="24sp"
+                android:textColor="#0EB7CD"
+                android:textStyle="bold" />
+        </LinearLayout>
+    </ScrollView>
+</RelativeLayout>

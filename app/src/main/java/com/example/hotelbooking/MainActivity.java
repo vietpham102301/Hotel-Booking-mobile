@@ -164,7 +164,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
             public void onPageSelected(int position) {
                 super.onPageSelected(position);
                 sliderHandler.removeCallbacks(sliderRunnable);
-                sliderHandler.postDelayed(sliderRunnable, 3000);//Slide Duration 3 sec
+                sliderHandler.postDelayed(sliderRunnable, 1000);//Slide Duration 3 sec
             }
         });
     }
