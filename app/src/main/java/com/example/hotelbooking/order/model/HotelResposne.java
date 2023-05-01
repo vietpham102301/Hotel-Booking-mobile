@@ -1,6 +1,6 @@
-package com.example.hotelbooking.order;
+package com.example.hotelbooking.order.model;
 
-import com.example.hotelbooking.order.Hotel;
+import com.example.hotelbooking.order.model.Hotel;
 
 public class HotelResposne {
     private String status;

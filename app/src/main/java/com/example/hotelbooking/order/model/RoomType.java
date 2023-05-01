@@ -1,4 +1,4 @@
-package com.example.hotelbooking.order;
+package com.example.hotelbooking.order.model;
 
 public class RoomType {
     private int id;

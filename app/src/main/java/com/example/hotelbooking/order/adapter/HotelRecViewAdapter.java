@@ -1,7 +1,6 @@
-package com.example.hotelbooking.order;
+package com.example.hotelbooking.order.adapter;
 
 import android.content.Context;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.hotelbooking.R;
+import com.example.hotelbooking.order.model.HotelOrder;
 
 import java.util.ArrayList;
 
@@ -43,7 +43,7 @@ public class HotelRecViewAdapter extends RecyclerView.Adapter<HotelRecViewAdapte
         holder.roomTypeTxtView.setText(hotelOrders.get(position).getRoomType());
         holder.checkInTxtView.setText(hotelOrders.get(position).getCheckIn());
         holder.checkOutTxtView.setText(hotelOrders.get(position).getCheckOut());
-        Log.d("imgURL here", hotelOrders.get(position).getHotelImg());
+//        Log.d("imgURL here", hotelOrders.get(position).getHotelImg());
         Glide.with(context).asBitmap().load(hotelOrders.get(position).getHotelImg()).into(holder.hotelImgView);
         holder.parent.setOnClickListener(new View.OnClickListener() {
             @Override

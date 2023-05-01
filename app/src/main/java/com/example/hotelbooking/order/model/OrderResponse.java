@@ -1,6 +1,6 @@
-package com.example.hotelbooking.order;
+package com.example.hotelbooking.order.model;
 
-import com.example.hotelbooking.order.Order;
+import com.example.hotelbooking.order.model.Order;
 
 import java.util.List;
 

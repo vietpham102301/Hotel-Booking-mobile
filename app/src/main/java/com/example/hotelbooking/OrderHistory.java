@@ -4,18 +4,24 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.hotelbooking.order.Hotel;
-import com.example.hotelbooking.order.HotelOrder;
-import com.example.hotelbooking.order.HotelRecViewAdapter;
-import com.example.hotelbooking.order.HotelResposne;
-import com.example.hotelbooking.order.Order;
-import com.example.hotelbooking.order.OrderResponse;
+import com.example.hotelbooking.order.model.Hotel;
+import com.example.hotelbooking.order.model.HotelOrder;
+import com.example.hotelbooking.order.adapter.HotelRecViewAdapter;
+import com.example.hotelbooking.order.model.HotelResposne;
+import com.example.hotelbooking.order.model.Order;
+import com.example.hotelbooking.order.model.OrderResponse;
 import com.google.gson.Gson;
 
 import java.io.BufferedReader;
@@ -24,25 +30,60 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
 
-public class OrderHistory extends AppCompatActivity {
+public class OrderHistory extends AppCompatActivity implements AdapterView.OnItemSelectedListener{
 
     private RecyclerView bookingHistoryRecyclerView;
     private Integer userID;
+
+    private String customerName;
+
+    private TextView customerNameTxtView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_order_history);
+        setData();
 
+        customerNameTxtView = findViewById(R.id.customerNameTxtView);
+        //cusname
+        customerNameTxtView.setText(customerName);
+
+        customerNameTxtView.setOnClickListener(view -> {
+            openProfile();
+        });
+
+        Spinner spinner = findViewById(R.id.spinner);
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.lang, R.layout.payment_spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner.setAdapter(adapter);
+        spinner.setSelected(false);
+        spinner.setSelection(0,true);
+        spinner.setOnItemSelectedListener(this);
         new ApiTask().execute();
     }
+
+    @Override
+    public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+        try {
+            String text = adapterView.getItemAtPosition(i).toString();
+            Toast.makeText(view.getContext(), text, Toast.LENGTH_SHORT).show();
+        } catch (Exception e) {
+            Log.d("toast err", "happened");
+        }
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> adapterView) {
+        return;
+    }
+
     private class ApiTask extends AsyncTask<Void, Void, ArrayList<HotelOrder>> {
         @Override
         protected ArrayList<HotelOrder> doInBackground(Void... voids) {
             try {
                 SharedPreferences sharedPreferences = getSharedPreferences(PaymentActivity.SHARED_PREFS,MODE_PRIVATE);
                 userID = sharedPreferences.getInt(PaymentActivity.USER_ID, 0);
-                Log.d("UserID", userID.toString());
                     String orderRes = makeRequest("GET","http://14.225.255.238/booking/api/v1/order/user/" + userID);
 
                     Gson gson = new Gson();
@@ -126,5 +167,15 @@ public class OrderHistory extends AppCompatActivity {
 
             return null;
         }
+    }
+
+    public void setData(){
+        SharedPreferences sharedPreferences = getSharedPreferences(PaymentActivity.SHARED_PREFS,MODE_PRIVATE);
+        customerName = sharedPreferences.getString(PaymentActivity.CUSTOMER_NAME, "");
+    }
+
+    public void openProfile(){
+        Intent intent = new Intent(this, ProfileActivity.class);
+        startActivity(intent);
     }
 }

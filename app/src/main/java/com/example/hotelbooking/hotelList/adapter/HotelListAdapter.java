@@ -10,7 +10,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.hotelbooking.R;
 import com.example.hotelbooking.hotelList.model.Hotels;
-import com.example.hotelbooking.order.Hotel;
 
 import java.util.List;
 

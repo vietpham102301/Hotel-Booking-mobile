@@ -2,6 +2,7 @@ package com.example.hotelbooking;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
@@ -54,6 +55,7 @@ public class PaymentActivity extends AppCompatActivity implements AdapterView.On
     public static final String QUANTITY = "quantity";
     public static final String HOTEL_ID = "hotel_id";
     public static final String HOTEL_IMG_URL = "hotel_img_url";
+    public static final String CUSTOMER_NAME = "customer_name";
 
 
 
@@ -74,6 +76,9 @@ public class PaymentActivity extends AppCompatActivity implements AdapterView.On
     private Integer hotelID;
     private Integer quantity;
     private String hotelImgURL;
+    private String customerName;
+
+
 
     private TextView checkInTxtView1;
     private TextView travellerTxtView;
@@ -94,6 +99,8 @@ public class PaymentActivity extends AppCompatActivity implements AdapterView.On
     private EditText editTxtCardNumber;
     private EditText editTextExpiry;
     private EditText editTxtCVC;
+    private TextView customerNameTxtView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -122,6 +129,7 @@ public class PaymentActivity extends AppCompatActivity implements AdapterView.On
         totalTxtView = findViewById(R.id.totalFeeTxtView);
         priceCalTxtView = findViewById(R.id.calPriceTxtView);
         hotelImg = findViewById(R.id.hotelImgView);
+        customerNameTxtView = findViewById(R.id.customerNameTxtView);
 
 
         showDataToConsole();
@@ -160,6 +168,13 @@ public class PaymentActivity extends AppCompatActivity implements AdapterView.On
         checkInTxtView2.setText(checkInFormatted);
         checkOutTxtView.setText(checkOutFormatted);
 
+        //cusname
+        customerNameTxtView.setText(customerName);
+
+        customerNameTxtView.setOnClickListener(view -> {
+            openProfile();
+        });
+
         guestTxtView.setText(traveller.toString() +" guests");
 
         LocalDate fromDate = null; // January 1st, 2023
@@ -186,8 +201,6 @@ public class PaymentActivity extends AppCompatActivity implements AdapterView.On
 
         Float total = tax+serviceFee+price*stayedDays;
         totalTxtView.setText("$"+total);
-
-
         confirmButton = findViewById(R.id.confirmButton);
 
         paymentCheckBox = findViewById(R.id.paymentCheckbox);
@@ -195,30 +208,28 @@ public class PaymentActivity extends AppCompatActivity implements AdapterView.On
         editTxtCardNumber = findViewById(R.id.editTxtCardNumber);
         editTxtCVC = findViewById((R.id.editTxtCVC));
 
-        confirmButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
+        confirmButton.setOnClickListener(view -> {
 
-                if(paymentCheckBox.isChecked()){
+            if(paymentCheckBox.isChecked()){
+                makeOrderRequest();
+
+            }else{
+                String cardNumber = editTxtCardNumber.getText().toString().trim();
+                String expiry = editTextExpiry.getText().toString().trim();
+                String CVC = editTxtCVC.getText().toString().trim();
+
+                if(!cardNumber.equals("") && !expiry.equals("") && !CVC.equals("")){
                     makeOrderRequest();
                 }else{
-                    String cardNumber = editTxtCardNumber.getText().toString().trim();
-                    String expiry = editTextExpiry.getText().toString().trim();
-                    String CVC = editTxtCVC.getText().toString().trim();
-
-                    if(!cardNumber.equals("") && !expiry.equals("") && !CVC.equals("")){
-                        makeOrderRequest();
-                    }else{
-                        Toast.makeText(PaymentActivity.this, "Please fill card information for payment", Toast.LENGTH_SHORT).show();
-                    }
+                    Toast.makeText(PaymentActivity.this, "Please fill card information for payment", Toast.LENGTH_SHORT).show();
                 }
+            }
 
 
 
 //                Toast.makeText(PaymentActivity.this, "ORDER SUCCESSUL",Toast.LENGTH_SHORT).show();
 
 
-            }
         });
 
         //bit map
@@ -228,6 +239,17 @@ public class PaymentActivity extends AppCompatActivity implements AdapterView.On
     }
 
 
+    public void openOrderSuccessful(){
+        Intent intent = new Intent(this, OrderSuccessful.class);
+        startActivity(intent);
+    }
+
+    public void openProfile(){
+        Intent intent = new Intent(this, ProfileActivity.class);
+        startActivity(intent);
+    }
+
+    IResponseAPI iResponseAPI;
     public void makeOrderRequest(){
         Thread thread = new Thread(() -> {
             try  {
@@ -269,13 +291,12 @@ public class PaymentActivity extends AppCompatActivity implements AdapterView.On
                 }
                 in.close();
 
+                openOrderSuccessful();
+
                 Log.d("Response body ", responseBody.toString());
-                new Handler(Looper.getMainLooper()).post(new Runnable() {
-                    @Override
-                    public void run() {
-                        Toast.makeText(getApplicationContext(), "Order Successful", Toast.LENGTH_SHORT).show();
-                    }
-                });
+                new Handler(Looper.getMainLooper()).post(() -> Toast.makeText(getApplicationContext(), "Order Successful", Toast.LENGTH_SHORT).show());
+
+
 
             } catch (Exception e) {
 //                        Toast.makeText(PaymentActivity.this, "ORDER SUCCESSUL",Toast.LENGTH_SHORT).show();
@@ -323,6 +344,7 @@ public class PaymentActivity extends AppCompatActivity implements AdapterView.On
         editor.putInt(HOTEL_ID, 1);
         editor.putInt(QUANTITY, 1);
         editor.putString(HOTEL_IMG_URL, "https://media-cdn.tripadvisor.com/media/photo-s/23/ca/38/3a/au-lac-charner-hotel.jpg");
+        editor.putString(CUSTOMER_NAME, "Viet Pham");
         editor.apply();
     }
     public void showDataToConsole(){
@@ -343,6 +365,7 @@ public class PaymentActivity extends AppCompatActivity implements AdapterView.On
         quantity = sharedPreferences.getInt(QUANTITY, 0);
         hotelID = sharedPreferences.getInt(HOTEL_ID, 0);
         hotelImgURL = sharedPreferences.getString(HOTEL_IMG_URL, "");
+        customerName = sharedPreferences.getString(CUSTOMER_NAME, "");
 
         Log.d("checkIn: ", checkIn);
         Log.d("checkout: ", checkOut);

@@ -1,4 +1,4 @@
-package com.example.hotelbooking.order;
+package com.example.hotelbooking.order.model;
 
 import java.util.List;
 
