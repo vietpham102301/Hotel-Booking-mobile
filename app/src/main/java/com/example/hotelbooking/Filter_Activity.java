@@ -17,13 +17,23 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.hotelbooking.Collector.Collector;
+import com.example.hotelbooking.filter.api.ApiService;
+import com.example.hotelbooking.filter.model.ProvicesOutFit;
 
 import java.util.ArrayList;
 import java.util.Calendar;
 
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
 public class Filter_Activity extends AppCompatActivity {
+
     TextView textView;
     EditText editText;
     ListView listView;
@@ -36,6 +46,8 @@ public class Filter_Activity extends AppCompatActivity {
     private Button checkInButtonSearch;
     private Button checkOutButtonSearch;
 
+    private Button btnNextPage;
+
     Dialog dialog;
 
     String[] nameHotelList=new String[]{"Amanoi","Furama","La Vela","Lotte","Muong Thanh","Preidot Grand","Bel Marina","Phuong","Nhat","Nhung"};
@@ -46,6 +58,7 @@ public class Filter_Activity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.filter);
         textView=findViewById(R.id.search_bar);
+        //btnNextPage=findViewById(R.id.btnNextHotelList);
         initDatePicker();
         checkInButtonSearch = findViewById(R.id.checkInButtonSearch);
         checkInButtonSearch.setText(getTodaysDate());
@@ -55,14 +68,25 @@ public class Filter_Activity extends AppCompatActivity {
         arrayList =new ArrayList<>();
         //arrayList.add(String.valueOf(nameHotelList));
 
-        arrayList.add("Amanoi");
-        arrayList.add("Furama");
-        arrayList.add("La Vela");
-        arrayList.add("Lotte");
-        arrayList.add("Muong Thanh");
-        arrayList.add("Preidot Grand");
-        arrayList.add("Bel Marina");
+//        arrayList.add("Amanoi");
+//        arrayList.add("Furama");
+//        arrayList.add("La Vela");
+//        arrayList.add("Lotte");
+//        arrayList.add("Muong Thanh");
+//        arrayList.add("Preidot Grand");
+//        arrayList.add("Bel Marina");
 
+        callApiListProvinces(arrayList);
+
+
+//        btnNextPage.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent intent=new Intent(Filter_Activity.this, HotelList.class);
+//                startActivity(intent);
+//            }
+//
+//        });
 
         textView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -102,6 +126,8 @@ public class Filter_Activity extends AppCompatActivity {
                     @Override
                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                         textView.setText(adapter.getItem(position));
+                        Collector.prv=adapter.getItem(position);
+                        System.out.println(Collector.prv);
                         dialog.dismiss();
                     }
                 });
@@ -109,11 +135,6 @@ public class Filter_Activity extends AppCompatActivity {
 
             }
         });
-
-
-
-
-
     }
     private String getTodaysDate()
     {
@@ -135,7 +156,10 @@ public class Filter_Activity extends AppCompatActivity {
                 month = month + 1;
                 String date = makeDateString(day, month, year);
                 checkInButtonSearch.setText(date);
-                checkOutButtonSearch.setText(date);
+                System.out.println(datePickerDialog.getDatePicker().getDayOfMonth());
+                String datetocall= makeDayToCallApi(day,month,year);
+                Collector.ci=makeDayToCallApi(day,month,year);
+                System.out.println(Collector.ci);
 
             }
 
@@ -146,8 +170,11 @@ public class Filter_Activity extends AppCompatActivity {
             public void onDateSet(DatePicker datePicker, int year, int month, int day)
             {
                 month = month + 1;
-                String date = makeDateString(day, month, year);
-                checkOutButtonSearch.setText(date);
+                String date1 = makeDateString(day, month, year);
+                checkOutButtonSearch.setText(date1);
+                Collector.co=makeDayToCallApi(day,month,year);
+                System.out.println(Collector.co);
+
 
             }
 
@@ -166,6 +193,7 @@ public class Filter_Activity extends AppCompatActivity {
         datePickerDialog.getDatePicker().setMinDate(cal.getTimeInMillis());
         datePickerDialog1 = new DatePickerDialog(this, style, dateSetListener1, year, month, day);
         datePickerDialog1.getDatePicker().setMinDate(cal.getTimeInMillis());
+
         //datePickerDialog.getDatePicker().setMaxDate(System.currentTimeMillis());
 
     }
@@ -174,6 +202,11 @@ public class Filter_Activity extends AppCompatActivity {
     {
         return getMonthFormat(month) + " " + day + " " + year;
     }
+
+    private String makeDayToCallApi(int day, int month, int year){
+        return year+"-"+month+"-"+day;
+    }
+
 
     private String getMonthFormat(int month)
     {
@@ -214,6 +247,27 @@ public class Filter_Activity extends AppCompatActivity {
     {
         datePickerDialog1.show();
     }
+
+    private void callApiListProvinces(ArrayList arrayList){
+        ApiService.apiService.provinces().enqueue(new Callback<ProvicesOutFit>() {
+            @Override
+            public void onResponse(Call<ProvicesOutFit> call, Response<ProvicesOutFit> response) {
+                Toast.makeText(Filter_Activity.this, "Call Api Success", Toast.LENGTH_SHORT).show();
+                ProvicesOutFit data = response.body();
+                for (int i=0;i<data.getData().size();i++) {
+                    System.out.println(data.getData().get(i).getName());
+                    arrayList.add(data.getData().get(i).getName());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ProvicesOutFit> call, Throwable t) {
+                Toast.makeText(Filter_Activity.this, "Call Api Error", Toast.LENGTH_SHORT).show();
+
+            }
+        });
+    }
+
 
 
 

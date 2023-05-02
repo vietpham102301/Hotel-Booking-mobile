@@ -2,16 +2,15 @@ package com.example.hotelbooking;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
-import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.DividerItemDecoration;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.hotelbooking.Collector.Collector;
 import com.example.hotelbooking.hotelList.adapter.HotelListAdapter;
 import com.example.hotelbooking.hotelList.api.ApiService;
-import com.example.hotelbooking.hotelList.model.Hotels;
+import com.example.hotelbooking.hotelList.model.HotelsOutfit;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,7 +21,7 @@ import retrofit2.Response;
 
 public class HotelList extends AppCompatActivity {
     private RecyclerView rcvHotelList;
-    private List<Hotels> hotelsList;
+    private List<HotelsOutfit> hotelsList;
     @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,27 +29,33 @@ public class HotelList extends AppCompatActivity {
         setContentView(R.layout.hotel_list);
 
         rcvHotelList=findViewById(R.id.rcvHotelList);
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
-        rcvHotelList.setLayoutManager(linearLayoutManager);
 
-        DividerItemDecoration itemDecoration = new DividerItemDecoration(this,DividerItemDecoration.VERTICAL);
-        rcvHotelList.addItemDecoration(itemDecoration);
 
-        hotelsList = new ArrayList<>();
-        callApiGetHotel();
+        if(Collector.prv!=null && Collector.ci!=null && Collector.co!=null){
+            System.out.println("Nhận tham số thành công");
+            System.out.println(Collector.prv);
+            System.out.println(Collector.ci);
+            System.out.println(Collector.co);
+            callApiGetHotel(Collector.prv,Collector.ci,Collector.co);
+        }
+        else {
+            System.out.println("Nhận tham số thất bại");
+            Toast.makeText(HotelList.this,"Error",Toast.LENGTH_SHORT).show();
+        }
+
     }
-    private void callApiGetHotel(){
-        ApiService.apiService.hotelList().enqueue(new Callback<List<Hotels>>() {
+    private void callApiGetHotel(String prv, String ci, String co){
+        ApiService.apiService.hotelList(prv,ci,co).enqueue(new Callback<HotelsOutfit>() {
             @Override
-            public void onResponse(Call<List<Hotels>> call, Response<List<Hotels>> response) {
-                hotelsList = response.body();
+            public void onResponse(Call<HotelsOutfit> call, Response<HotelsOutfit> response) {
+                hotelsList = new ArrayList<>();
+                hotelsList = (List<HotelsOutfit>) response.body();
                 HotelListAdapter hotelListAdapter= new HotelListAdapter(hotelsList);
                 rcvHotelList.setAdapter(hotelListAdapter);
-
             }
 
             @Override
-            public void onFailure(Call<List<Hotels>> call, Throwable t) {
+            public void onFailure(Call<HotelsOutfit> call, Throwable t) {
 
             }
         });

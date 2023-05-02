@@ -2,8 +2,8 @@ package com.example.hotelbooking.hotelList.model;
 
 import java.util.List;
 
-public class Data {
-    public Data(int id, String name, String address, String phone, String checkin, String checkout, Double lat, Double lon, double priceMin, double priceMax, String description, String avatar, double rating, int numRating, boolean isActive, int userId, String typeHotelId, String provinceId, List<RoomTypes> roomTypes) {
+public class Hotel {
+    public Hotel(int id, String name, String address, String phone, String checkin, String checkout, Double lat, Double lon, double priceMin, double priceMax, String description, String avatar, double rating, int numRating, boolean isActive, int userId, String typeHotelId, String provinceId, List<RoomTypes> roomTypes) {
         this.id = id;
         this.name = name;
         this.address = address;

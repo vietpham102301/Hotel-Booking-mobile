@@ -8,9 +8,9 @@ public class RoomTypes {
     private String avatar;
     private boolean isActive;
     private int hotelId;
-    private Data hotel;
+    private Hotel hotel;
 
-    public RoomTypes(int id, String name, double price, int quantity, String avatar, boolean isActive, int hotelId, Data hotel) {
+    public RoomTypes(int id, String name, double price, int quantity, String avatar, boolean isActive, int hotelId, Hotel hotel) {
         this.id = id;
         this.name = name;
         this.price = price;
@@ -76,11 +76,11 @@ public class RoomTypes {
         this.hotelId = hotelId;
     }
 
-    public Data getHotel() {
+    public Hotel getHotel() {
         return hotel;
     }
 
-    public void setHotel(Data hotel) {
+    public void setHotel(Hotel hotel) {
         this.hotel = hotel;
     }
 

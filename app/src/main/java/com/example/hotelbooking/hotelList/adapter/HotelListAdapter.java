@@ -9,14 +9,14 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.hotelbooking.R;
-import com.example.hotelbooking.hotelList.model.Hotels;
+import com.example.hotelbooking.hotelList.model.HotelsOutfit;
 
 import java.util.List;
 
 public class HotelListAdapter extends RecyclerView.Adapter<HotelListAdapter.HotelListHoler>{
-    private final List<Hotels> listHotel;
+    private final List<HotelsOutfit> listHotel;
 
-    public HotelListAdapter(List<Hotels> listHotel) {
+    public HotelListAdapter(List<HotelsOutfit> listHotel) {
         this.listHotel = listHotel;
     }
     @NonNull
@@ -28,14 +28,13 @@ public class HotelListAdapter extends RecyclerView.Adapter<HotelListAdapter.Hote
 
     @Override
     public void onBindViewHolder(@NonNull HotelListHoler holder, int position) {
-        Hotels hotels = listHotel.get(position);
-        holder.txtNameHotel.setText(hotels.getData().getName());
-        holder.txtNameHotel.setText(hotels.getData().getName());
-        holder.txtRating.setText(String.valueOf(hotels.getData().getRating()));
-        holder.txtNumrating.setText("( "+String.valueOf(hotels.getData().getNumRating())+" reviews)");
-        holder.txtProvice.setText(hotels.getData().getProvinceId());
-        holder.txtAddress.setText(hotels.getData().getAddress());
-        holder.txtPhone.setText(hotels.getData().getPhone());
+        HotelsOutfit hotels = listHotel.get(position);
+        holder.txtNameHotel.setText(hotels.getDatas().getData().get(position).getName());
+        holder.txtRating.setText(String.valueOf(hotels.getDatas().getData().get(position).getRating()));
+        holder.txtNumrating.setText("( "+String.valueOf(hotels.getDatas().getData().get(position).getNumRating())+" reviews)");
+        holder.txtProvice.setText(hotels.getDatas().getData().get(position).getProvinceId());
+        holder.txtAddress.setText(hotels.getDatas().getData().get(position).getAddress());
+        holder.txtPhone.setText(hotels.getDatas().getData().get(position).getPhone());
     }
 
     @Override

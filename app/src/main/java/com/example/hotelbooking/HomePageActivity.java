@@ -10,10 +10,9 @@ import androidx.viewpager2.widget.ViewPager2;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
-import android.widget.Spinner;
 
-import com.example.hotelbooking.hotelList.SliderItem;
-import com.example.hotelbooking.hotelList.adapter.SliderAdapter;
+import com.example.hotelbooking.hotelinformation.SliderItem;
+import com.example.hotelbooking.hotelinformation.SliderAdapter;
 
 import java.util.ArrayList;
 import java.util.List;

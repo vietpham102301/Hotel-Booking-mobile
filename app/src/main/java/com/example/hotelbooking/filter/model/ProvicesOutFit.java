@@ -1,15 +1,27 @@
-package com.example.hotelbooking.hotelList.model;
+package com.example.hotelbooking.filter.model;
 
-public class Hotels {
+import java.util.List;
+
+public class ProvicesOutFit {
     private String status;
     private String message;
-    private Data data;
 
-    public Hotels(String status, String message, Data data) {
+    public List<Province> getData() {
+        return data;
+    }
+
+    public void setData(List<Province> data) {
+        this.data = data;
+    }
+
+    private List<Province> data;
+
+    public ProvicesOutFit(String status, String message, List<Province> data) {
         this.status = status;
         this.message = message;
         this.data = data;
     }
+
     public String getStatus() {
         return status;
     }
@@ -26,12 +38,5 @@ public class Hotels {
         this.message = message;
     }
 
-    public Data getData() {
-        return data;
-    }
-
-    public void setData(Data data) {
-        this.data = data;
-    }
 
 }
