@@ -57,25 +57,6 @@ public class HotelInformationActivity extends AppCompatActivity implements Adapt
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.hotel_information);
-//        txtSeekBar =(TextView)findViewById(R.id.textViewSeekBar);
-//        SeekBar=(SeekBar)findViewById(R.id.SeekBar);
-//         perform seek bar change listener event used for getting the progress value
-//        SeekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
-//            int progressChangedValue = 0;
-//
-//            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-//                progressChangedValue = progress;
-//                txtSeekBar.setText(String.valueOf(progressChangedValue));
-//            }
-//
-//            public void onStartTrackingTouch(SeekBar seekBar) {
-//                // TODO Auto-generated method stub
-//            }
-//
-//            public void onStopTrackingTouch(SeekBar seekBar) {
-//
-//            }
-//        });
         initDatePicker();
         checkInButton = findViewById(R.id.checkinButton);
         checkInButton.setText(getTodaysDate());
@@ -88,12 +69,6 @@ public class HotelInformationActivity extends AppCompatActivity implements Adapt
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
         spinner.setOnItemSelectedListener(this);
-
-
-
-
-
-
         txtNoiDungDescription = (TextView) findViewById(R.id.textDescription);
         btnDescription = (Button) findViewById(R.id.btnDescription);
         btnFeatures = (Button) findViewById(R.id.btnFeatures);

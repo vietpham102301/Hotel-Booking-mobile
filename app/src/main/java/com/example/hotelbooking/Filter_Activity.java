@@ -237,8 +237,6 @@ public class Filter_Activity extends AppCompatActivity {
                     startActivity(intent);
                 }
 
-
-
             }
 
         });
@@ -360,8 +358,8 @@ public class Filter_Activity extends AppCompatActivity {
                 Toast.makeText(Filter_Activity.this, "Call Api Success", Toast.LENGTH_SHORT).show();
                 ProvicesOutFit data = response.body();
                 for (int i=0;i<data.getData().size();i++) {
-                    System.out.println(data.getData().get(i).getName());
-                    arrayList.add(data.getData().get(i).getName());
+                    System.out.println(data.getData().get(i).getId());
+                    arrayList.add(data.getData().get(i).getId());
                 }
             }
             @Override
