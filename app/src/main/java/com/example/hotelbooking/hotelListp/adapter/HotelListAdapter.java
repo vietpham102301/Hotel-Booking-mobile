@@ -1,5 +1,6 @@
-package com.example.hotelbooking.hotelList.adapter;
+package com.example.hotelbooking.hotelListp.adapter;
 
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,40 +10,39 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.hotelbooking.R;
-import com.example.hotelbooking.hotelList.model.HotelsOutfit;
+import com.example.hotelbooking.hotelListp.model.Hotel;
 
-import java.util.List;
+import java.util.ArrayList;
 
 public class HotelListAdapter extends RecyclerView.Adapter<HotelListAdapter.HotelListHoler>{
-    private final List<HotelsOutfit> listHotel;
+    private final ArrayList<Hotel> listHotel;
+    Context context;
 
-    public HotelListAdapter(List<HotelsOutfit> listHotel) {
+    public HotelListAdapter(Context context, ArrayList<Hotel> listHotel) {
+        this.context= context;
         this.listHotel = listHotel;
     }
     @NonNull
     @Override
     public HotelListHoler onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.hotel_list_item,parent,false);
+        View view = LayoutInflater.from(context).inflate(R.layout.hotel_list_item,parent,false);
         return new HotelListHoler(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull HotelListHoler holder, int position) {
-        HotelsOutfit hotels = listHotel.get(position);
-        holder.txtNameHotel.setText(hotels.getDatas().getData().get(position).getName());
-        holder.txtRating.setText(String.valueOf(hotels.getDatas().getData().get(position).getRating()));
-        holder.txtNumrating.setText("( "+String.valueOf(hotels.getDatas().getData().get(position).getNumRating())+" reviews)");
-        holder.txtProvice.setText(hotels.getDatas().getData().get(position).getProvinceId());
-        holder.txtAddress.setText(hotels.getDatas().getData().get(position).getAddress());
-        holder.txtPhone.setText(hotels.getDatas().getData().get(position).getPhone());
+        Hotel hotels = listHotel.get(position);
+        holder.txtNameHotel.setText(hotels.getName());
+        holder.txtRating.setText(String.valueOf(hotels.getRating()));
+        holder.txtNumrating.setText("( "+String.valueOf(hotels.getNumRating())+" reviews)");
+        holder.txtProvice.setText(hotels.getProvinceId());
+        holder.txtAddress.setText(hotels.getAddress());
+        holder.txtPhone.setText(hotels.getPhone());
     }
 
     @Override
     public int getItemCount() {
-        if(listHotel != null){
-            return listHotel.size();
-        }
-        return 0;
+        return listHotel.size();
     }
 
     public static class HotelListHoler extends RecyclerView.ViewHolder{

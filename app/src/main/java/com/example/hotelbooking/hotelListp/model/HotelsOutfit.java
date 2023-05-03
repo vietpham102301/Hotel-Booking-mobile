@@ -1,12 +1,14 @@
-package com.example.hotelbooking.hotelList.model;
+package com.example.hotelbooking.hotelListp.model;
 
 public class HotelsOutfit {
     private String status;
+    private String message;
+    private HotelList data;
 
-    public HotelsOutfit(String status, String message, HotelList datas) {
+    public HotelsOutfit(String status, String message, HotelList data) {
         this.status = status;
         this.message = message;
-        this.datas = datas;
+        this.data = data;
     }
 
     public String getStatus() {
@@ -25,17 +27,11 @@ public class HotelsOutfit {
         this.message = message;
     }
 
-    public HotelList getDatas() {
-        return datas;
+    public HotelList getData() {
+        return data;
     }
 
-    public void setDatas(HotelList datas) {
-        this.datas = datas;
+    public void setData(HotelList data) {
+        this.data = data;
     }
-
-    private String message;
-    private HotelList datas;
-
-
-
 }

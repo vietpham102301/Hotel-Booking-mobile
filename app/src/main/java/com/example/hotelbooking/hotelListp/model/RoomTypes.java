@@ -1,4 +1,4 @@
-package com.example.hotelbooking.hotelList.model;
+package com.example.hotelbooking.hotelListp.model;
 
 public class RoomTypes {
     private int id;

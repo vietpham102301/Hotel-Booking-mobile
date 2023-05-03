@@ -3,12 +3,12 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="20dp">
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
         android:layout_marginEnd="30dp"
         android:layout_marginStart="30dp"
         app:cardCornerRadius="12dp">
@@ -32,16 +32,14 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="15dp"
-                android:layout_marginTop="10dp"
->
-
+                android:layout_marginTop="10dp">
                 <TextView
                     android:id="@+id/txtNameHotel"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/b612_bold"
                     android:textColor="@color/black"
-                    android:textSize="32sp"/>
+                    android:textSize="32sp" />
             </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"
@@ -58,14 +56,16 @@
                         android:layout_height="16dp"
                         android:src="@drawable/icon_star">
                     </ImageView>
+
                     <TextView
                         android:id="@+id/txtRatingHotel"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="2dp"
-                        android:fontFamily="@font/alegreya_bold"
+                        android:fontFamily="More Fonts..."
                         android:text="2.0"
-                        android:textSize="12sp"/>
+                        android:textSize="12sp" />
+
                     <TextView
                         android:id="@+id/txtNumRatingHotel"
                         android:layout_width="wrap_content"
@@ -73,8 +73,7 @@
                         android:layout_marginStart="2dp"
                         android:fontFamily="@font/alegreya_sans_thin"
                         android:text="(632 reviews)"
-                        android:textSize="12sp">
-                    </TextView>
+                        android:textSize="12sp"></TextView>
                 </LinearLayout>
                 <LinearLayout
                     android:layout_width="wrap_content"
