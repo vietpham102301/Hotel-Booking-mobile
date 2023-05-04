@@ -103,7 +103,7 @@
                         app:layout_constraintLeft_toLeftOf="parent"
                         app:layout_constraintRight_toRightOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/customerNameTxtView"
-                        android:onClick="openCheckInPicker"/>
+                        android:onClick="openCheckOutPicker"/>
 
                 </LinearLayout>
 
@@ -136,7 +136,7 @@
                     android:layout_alignParentStart="true"
                     android:layout_marginStart="50dp"
                     android:layout_marginTop="0dp"
-                    android:drawableEnd="@drawable/icon_star_2"
+                    android:text="1 Star"
                     tools:ignore="TouchTargetSizeCheck" />
             </LinearLayout>
             <LinearLayout
@@ -151,7 +151,7 @@
                     android:layout_alignParentStart="true"
                     android:layout_marginStart="50dp"
                     android:layout_marginTop="0dp"
-                    android:text="Sort form high price to low price"
+                    android:text="2 Star"
                     tools:ignore="TouchTargetSizeCheck" />
             </LinearLayout>
             <LinearLayout
@@ -167,7 +167,7 @@
                     android:layout_alignParentStart="true"
                     android:layout_marginStart="50dp"
                     android:layout_marginTop="0dp"
-                    android:text="Sort by popularity"
+                    android:text="3 Star"
                     tools:ignore="TouchTargetSizeCheck" />
             </LinearLayout>
             <LinearLayout
@@ -183,7 +183,23 @@
                     android:layout_alignParentStart="true"
                     android:layout_marginStart="50dp"
                     android:layout_marginTop="0dp"
-                    android:text="Sort to rating"
+                    android:text="4 Star"
+                    tools:ignore="TouchTargetSizeCheck" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <CheckBox
+                    android:id="@+id/checkBox5Sub1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="37dp"
+                    android:layout_below="@+id/checkBox3Sub1"
+                    android:layout_alignParentStart="true"
+                    android:layout_marginStart="50dp"
+                    android:layout_marginTop="0dp"
+                    android:text="5 Star"
                     tools:ignore="TouchTargetSizeCheck" />
             </LinearLayout>
             <View
@@ -272,7 +288,7 @@
                     tools:ignore="TouchTargetSizeCheck" />
             </LinearLayout>
             <View
-                android:id="@+id/lineEndSub3"
+                android:id="@+id/lineEndSub2"
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
                 android:layout_below="@+id/checkBox4Sub2"
@@ -283,7 +299,7 @@
                 android:background="@android:color/darker_gray" />
             <TextView
 
-                android:id="@+id/textViewsubtitles4"
+                android:id="@+id/textViewsubtitles3"
                 android:textSize="18sp"
                 android:fontFamily="@font/amiri_bold"
                 android:layout_width="wrap_content"
@@ -299,7 +315,7 @@
                 android:orientation="horizontal">
 
                 <CheckBox
-                    android:id="@+id/checkBox1Sub4"
+                    android:id="@+id/checkBox1Sub3"
                     android:layout_width="wrap_content"
                     android:layout_height="36dp"
                     android:layout_below="@+id/textViewsubtitles4"
@@ -315,7 +331,7 @@
                 android:orientation="horizontal">
 
                 <CheckBox
-                    android:id="@+id/checkBox2Sub4"
+                    android:id="@+id/checkBox2Sub3"
                     android:layout_width="wrap_content"
                     android:layout_height="32dp"
                     android:layout_below="@+id/checkBox1Sub4"
@@ -330,7 +346,7 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
                 <CheckBox
-                    android:id="@+id/checkBox3Sub4"
+                    android:id="@+id/checkBox3Sub3"
                     android:layout_width="wrap_content"
                     android:layout_height="36dp"
                     android:layout_below="@+id/checkBox2Sub4"
@@ -338,6 +354,19 @@
                     android:layout_marginStart="50dp"
                     android:layout_marginTop="0dp"
                     android:text="Villa" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center">
+                <Button
+                    android:id="@+id/btnNextHotelList"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/border"
+                    android:text="Submit">
+
+                </Button>
             </LinearLayout>
         </LinearLayout>
     </ScrollView>
