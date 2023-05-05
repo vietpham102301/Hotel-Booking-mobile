@@ -10,23 +10,28 @@ import androidx.viewpager2.widget.ViewPager2;
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import com.example.hotelbooking.hotelListp.model.HotelList;
 import com.example.hotelbooking.hotelinformation.SliderItem;
 import com.example.hotelbooking.hotelinformation.SliderAdapter;
 
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
+import java.util.ResourceBundle;
 
 public class HomePageActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
+    public static final String SHARED_PREFS = "bookingApp";
     private ViewPager2 viewPager;
     private DatePickerDialog datePickerDialogHp;
     private DatePickerDialog datePickerDialogHp1;
@@ -35,6 +40,8 @@ public class HomePageActivity extends AppCompatActivity implements AdapterView.O
     private TextView customerNameTxtView;
     private String customerName;
     private Button btnSearch;
+    private Button btnpsg;
+    private EditText locationsearch;
 
     private Handler sliderHandler = new Handler();
 
@@ -68,9 +75,13 @@ public class HomePageActivity extends AppCompatActivity implements AdapterView.O
         spinner.setOnItemSelectedListener(this);
 
         customerNameTxtView = findViewById(R.id.customerNameTxtView);
+
+        setData();
+
         customerNameTxtView.setText(customerName);
         customerNameTxtView.setOnClickListener( view -> startActivity(new Intent(HomePageActivity.this, ProfileActivity.class)));
 
+        btnpsg = findViewById(R.id.btnpsg);
         btnSearch = findViewById(R.id.btnSearch);
         btnSearch.setOnClickListener(view -> startActivity( new Intent(HomePageActivity.this, HotelList.class)));
 
@@ -126,6 +137,11 @@ public class HomePageActivity extends AppCompatActivity implements AdapterView.O
 
     }
 
+    public void setData(){
+        SharedPreferences sharedPreferences = getSharedPreferences(PaymentActivity.SHARED_PREFS,MODE_PRIVATE);
+        customerName = sharedPreferences.getString(PaymentActivity.CUSTOMER_NAME, "");
+    }
+
     private String getTodaysDate()
     {
         Calendar cal = Calendar.getInstance();
@@ -135,10 +151,6 @@ public class HomePageActivity extends AppCompatActivity implements AdapterView.O
         return makeDateString(day, month, year);
     }
 
-    public void openProfile(){
-        Intent intent = new Intent(this, ProfileActivity.class);
-        startActivity(intent);
-    }
     private void initDatePicker()
     {
         DatePickerDialog.OnDateSetListener dateSetListener = (datePicker, year, month, day) -> {
@@ -218,16 +230,8 @@ public class HomePageActivity extends AppCompatActivity implements AdapterView.O
 
 
     @Override
-    public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-
-    }
+    public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {return;}
 
     @Override
-    public void onNothingSelected(AdapterView<?> adapterView) {
-
-    }
-
-    public void setCustomerName(String customerName) {
-        this.customerName = customerName;
-    }
+    public void onNothingSelected(AdapterView<?> adapterView) {return;}
 }

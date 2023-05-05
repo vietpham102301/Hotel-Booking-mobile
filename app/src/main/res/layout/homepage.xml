@@ -159,7 +159,8 @@
                         android:layout_marginEnd="30dp"
                         android:background="@android:color/darker_gray" />
 
-                    <TextView
+                    <EditText
+                        android:id="@+id/locationsearch"
                         android:layout_width="264dp"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
@@ -168,7 +169,8 @@
                         android:maxLines="2"
                         android:minHeight="48dp"
                         android:paddingLeft="15dp"
-                        android:text="Location \nWhere are you from?" />
+                        android:hint="Location \nWhere are you from?"
+                        tools:ignore="InvalidId" />
 
                     <LinearLayout
                         android:layout_width="match_parent"
