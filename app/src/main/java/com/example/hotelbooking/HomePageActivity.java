@@ -20,7 +20,10 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.example.hotelbooking.filter.api.ApiService;
+import com.example.hotelbooking.filter.model.ProvicesOutFit;
 import com.example.hotelbooking.hotelListp.model.HotelList;
 import com.example.hotelbooking.hotelinformation.SliderItem;
 import com.example.hotelbooking.hotelinformation.SliderAdapter;
@@ -29,6 +32,10 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 import java.util.ResourceBundle;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class HomePageActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
     public static final String SHARED_PREFS = "bookingApp";
@@ -42,6 +49,8 @@ public class HomePageActivity extends AppCompatActivity implements AdapterView.O
     private Button btnSearch;
     private Button btnpsg;
     private EditText locationsearch;
+    ArrayList<String> arrayList;
+    ArrayAdapter<String> adapter;
 
     private Handler sliderHandler = new Handler();
 
@@ -84,6 +93,9 @@ public class HomePageActivity extends AppCompatActivity implements AdapterView.O
         btnpsg = findViewById(R.id.btnpsg);
         btnSearch = findViewById(R.id.btnSearch);
         btnSearch.setOnClickListener(view -> startActivity( new Intent(HomePageActivity.this, HotelList.class)));
+
+        arrayList =new ArrayList<>();
+        callApiListProvinces(arrayList);
 
         viewPager = findViewById(R.id.pager);
 
@@ -234,4 +246,21 @@ public class HomePageActivity extends AppCompatActivity implements AdapterView.O
 
     @Override
     public void onNothingSelected(AdapterView<?> adapterView) {return;}
+    private void callApiListProvinces(ArrayList arrayList){
+        ApiService.apiService.provinces().enqueue(new Callback<ProvicesOutFit>() {
+            @Override
+            public void onResponse(Call<ProvicesOutFit> call, Response<ProvicesOutFit> response) {
+                Toast.makeText(HomePageActivity.this, "Call Api Success", Toast.LENGTH_SHORT).show();
+                ProvicesOutFit data = response.body();
+                for (int i=0;i<data.getData().size();i++) {
+                    System.out.println(data.getData().get(i).getId());
+                    arrayList.add(data.getData().get(i).getId());
+                }
+            }
+            @Override
+            public void onFailure(Call<ProvicesOutFit> call, Throwable t) {
+                Toast.makeText(HomePageActivity.this, "Call Api Error", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
 }
