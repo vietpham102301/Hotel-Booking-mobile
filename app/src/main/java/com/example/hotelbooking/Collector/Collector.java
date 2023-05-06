@@ -7,5 +7,6 @@ public class Collector {
     public static String typeHotel;
     public static String rating;
     public static String price;
+    public static String priceRoom;
 
 }

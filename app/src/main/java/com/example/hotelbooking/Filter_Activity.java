@@ -229,9 +229,9 @@ public class Filter_Activity extends AppCompatActivity {
                 }
 
                 if(Collector.prv==null){Toast.makeText(Filter_Activity.this,"Province Blank",Toast.LENGTH_SHORT).show();}
-                if(Collector.ci==null){Toast.makeText(Filter_Activity.this,"Check-in Blank",Toast.LENGTH_SHORT).show();}
-                if(Collector.co==null){Toast.makeText(Filter_Activity.this,"Check-out Blank",Toast.LENGTH_SHORT).show();}
-                if(compareDate(Collector.ci,Collector.co)){Toast.makeText(Filter_Activity.this,"Check-out Error",Toast.LENGTH_SHORT).show();}
+                else if(Collector.ci==null){Toast.makeText(Filter_Activity.this,"Check-in Blank",Toast.LENGTH_SHORT).show();}
+                else if(Collector.co==null){Toast.makeText(Filter_Activity.this,"Check-out Blank",Toast.LENGTH_SHORT).show();}
+                else if(compareDate(Collector.ci,Collector.co)){Toast.makeText(Filter_Activity.this,"Check-out Error",Toast.LENGTH_SHORT).show();}
                 else {
                     Intent intent=new Intent(Filter_Activity.this,HotelListActivity.class);
                     startActivity(intent);

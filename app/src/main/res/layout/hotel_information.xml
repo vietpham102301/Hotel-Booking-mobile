@@ -21,6 +21,7 @@
                 android:layout_marginStart="30dp"
                 android:layout_marginEnd="30dp">
                 <TextView
+                    android:id="@+id/txtNameHotelInf"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/alegreya_bold"
@@ -45,6 +46,7 @@
                     </ImageView>
 
                     <TextView
+                        android:id="@+id/txtRatingHotelInf"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="2dp"
@@ -53,6 +55,7 @@
                         android:text="4.8"
                         android:textSize="13sp"></TextView>
                     <TextView
+                        android:id="@+id/txtNumRatingHotelInf"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="2dp"
@@ -73,6 +76,7 @@
                         android:src="@drawable/icon_flag">
                     </ImageView>
                     <TextView
+                        android:id="@+id/txtProviceHotelInf"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="3dp"
@@ -104,6 +108,7 @@
                 android:layout_marginTop="20dp"
                 android:orientation="horizontal">
                 <TextView
+                    android:id="@+id/txtNameHotelInfSub"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/alegreya_bold"
@@ -120,6 +125,7 @@
                 android:layout_marginTop="5dp">
 
                 <TextView
+                    android:id="@+id/txtAddressHotelInf"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/alegreya_sans_light"
@@ -538,18 +544,19 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_weight="1">
+
                                     <TextView
+                                        android:id="@+id/txtPriceRoomHotel"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
-                                        android:text="$320"
-                                        android:fontFamily="@font/b612_bold"
-                                        android:textSize="30sp">
-                                    </TextView>
+                                        android:fontFamily="@font/black_ops_one"
+                                        android:text="200000.0 VND"
+                                        android:textSize="22sp"></TextView>
                                     <TextView
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:text="/night"
-                                        android:textSize="18sp">
+                                        android:textSize="12sp">
                                     </TextView>
                                 </LinearLayout>
                                 <LinearLayout
@@ -560,11 +567,11 @@
                                     <TextView
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
-                                        android:layout_marginStart="60dp"
                                         android:background="@drawable/border"
-                                        android:text="  20% OFF  "
+                                        android:layout_marginStart="10dp"
+                                        android:text="  In Tripguide  "
                                         android:fontFamily="@font/b612_bold"
-                                        android:textSize="18sp"
+                                        android:textSize="12sp"
                                         android:textColor="@color/white">
                                     </TextView>
                                 </LinearLayout>
@@ -671,139 +678,7 @@
                                     android:layout_marginTop="5dp"
                                     android:background="@drawable/border_load" />
                             </LinearLayout>
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:orientation="vertical"
-                                android:layout_marginTop="15dp">
 
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:fontFamily="@font/aleo_bold"
-                                    android:text="Extra Features"
-                                    android:textColor="@color/black"
-                                    android:textSize="16sp"
-                                    app:layout_constraintLeft_toLeftOf="parent"
-                                    app:layout_constraintRight_toRightOf="parent"
-                                    app:layout_constraintTop_toTopOf="parent"></TextView>
-                                <LinearLayout
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:orientation="horizontal"
-                                    android:layout_marginTop="5dp">
-                                    <CheckBox
-                                        android:id="@+id/checkBox1Sub1"
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="36dp"
-                                        android:layout_below="@+id/textViewsubtitles1"
-                                        android:layout_alignParentStart="true"
-                                        android:layout_marginTop="0dp"
-                                        android:textSize="12sp"
-                                        android:text="Airport shuttle"
-                                        tools:ignore="TouchTargetSizeCheck" />
-                                    <TextView
-                                        android:id="@+id/textViewPrice1Sub1"
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-                                        android:layout_below="@+id/textViewsubtitles1"
-                                        android:layout_alignParentEnd="true"
-                                        android:layout_marginStart="160dp"
-                                        android:layout_marginEnd="5dp"
-                                        android:layout_marginTop="0dp"
-                                        android:textSize="12sp"
-                                        android:layout_toEndOf="@+id/checkBox1Sub1"
-                                        android:text="12 $" />
-                                </LinearLayout>
-                                <LinearLayout
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:orientation="horizontal">
-                                    <CheckBox
-                                        android:id="@+id/checkBox2Sub1"
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="32dp"
-                                        android:layout_below="@+id/checkBox1Sub1"
-                                        android:layout_alignParentStart="true"
-                                        android:layout_marginTop="0dp"
-                                        android:textSize="12sp"
-                                        android:text="Buffet dinner"
-                                        tools:ignore="TouchTargetSizeCheck" />
-
-
-                                    <TextView
-                                        android:id="@+id/textViewPrice2Sub1"
-
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-                                        android:layout_below="@+id/textViewPrice1Sub1"
-                                        android:layout_alignParentEnd="true"
-                                        android:layout_marginStart="167dp"
-                                        android:layout_marginEnd="5dp"
-                                        android:layout_marginTop="0dp"
-                                        android:textSize="12sp"
-                                        android:layout_toEndOf="@+id/checkBox1Sub1"
-                                        android:text="30 $" />
-                                </LinearLayout>
-                                <LinearLayout
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:orientation="horizontal">
-
-                                    <CheckBox
-                                        android:id="@+id/checkBox3Sub1"
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="36dp"
-                                        android:layout_below="@+id/checkBox2Sub1"
-                                        android:layout_alignParentStart="true"
-                                        android:layout_marginTop="0dp"
-                                        android:text="Parking a day"
-                                        android:textSize="12sp"
-                                        tools:ignore="TouchTargetSizeCheck" />
-
-                                    <TextView
-                                        android:id="@+id/textViewPrice3Sub1"
-
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-                                        android:layout_below="@+id/textViewPrice2Sub1"
-                                        android:layout_alignParentEnd="true"
-                                        android:textSize="12sp"
-                                        android:layout_marginStart="170dp"
-                                        android:layout_marginTop="0dp"
-                                        android:layout_toEndOf="@+id/checkBox1Sub1"
-                                        android:text="9 $" />
-                                </LinearLayout>
-                                <LinearLayout
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:orientation="horizontal">
-
-                                    <CheckBox
-                                        android:id="@+id/checkBox4Sub1"
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="37dp"
-                                        android:layout_below="@+id/checkBox3Sub1"
-                                        android:layout_alignParentStart="true"
-                                        android:layout_marginTop="0dp"
-                                        android:text="Extra pillows"
-                                        android:textSize="12sp"
-                                        tools:ignore="TouchTargetSizeCheck" />
-
-                                    <TextView
-                                        android:id="@+id/textViewPrice4Sub1"
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-                                        android:layout_below="@+id/textViewPrice3Sub1"
-                                        android:layout_alignParentEnd="true"
-                                        android:layout_marginStart="170dp"
-                                        android:layout_marginTop="0dp"
-                                        android:textSize="12sp"
-                                        android:layout_toEndOf="@+id/checkBox1Sub1"
-                                        android:text="Free" />
-                                </LinearLayout>
-
-                            </LinearLayout>
                             <LinearLayout
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
@@ -835,26 +710,11 @@
                                         android:orientation="vertical">
 
                                         <TextView
+                                            android:id="@+id/txtTimeBooking"
                                             android:layout_width="wrap_content"
                                             android:layout_height="wrap_content"
                                             android:fontFamily="@font/aleo_bold"
                                             android:text="1 nights"
-                                            android:textSize="14sp">
-                                        </TextView>
-                                        <TextView
-                                            android:layout_width="wrap_content"
-                                            android:layout_height="wrap_content"
-                                            android:fontFamily="@font/aleo_bold"
-                                            android:layout_marginTop="5dp"
-                                            android:text="Buffet dinner"
-                                            android:textSize="14sp">
-                                        </TextView>
-                                        <TextView
-                                            android:layout_width="wrap_content"
-                                            android:layout_height="wrap_content"
-                                            android:fontFamily="@font/aleo_bold"
-                                            android:layout_marginTop="5dp"
-                                            android:text="20% discount"
                                             android:textSize="14sp">
                                         </TextView>
                                         <TextView
@@ -880,22 +740,6 @@
                                             android:layout_height="wrap_content"
                                             android:fontFamily="@font/aleo_bold"
                                             android:text="1000 $"
-                                            android:textSize="14sp">
-                                        </TextView>
-                                        <TextView
-                                            android:layout_width="wrap_content"
-                                            android:layout_height="wrap_content"
-                                            android:fontFamily="@font/aleo_bold"
-                                            android:layout_marginTop="5dp"
-                                            android:text="30 $"
-                                            android:textSize="14sp">
-                                        </TextView>
-                                        <TextView
-                                            android:layout_width="wrap_content"
-                                            android:layout_height="wrap_content"
-                                            android:fontFamily="@font/aleo_bold"
-                                            android:layout_marginTop="5dp"
-                                            android:text="200 $"
                                             android:textSize="14sp">
                                         </TextView>
                                         <TextView
@@ -974,483 +818,14 @@
                     android:textSize="24sp"
                     android:fontFamily="@font/alegreya_bold">
                 </TextView>
-                <androidx.cardview.widget.CardView
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rcvRoomList"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    app:cardCornerRadius="12dp">
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:background="@drawable/card_view_hotel">
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="vertical"
-                            android:layout_marginTop="10dp"
-                            android:layout_marginStart="15dp"
-                            android:layout_marginBottom="10dp">
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:fontFamily="@font/aleo_bold"
-                                android:text="Economy Room, Annex Building"
-                                android:textSize="16sp">
-                            </TextView>
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:fontFamily="@font/aleo_light"
-                                android:text="Offer Conditions"
-                                android:textSize="12sp"></TextView>
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:orientation="horizontal"
-                                android:weightSum="2"
-                                android:layout_marginTop="10dp">
-                                <LinearLayout
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:layout_weight="1"
-                                    android:orientation="vertical">
-                                    <LinearLayout
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:orientation="horizontal"
-                                        android:gravity="center">
-                                        <ImageView
-                                            android:layout_width="20dp"
-                                            android:layout_height="20dp"
-                                            android:src="@drawable/icon_check">
-                                        </ImageView>
-                                        <TextView
-                                            android:layout_width="wrap_content"
-                                            android:layout_height="wrap_content"
-                                            android:layout_marginStart="5dp"
-                                            android:textSize="12sp"
-                                            android:text="Non - refundable">
-                                        </TextView>
-                                    </LinearLayout>
-                                    <LinearLayout
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:orientation="horizontal"
-                                        android:layout_marginTop="5dp"
-                                        android:gravity="center">
-                                        <ImageView
-                                            android:layout_width="20dp"
-                                            android:layout_height="20dp"
-                                            android:src="@drawable/icon_check">
-                                        </ImageView>
-                                        <TextView
-                                            android:layout_width="wrap_content"
-                                            android:layout_height="wrap_content"
-                                            android:layout_marginStart="5dp"
-                                            android:textSize="12sp"
-                                            android:text="Free wifi">
-                                        </TextView>
-                                    </LinearLayout>
-                                    <LinearLayout
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:orientation="horizontal"
-                                        android:layout_marginTop="5dp"
-                                        android:gravity="center">
-                                        <ImageView
-                                            android:layout_width="20dp"
-                                            android:layout_height="20dp"
-                                            android:src="@drawable/icon_check">
-                                        </ImageView>
-                                        <TextView
-                                            android:layout_width="wrap_content"
-                                            android:layout_height="wrap_content"
-                                            android:layout_marginStart="5dp"
-                                            android:textSize="12sp"
-                                            android:text="Breakfast for 3 people">
-                                        </TextView>
-                                    </LinearLayout>
-                                    <Button
-                                        android:layout_width="match_parent"
-                                        android:layout_height="20dp"
-                                        android:layout_gravity="center"
-                                        android:layout_marginTop="10dp"
-                                        android:background="@drawable/border"
-                                        android:outlineAmbientShadowColor="@color/black"
-                                        android:shadowColor="#48000000"
-                                        android:text="Select"
-                                        android:textSize="12sp"
-                                        android:textColor="@color/white"
-                                        tools:ignore="TouchTargetSizeCheck">
-                                    </Button>
-                                </LinearLayout>
-                                <LinearLayout
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:layout_weight="1"
-                                    android:orientation="vertical">
-                                    <LinearLayout
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:orientation="horizontal"
-                                        android:layout_marginStart="65dp"
-                                        android:layout_marginTop="30dp">
-                                        <TextView
-                                            android:layout_width="wrap_content"
-                                            android:layout_height="wrap_content"
-                                            android:text="$320"
-                                            android:fontFamily="@font/b612_bold"
-                                            android:textSize="20sp">
-                                        </TextView>
-                                        <TextView
-                                            android:layout_width="wrap_content"
-                                            android:layout_height="wrap_content"
-                                            android:text="/night"
-                                            android:textSize="14sp">
-                                        </TextView>
-                                    </LinearLayout>
-                                    <TextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:layout_marginStart="110dp"
-                                        android:text="Save 4$"
-                                        android:textSize="12sp"
-                                        android:textColor="#FFEB3B">
-                                    </TextView>
-                                    <TextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:layout_marginStart="60dp"
-                                        android:text="on TripGuide $106"
-                                        android:textSize="12sp">
-                                    </TextView>
-
-                                </LinearLayout>
-                            </LinearLayout>
-
-                        </LinearLayout>
-                    </LinearLayout>
-                </androidx.cardview.widget.CardView>
-                <androidx.cardview.widget.CardView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    app:cardCornerRadius="12dp">
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:background="@drawable/card_view_hotel">
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="vertical"
-                            android:layout_marginTop="10dp"
-                            android:layout_marginStart="15dp"
-                            android:layout_marginBottom="10dp">
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:fontFamily="@font/aleo_bold"
-                                android:text="Economy Room, Annex Building"
-                                android:textSize="16sp">
-                            </TextView>
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:fontFamily="@font/aleo_light"
-                                android:text="Offer Conditions"
-                                android:textSize="12sp">
-                            </TextView>
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:orientation="horizontal"
-                                android:weightSum="2"
-                                android:layout_marginTop="10dp">
-                                <LinearLayout
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:layout_weight="1"
-                                    android:orientation="vertical">
-                                    <LinearLayout
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:orientation="horizontal"
-                                        android:gravity="center">
-                                        <ImageView
-                                            android:layout_width="20dp"
-                                            android:layout_height="20dp"
-                                            android:src="@drawable/icon_check">
-                                        </ImageView>
-                                        <TextView
-                                            android:layout_width="wrap_content"
-                                            android:layout_height="wrap_content"
-                                            android:layout_marginStart="5dp"
-                                            android:textSize="12sp"
-                                            android:text="Non - refundable">
-                                        </TextView>
-                                    </LinearLayout>
-                                    <LinearLayout
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:orientation="horizontal"
-                                        android:layout_marginTop="5dp"
-                                        android:gravity="center">
-                                        <ImageView
-                                            android:layout_width="20dp"
-                                            android:layout_height="20dp"
-                                            android:src="@drawable/icon_check">
-                                        </ImageView>
-                                        <TextView
-                                            android:layout_width="wrap_content"
-                                            android:layout_height="wrap_content"
-                                            android:layout_marginStart="5dp"
-                                            android:textSize="12sp"
-                                            android:text="Free wifi">
-                                        </TextView>
-                                    </LinearLayout>
-                                    <LinearLayout
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:orientation="horizontal"
-                                        android:layout_marginTop="5dp"
-                                        android:gravity="center">
-                                        <ImageView
-                                            android:layout_width="20dp"
-                                            android:layout_height="20dp"
-                                            android:src="@drawable/icon_check">
-                                        </ImageView>
-                                        <TextView
-                                            android:layout_width="wrap_content"
-                                            android:layout_height="wrap_content"
-                                            android:layout_marginStart="5dp"
-                                            android:textSize="12sp"
-                                            android:text="Breakfast for 3 people">
-                                        </TextView>
-                                    </LinearLayout>
-                                    <Button
-                                        android:layout_width="match_parent"
-                                        android:layout_height="20dp"
-                                        android:layout_gravity="center"
-                                        android:layout_marginTop="10dp"
-                                        android:background="@drawable/border"
-                                        android:outlineAmbientShadowColor="@color/black"
-                                        android:shadowColor="#48000000"
-                                        android:text="Select"
-                                        android:textSize="12sp"
-                                        android:textColor="@color/white"
-                                        tools:ignore="TouchTargetSizeCheck">
-                                    </Button>
-                                </LinearLayout>
-                                <LinearLayout
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:layout_weight="1"
-                                    android:orientation="vertical">
-                                    <LinearLayout
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:orientation="horizontal"
-                                        android:layout_marginStart="65dp"
-                                        android:layout_marginTop="30dp">
-                                        <TextView
-                                            android:layout_width="wrap_content"
-                                            android:layout_height="wrap_content"
-                                            android:text="$320"
-                                            android:fontFamily="@font/b612_bold"
-                                            android:textSize="20sp">
-                                        </TextView>
-                                        <TextView
-                                            android:layout_width="wrap_content"
-                                            android:layout_height="wrap_content"
-                                            android:text="/night"
-                                            android:textSize="14sp">
-                                        </TextView>
-                                    </LinearLayout>
-                                    <TextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:layout_marginStart="110dp"
-                                        android:text="Save 4$"
-                                        android:textSize="12sp"
-                                        android:textColor="#FFEB3B">
-                                    </TextView>
-                                    <TextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:layout_marginStart="60dp"
-                                        android:text="on TripGuide $106"
-                                        android:textSize="12sp">
-                                    </TextView>
-
-                                </LinearLayout>
-                            </LinearLayout>
-
-                        </LinearLayout>
-                    </LinearLayout>
-                </androidx.cardview.widget.CardView>
-                <androidx.cardview.widget.CardView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    app:cardCornerRadius="12dp">
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:background="@drawable/card_view_hotel">
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="vertical"
-                            android:layout_marginTop="10dp"
-                            android:layout_marginStart="15dp"
-                            android:layout_marginBottom="10dp">
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:fontFamily="@font/aleo_bold"
-                                android:text="Economy Room, Annex Building"
-                                android:textSize="16sp">
-                            </TextView>
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:fontFamily="@font/aleo_light"
-                                android:text="Offer Conditions"
-                                android:textSize="12sp">
-                            </TextView>
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:orientation="horizontal"
-                                android:weightSum="2"
-                                android:layout_marginTop="10dp">
-                                <LinearLayout
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:layout_weight="1"
-                                    android:orientation="vertical">
-                                    <LinearLayout
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:orientation="horizontal"
-                                        android:gravity="center">
-                                        <ImageView
-                                            android:layout_width="20dp"
-                                            android:layout_height="20dp"
-                                            android:src="@drawable/icon_check">
-                                        </ImageView>
-                                        <TextView
-                                            android:layout_width="wrap_content"
-                                            android:layout_height="wrap_content"
-                                            android:layout_marginStart="5dp"
-                                            android:textSize="12sp"
-                                            android:text="Non - refundable">
-                                        </TextView>
-                                    </LinearLayout>
-                                    <LinearLayout
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:orientation="horizontal"
-                                        android:layout_marginTop="5dp"
-                                        android:gravity="center">
-                                        <ImageView
-                                            android:layout_width="20dp"
-                                            android:layout_height="20dp"
-                                            android:src="@drawable/icon_check">
-                                        </ImageView>
-                                        <TextView
-                                            android:layout_width="wrap_content"
-                                            android:layout_height="wrap_content"
-                                            android:layout_marginStart="5dp"
-                                            android:textSize="12sp"
-                                            android:text="Free wifi">
-                                        </TextView>
-                                    </LinearLayout>
-                                    <LinearLayout
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:orientation="horizontal"
-                                        android:layout_marginTop="5dp"
-                                        android:gravity="center">
-                                        <ImageView
-                                            android:layout_width="20dp"
-                                            android:layout_height="20dp"
-                                            android:src="@drawable/icon_check">
-                                        </ImageView>
-                                        <TextView
-                                            android:layout_width="wrap_content"
-                                            android:layout_height="wrap_content"
-                                            android:layout_marginStart="5dp"
-                                            android:textSize="12sp"
-                                            android:text="Breakfast for 3 people">
-                                        </TextView>
-                                    </LinearLayout>
-                                    <Button
-                                        android:layout_width="match_parent"
-                                        android:layout_height="20dp"
-                                        android:layout_gravity="center"
-                                        android:layout_marginTop="10dp"
-                                        android:background="@drawable/border"
-                                        android:outlineAmbientShadowColor="@color/black"
-                                        android:shadowColor="#48000000"
-                                        android:text="Select"
-                                        android:textSize="12sp"
-                                        android:textColor="@color/white"
-                                        tools:ignore="TouchTargetSizeCheck">
-                                    </Button>
-                                </LinearLayout>
-                                <LinearLayout
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:layout_weight="1"
-                                    android:orientation="vertical">
-                                    <LinearLayout
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:orientation="horizontal"
-                                        android:layout_marginStart="65dp"
-                                        android:layout_marginTop="30dp">
-                                        <TextView
-                                            android:layout_width="wrap_content"
-                                            android:layout_height="wrap_content"
-                                            android:text="$320"
-                                            android:fontFamily="@font/b612_bold"
-                                            android:textSize="20sp">
-                                        </TextView>
-                                        <TextView
-                                            android:layout_width="wrap_content"
-                                            android:layout_height="wrap_content"
-                                            android:text="/night"
-                                            android:textSize="14sp">
-                                        </TextView>
-                                    </LinearLayout>
-                                    <TextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:layout_marginStart="110dp"
-                                        android:text="Save 4$"
-                                        android:textSize="12sp"
-                                        android:textColor="#FFEB3B">
-                                    </TextView>
-                                    <TextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:layout_marginStart="60dp"
-                                        android:text="on TripGuide $106"
-                                        android:textSize="12sp">
-                                    </TextView>
-
-                                </LinearLayout>
-                            </LinearLayout>
-
-                        </LinearLayout>
-                    </LinearLayout>
-                </androidx.cardview.widget.CardView>
+                    android:layout_marginTop="20dp"
+                    android:foregroundGravity="center_horizontal" />
             </LinearLayout>
             <View
-
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
                 android:layout_below="@+id/checkBox4Sub2"
