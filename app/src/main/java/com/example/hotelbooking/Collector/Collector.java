@@ -1,5 +1,7 @@
 package com.example.hotelbooking.Collector;
 
+import java.util.ArrayList;
+
 public class Collector {
     public static String prv;
     public static String ci;
@@ -7,6 +9,7 @@ public class Collector {
     public static String typeHotel;
     public static String rating;
     public static String price;
-    public static String priceRoom;
+    public static ArrayList<String> priceRoom;
+
 
 }

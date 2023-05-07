@@ -1,7 +1,5 @@
 package com.example.hotelbooking.order.model;
 
-import com.example.hotelbooking.order.model.Hotel;
-
 public class HotelResposne {
     private String status;
     private String message;

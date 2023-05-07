@@ -31,7 +31,6 @@ import java.sql.Date;
 import java.util.ArrayList;
 import java.util.Calendar;
 
-
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
