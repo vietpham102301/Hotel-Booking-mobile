@@ -89,10 +89,16 @@ public class HomePageActivity extends AppCompatActivity implements AdapterView.O
         //call Api
         homepages = new ArrayList<>();
         hp_listitem = findViewById(R.id.hp_listitem);
-        hp_listitem.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
+        hp_listitem.setHasFixedSize(true);
+        hp_listitem.setLayoutManager(new LinearLayoutManager(getApplicationContext(),LinearLayoutManager.VERTICAL,false));
         homepageAdapter = new HomepageAdapter(HomePageActivity.this, homepages);
         hp_listitem.setAdapter(homepageAdapter);
         populateHomepage();
+
+//        RecyclerView myRecyclerView = (RecyclerView) findViewById(R.id.hp_listitem);
+//        myRecyclerView.setHasFixedSize(true);
+//        myRecyclerView.setLayoutManager(new LinearLayoutManager(this, , false));
+
 
         //item payment
         Spinner spinner = findViewById(R.id.spinner);
@@ -278,7 +284,6 @@ public class HomePageActivity extends AppCompatActivity implements AdapterView.O
 
     @Override
     public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {return;}
-
     @Override
     public void onNothingSelected(AdapterView<?> adapterView) {return;}
 //    private void callApiListProvinces(ArrayList arrayList){

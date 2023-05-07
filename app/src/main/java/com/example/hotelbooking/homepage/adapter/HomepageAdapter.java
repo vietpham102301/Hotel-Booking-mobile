@@ -1,7 +1,6 @@
 package com.example.hotelbooking.homepage.adapter;
 
 import android.content.Context;
-import android.provider.Settings;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,11 +18,15 @@ import java.util.ArrayList;
 
 public class HomepageAdapter extends RecyclerView.Adapter<HomepageAdapter.ViewHolder>{
 
+    ArrayList<Homepage> name = new ArrayList<Homepage>();
+    ArrayList<Homepage> avatar = new ArrayList<Homepage>();
     Context context;
     ArrayList<Homepage> homepages;
     public HomepageAdapter(Context context,ArrayList<Homepage> arrayList) {
         this.context =context;
         this.homepages = arrayList;
+        this.name = name;
+        this.avatar = avatar;
     }
 
     @NonNull
@@ -44,15 +47,16 @@ public class HomepageAdapter extends RecyclerView.Adapter<HomepageAdapter.ViewHo
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder{
-        private TextView name;
+        private TextView name, id;
         private ImageView avatar;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
+            id = itemView.findViewById(R.id.iv_id);
             name = itemView.findViewById(R.id.iv_name);
             avatar = itemView.findViewById(R.id.iv_avatar);
-
         }
         public void bind(Homepage homepage){
+            id.setText(homepage.getId());
             name.setText(homepage.getName());
             Glide.with(context).load(homepage.getAvatar()).into(avatar);
         }
