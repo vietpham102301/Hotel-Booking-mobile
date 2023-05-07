@@ -1,12 +1,8 @@
 package com.example.hotelbooking.homepage.model;
 
-import com.google.gson.annotations.Expose;
-import com.google.gson.annotations.SerializedName;
-
 public class Homepage {
     private String id;
     private String name;
-    @SerializedName("avatar")
     private String avatar;
 
     public String getId() {

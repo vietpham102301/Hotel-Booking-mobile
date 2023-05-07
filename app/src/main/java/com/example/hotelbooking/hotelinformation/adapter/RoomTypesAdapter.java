@@ -11,7 +11,6 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.hotelbooking.Collector.Collector;
 import com.example.hotelbooking.R;
 import com.example.hotelbooking.hotelinformation.model.Roomtypes;
 
@@ -70,6 +69,7 @@ public class RoomTypesAdapter extends RecyclerView.Adapter<RoomTypesAdapter.Room
                     if(NumRoom>=1) {
                         NumRoom += 1;
                         edtNumRoom.setText(String.valueOf(NumRoom));
+
                     }
                 }
             });
@@ -82,17 +82,16 @@ public class RoomTypesAdapter extends RecyclerView.Adapter<RoomTypesAdapter.Room
                     }
                 }
             });
-            btnSelectRoom.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Collector.priceRoom=String.valueOf(txtPriceRoom.getText());
-                    //priceRoom=String.valueOf(txtPriceRoom.getText());
-                    //System.out.println(Collector.priceRoom);
-                }
-            });
+//            btnSelectRoom.setOnClickListener(new View.OnClickListener() {
+//                @Override
+//                public void onClick(View v) {
+//                    Collector.priceRoom=String.valueOf(txtPriceRoom.getText());
+//                    //priceRoom=String.valueOf(txtPriceRoom.getText());
+//                    //System.out.println(Collector.priceRoom);
+//                }
+//            });
         }
         public void blind(Roomtypes roomtypes){
-
                 txtNameRoom.setText(roomtypes.getName());
                 txtQuality.setText(roomtypes.getQuantity() + " rooms left");
                 txtPriceRoom.setText(String.valueOf(roomtypes.getPrice()) + " VND");

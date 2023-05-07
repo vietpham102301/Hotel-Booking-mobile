@@ -172,7 +172,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:orientation="horizontal"
-                            android:layout_marginStart="30dp"
+                            android:layout_marginStart="20dp"
                             android:layout_marginTop="30dp">
 
                             <TextView
@@ -180,7 +180,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:fontFamily="@font/b612_bold"
-                                android:text="400000.0 VND"
+                                android:text="4000000.0 VND"
                                 android:textColor="#F44336"
                                 android:textSize="14sp"></TextView>
                             <TextView
