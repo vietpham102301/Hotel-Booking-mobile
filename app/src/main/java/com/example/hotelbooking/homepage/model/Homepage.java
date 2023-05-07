@@ -6,6 +6,7 @@ import com.google.gson.annotations.SerializedName;
 public class Homepage {
     private String id;
     private String name;
+    @SerializedName("avatar")
     private String avatar;
 
     public String getId() {

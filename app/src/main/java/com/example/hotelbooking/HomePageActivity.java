@@ -2,11 +2,14 @@ package com.example.hotelbooking;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.recyclerview.widget.RecyclerViewAccessibilityDelegate;
 import androidx.viewpager2.widget.CompositePageTransformer;
 import androidx.viewpager2.widget.MarginPageTransformer;
 import androidx.viewpager2.widget.ViewPager2;
 
+import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.content.Intent;
@@ -18,12 +21,18 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.HorizontalScrollView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.hotelbooking.filter.api.ApiService;
 import com.example.hotelbooking.filter.model.ProvicesOutFit;
+import com.example.hotelbooking.homepage.ApiClient;
+import com.example.hotelbooking.homepage.HomepageApiResponse;
+import com.example.hotelbooking.homepage.adapter.HomepageAdapter;
+import com.example.hotelbooking.homepage.api.ApiHomepage;
+import com.example.hotelbooking.homepage.model.Homepage;
 import com.example.hotelbooking.hotelListp.model.HotelList;
 import com.example.hotelbooking.hotelinformation.SliderItem;
 import com.example.hotelbooking.hotelinformation.SliderAdapter;
@@ -38,6 +47,9 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class HomePageActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
+    HomepageAdapter homepageAdapter;
+    RecyclerView hp_listitem;
+    ArrayList<Homepage> homepages;
     public static final String SHARED_PREFS = "bookingApp";
     private ViewPager2 viewPager;
     private DatePickerDialog datePickerDialogHp;
@@ -69,12 +81,20 @@ public class HomePageActivity extends AppCompatActivity implements AdapterView.O
         }
     };
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.homepage);
 
+        //call Api
+        homepages = new ArrayList<>();
+        hp_listitem = findViewById(R.id.hp_listitem);
+        hp_listitem.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
+        homepageAdapter = new HomepageAdapter(HomePageActivity.this, homepages);
+        hp_listitem.setAdapter(homepageAdapter);
+        populateHomepage();
+
+        //item payment
         Spinner spinner = findViewById(R.id.spinner);
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.lang, R.layout.payment_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -83,8 +103,8 @@ public class HomePageActivity extends AppCompatActivity implements AdapterView.O
         spinner.setSelection(0,true);
         spinner.setOnItemSelectedListener(this);
 
+        //id customer
         customerNameTxtView = findViewById(R.id.customerNameTxtView);
-
         setData();
 
         customerNameTxtView.setText(customerName);
@@ -92,14 +112,15 @@ public class HomePageActivity extends AppCompatActivity implements AdapterView.O
 
         btnpsg = findViewById(R.id.btnpsg);
         btnSearch = findViewById(R.id.btnSearch);
-        btnSearch.setOnClickListener(view -> startActivity( new Intent(HomePageActivity.this, HotelList.class)));
+        btnSearch.setOnClickListener(view -> startActivity( new Intent(HomePageActivity.this, HotelListActivity.class)));
 
         arrayList =new ArrayList<>();
-        callApiListProvinces(arrayList);
+//        callApiListProvinces(arrayList);
 
+
+        //banner
         viewPager = findViewById(R.id.pager);
 
-        //You can get it from API as well.
         List<SliderItem> sliderItemArrayList = new ArrayList<>();
         sliderItemArrayList.add(new SliderItem(R.drawable.home_amanoi2));
         sliderItemArrayList.add(new SliderItem(R.drawable.home_amina));
@@ -134,6 +155,8 @@ public class HomePageActivity extends AppCompatActivity implements AdapterView.O
             }
         });
 
+
+        //check in - out
         initDatePicker();
         checkInButton = findViewById(R.id.checkInButton);
         checkInButton.setText(getTodaysDate());
@@ -148,6 +171,24 @@ public class HomePageActivity extends AppCompatActivity implements AdapterView.O
 //        spinner.setOnItemSelectedListener(this);
 
     }
+
+    public void populateHomepage(){
+        ApiClient.getClient().create(ApiHomepage.class).getHomepage().enqueue(new Callback<HomepageApiResponse>() {
+            @Override
+            public void onResponse(Call<HomepageApiResponse> call, Response<HomepageApiResponse> response) {
+                if (response.code() == 200){
+                    if (response.body().isStatus()){
+                        homepages.addAll(response.body().getData());
+                        homepageAdapter.notifyDataSetChanged();
+                    }
+                }
+            }
+            @Override
+            public void onFailure(Call<HomepageApiResponse> call, Throwable t) {
+            }
+        });
+    }
+
 
     public void setData(){
         SharedPreferences sharedPreferences = getSharedPreferences(PaymentActivity.SHARED_PREFS,MODE_PRIVATE);
@@ -170,20 +211,16 @@ public class HomePageActivity extends AppCompatActivity implements AdapterView.O
             String date = makeDateString(day, month, year);
             checkInButton.setText(date);
 //            checkOutButton.setText(date);
-
         };
         DatePickerDialog.OnDateSetListener dateSetListener1 = (datePicker, year, month, day) -> {
             month = month + 1;
             String date = makeDateString(day, month, year);
             checkOutButton.setText(date);
-
         };
-
         Calendar cal = Calendar.getInstance();
         int year = cal.get(Calendar.YEAR);
         int month = cal.get(Calendar.MONTH);
         int day = cal.get(Calendar.DAY_OF_MONTH);
-
         int style = AlertDialog.THEME_HOLO_LIGHT;
         cal.set(year,month,day);
 
@@ -192,7 +229,6 @@ public class HomePageActivity extends AppCompatActivity implements AdapterView.O
         datePickerDialogHp1 = new DatePickerDialog(this, style, dateSetListener1, year, month, day);
         datePickerDialogHp1.getDatePicker().setMinDate(cal.getTimeInMillis());
         //datePickerDialog.getDatePicker().setMaxDate(System.currentTimeMillis());
-
     }
 
     private String makeDateString(int day, int month, int year)
@@ -226,7 +262,6 @@ public class HomePageActivity extends AppCompatActivity implements AdapterView.O
             return "NOV";
         if(month == 12)
             return "DEC";
-
         //default should never happen
         return "JAN";
     }
@@ -246,21 +281,21 @@ public class HomePageActivity extends AppCompatActivity implements AdapterView.O
 
     @Override
     public void onNothingSelected(AdapterView<?> adapterView) {return;}
-    private void callApiListProvinces(ArrayList arrayList){
-        ApiService.apiService.provinces().enqueue(new Callback<ProvicesOutFit>() {
-            @Override
-            public void onResponse(Call<ProvicesOutFit> call, Response<ProvicesOutFit> response) {
-                Toast.makeText(HomePageActivity.this, "Call Api Success", Toast.LENGTH_SHORT).show();
-                ProvicesOutFit data = response.body();
-                for (int i=0;i<data.getData().size();i++) {
-                    System.out.println(data.getData().get(i).getId());
-                    arrayList.add(data.getData().get(i).getId());
-                }
-            }
-            @Override
-            public void onFailure(Call<ProvicesOutFit> call, Throwable t) {
-                Toast.makeText(HomePageActivity.this, "Call Api Error", Toast.LENGTH_SHORT).show();
-            }
-        });
-    }
+//    private void callApiListProvinces(ArrayList arrayList){
+//        ApiService.apiService.provinces().enqueue(new Callback<ProvicesOutFit>() {
+//            @Override
+//            public void onResponse(Call<ProvicesOutFit> call, Response<ProvicesOutFit> response) {
+//                Toast.makeText(HomePageActivity.this, "Call Api Success", Toast.LENGTH_SHORT).show();
+//                ProvicesOutFit data = response.body();
+//                for (int i=0;i<data.getData().size();i++) {
+//                    System.out.println(data.getData().get(i).getId());
+//                    arrayList.add(data.getData().get(i).getId());
+//                }
+//            }
+//            @Override
+//            public void onFailure(Call<ProvicesOutFit> call, Throwable t) {
+//                Toast.makeText(HomePageActivity.this, "Call Api Error", Toast.LENGTH_SHORT).show();
+//            }
+//        });
+//    }
 }
