@@ -1,9 +1,5 @@
 package com.example.hotelbooking;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
@@ -16,9 +12,13 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.hotelbooking.order.adapter.HotelRecViewAdapter;
 import com.example.hotelbooking.order.model.Hotel;
 import com.example.hotelbooking.order.model.HotelOrder;
-import com.example.hotelbooking.order.adapter.HotelRecViewAdapter;
 import com.example.hotelbooking.order.model.HotelResposne;
 import com.example.hotelbooking.order.model.Order;
 import com.example.hotelbooking.order.model.OrderResponse;

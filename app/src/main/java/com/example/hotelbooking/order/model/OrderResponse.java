@@ -1,7 +1,5 @@
 package com.example.hotelbooking.order.model;
 
-import com.example.hotelbooking.order.model.Order;
-
 import java.util.List;
 
 public class OrderResponse {

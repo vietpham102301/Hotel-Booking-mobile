@@ -1,11 +1,11 @@
-package com.example.hotelbooking.order.model;
+package com.example.hotelbooking.hotelinformation.model;
 
-public class HotelResposne {
+public class HotelOutfit {
     private String status;
     private String message;
     private Hotel data;
 
-    public HotelResposne(String status, String message, Hotel data) {
+    public HotelOutfit(String status, String message, Hotel data) {
         this.status = status;
         this.message = message;
         this.data = data;

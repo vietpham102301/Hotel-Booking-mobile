@@ -2,7 +2,8 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="15dp"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
@@ -21,15 +22,17 @@
                 android:layout_marginTop="10dp"
                 android:layout_marginStart="15dp"
                 android:layout_marginBottom="10dp">
+
                 <TextView
+                    android:id="@+id/txtNameRoom"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/aleo_bold"
                     android:text="Economy Room, Annex Building"
-                    android:textSize="16sp">
-                </TextView>
+                    android:textSize="16sp"></TextView>
 
                 <TextView
+                    android:id="@+id/txtQuatity"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/aleo_light"
@@ -117,7 +120,7 @@
                                     android:backgroundTint="#C5BCBC" />
 
                                 <EditText
-                                    android:id="@+id/itemQuanEt"
+                                    android:id="@+id/edtNumRoom"
                                     android:layout_width="50dp"
                                     android:layout_height="wrap_content"
                                     android:layout_marginHorizontal="10dp"
@@ -145,6 +148,7 @@
                             android:layout_height="30dp"
                             android:gravity="center_vertical">
                                 <Button
+                                    android:id="@+id/btnSelectRoom"
                                     android:layout_width="match_parent"
                                     android:layout_height="20dp"
                                     android:background="@drawable/border"
@@ -162,40 +166,35 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
+                        android:layout_marginTop="65dp"
                         android:orientation="vertical">
                         <LinearLayout
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:orientation="horizontal"
-                            android:layout_marginStart="65dp"
+                            android:layout_marginStart="20dp"
                             android:layout_marginTop="30dp">
+
                             <TextView
+                                android:id="@+id/txtPriceRoom"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="$320"
                                 android:fontFamily="@font/b612_bold"
-                                android:textSize="20sp">
-                            </TextView>
+                                android:text="4000000.0 VND"
+                                android:textColor="#F44336"
+                                android:textSize="14sp"></TextView>
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="/night"
-                                android:textSize="14sp">
+                                android:textSize="12sp">
                             </TextView>
                         </LinearLayout>
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginStart="110dp"
-                            android:text="Save 4$"
-                            android:textSize="12sp"
-                            android:textColor="#FFEB3B">
-                        </TextView>
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="60dp"
-                            android:text="on TripGuide $106"
+                            android:layout_marginStart="90dp"
+                            android:text="on TripGuide "
                             android:textSize="12sp">
                         </TextView>
 

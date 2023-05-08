@@ -1,11 +1,13 @@
-package com.example.hotelbooking.order.model;
+package com.example.hotelbooking.hotelinformation.model;
 
-public class HotelResposne {
+import java.util.List;
+
+public class RoomOutFit {
     private String status;
     private String message;
-    private Hotel data;
+    private List<Room> data;
 
-    public HotelResposne(String status, String message, Hotel data) {
+    public RoomOutFit(String status, String message, List<Room> data) {
         this.status = status;
         this.message = message;
         this.data = data;
@@ -27,11 +29,11 @@ public class HotelResposne {
         this.message = message;
     }
 
-    public Hotel getData() {
+    public List<Room> getData() {
         return data;
     }
 
-    public void setData(Hotel data) {
+    public void setData(List<Room> data) {
         this.data = data;
     }
 }

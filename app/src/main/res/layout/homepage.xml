@@ -283,178 +283,189 @@
             </LinearLayout>
 
             <HorizontalScrollView
+
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
-                <LinearLayout
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/hp_listitem"
                     android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
                     android:orientation="horizontal">
 
-                    <LinearLayout
-                        android:layout_width="270dp"
-                        android:layout_height="match_parent"
-                        android:layout_marginStart="20dp"
-                        android:background="@drawable/shape"
-                        android:orientation="vertical">
+                </androidx.recyclerview.widget.RecyclerView>
 
-                        <androidx.cardview.widget.CardView xmlns:app="http://schemas.android.com/apk/res-auto"
-                            android:layout_width="200dp"
-                            android:layout_height="200dp"
-                            android:layout_gravity="center"
-                            android:layout_margin="10dp"
-                            app:cardCornerRadius="15dp">
+                <!--                <LinearLayout-->
+                <!--                    android:layout_width="wrap_content"-->
+                <!--                    android:layout_height="match_parent"-->
+                <!--                    android:orientation="horizontal">-->
 
-                            <ImageView
-                                android:layout_width="200dp"
-                                android:layout_height="200dp"
-                                android:background="@drawable/hp_danang" />
-                        </androidx.cardview.widget.CardView>
+                <!--                    <LinearLayout-->
+                <!--                        android:layout_width="270dp"-->
+                <!--                        android:layout_height="match_parent"-->
+                <!--                        android:layout_marginStart="20dp"-->
+                <!--                        android:background="@drawable/shape"-->
+                <!--                        android:orientation="vertical">-->
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:layout_marginBottom="10dp"
-                            android:fontFamily="@font/andada"
-                            android:text="Da Nang, Viet Nam"
-                            android:textColor="#0C1F35"
-                            android:textSize="20sp"
-                            android:textStyle="bold" />
+                <!--                        <androidx.cardview.widget.CardView xmlns:app="http://schemas.android.com/apk/res-auto"-->
+                <!--                            android:layout_width="200dp"-->
+                <!--                            android:layout_height="200dp"-->
+                <!--                            android:layout_gravity="center"-->
+                <!--                            android:layout_margin="10dp"-->
+                <!--                            app:cardCornerRadius="15dp">-->
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:layout_marginTop="-10dp"
-                            android:layout_marginBottom="20dp"
-                            android:fontFamily="@font/andada"
-                            android:text="124 destination"
-                            android:textSize="18sp" />
-                    </LinearLayout>
+                <!--                            <ImageView-->
+                <!--                                android:id="@+id/iv_avatar"-->
+                <!--                                android:layout_width="200dp"-->
+                <!--                                android:layout_height="200dp"-->
+                <!--                                android:background="@drawable/hp_danang" />-->
+                <!--                        </androidx.cardview.widget.CardView>-->
 
-                    <LinearLayout
-                        android:layout_width="270dp"
-                        android:layout_height="match_parent"
-                        android:layout_marginStart="20dp"
-                        android:background="@drawable/shape"
-                        android:orientation="vertical">
+                <!--                        <TextView-->
+                <!--                            android:id="@+id/iv_name"-->
+                <!--                            android:layout_width="wrap_content"-->
+                <!--                            android:layout_height="wrap_content"-->
+                <!--                            android:layout_gravity="center"-->
+                <!--                            android:layout_marginBottom="10dp"-->
+                <!--                            android:fontFamily="@font/andada"-->
+                <!--                            android:text="Da Nang, Viet Nam"-->
+                <!--                            android:textColor="#0C1F35"-->
+                <!--                            android:textSize="20sp"-->
+                <!--                            android:textStyle="bold" />-->
 
-                        <androidx.cardview.widget.CardView xmlns:app="http://schemas.android.com/apk/res-auto"
-                            android:layout_width="200dp"
-                            android:layout_height="200dp"
-                            android:layout_gravity="center"
-                            android:layout_margin="10dp"
-                            app:cardCornerRadius="15dp">
+                <!--                        <TextView-->
+                <!--                            android:layout_width="wrap_content"-->
+                <!--                            android:layout_height="wrap_content"-->
+                <!--                            android:layout_gravity="center"-->
+                <!--                            android:layout_marginTop="-10dp"-->
+                <!--                            android:layout_marginBottom="20dp"-->
+                <!--                            android:fontFamily="@font/andada"-->
+                <!--                            android:text="124 destination"-->
+                <!--                            android:textSize="18sp" />-->
+                <!--                    </LinearLayout>-->
 
-                            <ImageView
-                                android:layout_width="200dp"
-                                android:layout_height="200dp"
-                                android:background="@drawable/hp_vinhhalong" />
-                        </androidx.cardview.widget.CardView>
+                <!--                    <LinearLayout-->
+                <!--                        android:layout_width="270dp"-->
+                <!--                        android:layout_height="match_parent"-->
+                <!--                        android:layout_marginStart="20dp"-->
+                <!--                        android:background="@drawable/shape"-->
+                <!--                        android:orientation="vertical">-->
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:layout_marginBottom="10dp"
-                            android:fontFamily="@font/andada"
-                            android:text="Vinh Ha Long, Viet Nam"
-                            android:textColor="#0C1F35"
-                            android:textSize="20sp"
-                            android:textStyle="bold" />
+                <!--                        <androidx.cardview.widget.CardView xmlns:app="http://schemas.android.com/apk/res-auto"-->
+                <!--                            android:layout_width="200dp"-->
+                <!--                            android:layout_height="200dp"-->
+                <!--                            android:layout_gravity="center"-->
+                <!--                            android:layout_margin="10dp"-->
+                <!--                            app:cardCornerRadius="15dp">-->
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:layout_marginTop="-10dp"
-                            android:layout_marginBottom="20dp"
-                            android:fontFamily="@font/andada"
-                            android:text="135 destination"
-                            android:textSize="18sp" />
-                    </LinearLayout>
+                <!--                            <ImageView-->
+                <!--                                android:layout_width="200dp"-->
+                <!--                                android:layout_height="200dp"-->
+                <!--                                android:background="@drawable/hp_vinhhalong" />-->
+                <!--                        </androidx.cardview.widget.CardView>-->
 
-                    <LinearLayout
-                        android:layout_width="270dp"
-                        android:layout_height="match_parent"
-                        android:layout_marginStart="20dp"
-                        android:background="@drawable/shape"
-                        android:orientation="vertical">
+                <!--                        <TextView-->
+                <!--                            android:layout_width="wrap_content"-->
+                <!--                            android:layout_height="wrap_content"-->
+                <!--                            android:layout_gravity="center"-->
+                <!--                            android:layout_marginBottom="10dp"-->
+                <!--                            android:fontFamily="@font/andada"-->
+                <!--                            android:text="Vinh Ha Long, Viet Nam"-->
+                <!--                            android:textColor="#0C1F35"-->
+                <!--                            android:textSize="20sp"-->
+                <!--                            android:textStyle="bold" />-->
 
-                        <androidx.cardview.widget.CardView xmlns:app="http://schemas.android.com/apk/res-auto"
-                            android:layout_width="200dp"
-                            android:layout_height="200dp"
-                            android:layout_gravity="center"
-                            android:layout_margin="10dp"
-                            app:cardCornerRadius="15dp">
+                <!--                        <TextView-->
+                <!--                            android:layout_width="wrap_content"-->
+                <!--                            android:layout_height="wrap_content"-->
+                <!--                            android:layout_gravity="center"-->
+                <!--                            android:layout_marginTop="-10dp"-->
+                <!--                            android:layout_marginBottom="20dp"-->
+                <!--                            android:fontFamily="@font/andada"-->
+                <!--                            android:text="135 destination"-->
+                <!--                            android:textSize="18sp" />-->
+                <!--                    </LinearLayout>-->
 
-                            <ImageView
-                                android:layout_width="200dp"
-                                android:layout_height="200dp"
-                                android:background="@drawable/hp_dalat" />
-                        </androidx.cardview.widget.CardView>
+                <!--                    <LinearLayout-->
+                <!--                        android:layout_width="270dp"-->
+                <!--                        android:layout_height="match_parent"-->
+                <!--                        android:layout_marginStart="20dp"-->
+                <!--                        android:background="@drawable/shape"-->
+                <!--                        android:orientation="vertical">-->
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:layout_marginBottom="10dp"
-                            android:fontFamily="@font/andada"
-                            android:text="Da Lat, Viet Nam"
-                            android:textColor="#0C1F35"
-                            android:textSize="20sp"
-                            android:textStyle="bold" />
+                <!--                        <androidx.cardview.widget.CardView xmlns:app="http://schemas.android.com/apk/res-auto"-->
+                <!--                            android:layout_width="200dp"-->
+                <!--                            android:layout_height="200dp"-->
+                <!--                            android:layout_gravity="center"-->
+                <!--                            android:layout_margin="10dp"-->
+                <!--                            app:cardCornerRadius="15dp">-->
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:layout_marginTop="-10dp"
-                            android:layout_marginBottom="20dp"
-                            android:fontFamily="@font/andada"
-                            android:text="157 destination"
-                            android:textSize="18sp" />
-                    </LinearLayout>
+                <!--                            <ImageView-->
+                <!--                                android:layout_width="200dp"-->
+                <!--                                android:layout_height="200dp"-->
+                <!--                                android:background="@drawable/hp_dalat" />-->
+                <!--                        </androidx.cardview.widget.CardView>-->
 
-                    <LinearLayout
-                        android:layout_width="270dp"
-                        android:layout_height="match_parent"
-                        android:layout_marginStart="20dp"
-                        android:background="@drawable/shape"
-                        android:orientation="vertical">
-                        <androidx.cardview.widget.CardView xmlns:app="http://schemas.android.com/apk/res-auto"
-                            android:layout_width="200dp"
-                            android:layout_height="200dp"
-                            android:layout_gravity="center"
-                            android:layout_margin="10dp"
-                            app:cardCornerRadius="15dp">
-                            <ImageView
-                                android:layout_width="200dp"
-                                android:layout_height="200dp"
-                                android:background="@drawable/hp_vungtau" />
-                        </androidx.cardview.widget.CardView>
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:layout_marginBottom="10dp"
-                            android:fontFamily="@font/andada"
-                            android:text="Vung Tau, Viet Nam"
-                            android:textColor="#0C1F35"
-                            android:textSize="20sp"
-                            android:textStyle="bold" />
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:layout_marginTop="-10dp"
-                            android:layout_marginBottom="20dp"
-                            android:fontFamily="@font/andada"
-                            android:text="142 destination"
-                            android:textSize="18sp" />
-                    </LinearLayout>
-                </LinearLayout>
+                <!--                        <TextView-->
+                <!--                            android:layout_width="wrap_content"-->
+                <!--                            android:layout_height="wrap_content"-->
+                <!--                            android:layout_gravity="center"-->
+                <!--                            android:layout_marginBottom="10dp"-->
+                <!--                            android:fontFamily="@font/andada"-->
+                <!--                            android:text="Da Lat, Viet Nam"-->
+                <!--                            android:textColor="#0C1F35"-->
+                <!--                            android:textSize="20sp"-->
+                <!--                            android:textStyle="bold" />-->
+
+                <!--                        <TextView-->
+                <!--                            android:layout_width="wrap_content"-->
+                <!--                            android:layout_height="wrap_content"-->
+                <!--                            android:layout_gravity="center"-->
+                <!--                            android:layout_marginTop="-10dp"-->
+                <!--                            android:layout_marginBottom="20dp"-->
+                <!--                            android:fontFamily="@font/andada"-->
+                <!--                            android:text="157 destination"-->
+                <!--                            android:textSize="18sp" />-->
+                <!--                    </LinearLayout>-->
+
+                <!--                    <LinearLayout-->
+                <!--                        android:layout_width="270dp"-->
+                <!--                        android:layout_height="match_parent"-->
+                <!--                        android:layout_marginStart="20dp"-->
+                <!--                        android:background="@drawable/shape"-->
+                <!--                        android:orientation="vertical">-->
+                <!--                        <androidx.cardview.widget.CardView xmlns:app="http://schemas.android.com/apk/res-auto"-->
+                <!--                            android:layout_width="200dp"-->
+                <!--                            android:layout_height="200dp"-->
+                <!--                            android:layout_gravity="center"-->
+                <!--                            android:layout_margin="10dp"-->
+                <!--                            app:cardCornerRadius="15dp">-->
+                <!--                            <ImageView-->
+                <!--                                android:layout_width="200dp"-->
+                <!--                                android:layout_height="200dp"-->
+                <!--                                android:background="@drawable/hp_vungtau" />-->
+                <!--                        </androidx.cardview.widget.CardView>-->
+                <!--                        <TextView-->
+                <!--                            android:layout_width="wrap_content"-->
+                <!--                            android:layout_height="wrap_content"-->
+                <!--                            android:layout_gravity="center"-->
+                <!--                            android:layout_marginBottom="10dp"-->
+                <!--                            android:fontFamily="@font/andada"-->
+                <!--                            android:text="Vung Tau, Viet Nam"-->
+                <!--                            android:textColor="#0C1F35"-->
+                <!--                            android:textSize="20sp"-->
+                <!--                            android:textStyle="bold" />-->
+                <!--                        <TextView-->
+                <!--                            android:layout_width="wrap_content"-->
+                <!--                            android:layout_height="wrap_content"-->
+                <!--                            android:layout_gravity="center"-->
+                <!--                            android:layout_marginTop="-10dp"-->
+                <!--                            android:layout_marginBottom="20dp"-->
+                <!--                            android:fontFamily="@font/andada"-->
+                <!--                            android:text="142 destination"-->
+                <!--                            android:textSize="18sp" />-->
+                <!--                    </LinearLayout>-->
+                <!--                </LinearLayout>-->
             </HorizontalScrollView>
 
             <LinearLayout
