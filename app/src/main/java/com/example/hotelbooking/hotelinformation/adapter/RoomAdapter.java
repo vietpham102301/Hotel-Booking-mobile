@@ -3,6 +3,7 @@ package com.example.hotelbooking.hotelinformation.adapter;
 import static android.content.Context.MODE_PRIVATE;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,6 +16,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.hotelbooking.HotelInformationActivity;
+import com.example.hotelbooking.PaymentActivity;
 import com.example.hotelbooking.R;
 import com.example.hotelbooking.hotelinformation.model.Room;
 
@@ -60,13 +62,14 @@ public class RoomAdapter extends RecyclerView.Adapter<RoomAdapter.RoomHolder> {
         private int NumRoom =1 ;
         private int MaxRoom;
         private float priceRoom;
+        private int idRoom;
+        private String nameRoom;
+        private int quantityRoom;
         public RoomHolder(@NonNull View itemView) {
             super(itemView);
             txtNameRoom=itemView.findViewById(R.id.txtNameRoom);
             txtQuatity=itemView.findViewById(R.id.txtQuatity);
             txtPriceRoom=itemView.findViewById(R.id.txtPriceRoom);
-
-
             btnadd=itemView.findViewById(R.id.addBtn);
             btnremove=itemView.findViewById(R.id.removeBtn);
             btnSelectRoom=itemView.findViewById(R.id.btnSelectRoom);
@@ -92,34 +95,36 @@ public class RoomAdapter extends RecyclerView.Adapter<RoomAdapter.RoomHolder> {
                     }
                 }
             });
-//            btnSelectRoom.setOnClickListener(new View.OnClickListener() {
-//                @Override
-//                public void onClick(View v) {
-//
-//                }
-//            });
+            btnSelectRoom.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent=new Intent(context, PaymentActivity.class);
+                    context.startActivity(intent);
+                    saveData(idRoom,nameRoom,quantityRoom,priceRoom);
+                }
+            });
         }
 
 
-        public void saveData(Float priceRoOm){
+        public void saveData(int idRooms, String nameRooms,int quantityRooms, Float priceRooms){
             SharedPreferences sharedPreferences = context.getSharedPreferences(HotelInformationActivity.SHARED_PREFS, MODE_PRIVATE);
             SharedPreferences.Editor editor = sharedPreferences.edit();
 
-            editor.putFloat(HotelInformationActivity.PRICE, priceRoOm);
+            editor.putFloat(HotelInformationActivity.PRICE, priceRooms);
+            editor.putString(HotelInformationActivity.ROOM_TYPE, nameRooms);
+            editor.putInt(HotelInformationActivity.ROOM_TYPE_ID, idRooms);
+            editor.putInt(HotelInformationActivity.QUANTITY, quantityRooms);
             editor.apply();
         }
-//        public void Quantity(Room room){
-//            int quantity=room.getQuantity();
-//        }
         public void blind(Room room){
                 txtNameRoom.setText(room.getName());
                 txtQuatity.setText(String.valueOf(room.getQuantity())+ " rooms left");
                 txtPriceRoom.setText(String.valueOf(room.getPrice()) + " VND");
                 MaxRoom=room.getQuantity();
+                idRoom=room.getId();
+                nameRoom=room.getName();
+                quantityRoom=room.getQuantity();
                 priceRoom=Float.parseFloat(String.valueOf(room.getPrice()));
-//                System.out.println(priceRoom);
-
-
         }
 
     }

@@ -211,10 +211,6 @@ public class HotelInformationActivity extends AppCompatActivity implements Adapt
         callApiHotelInformation(idHotel);
         callApiCommentInHotel(idHotel,5,1);
     }
-
-
-
-
     private Runnable sliderRunnable = new Runnable() {
         @Override
         public void run() {
@@ -225,28 +221,9 @@ public class HotelInformationActivity extends AppCompatActivity implements Adapt
 
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-        switch (position) {
-            case 0:
-                System.out.println("2");
-                break;
-            case 1:
-                System.out.println("3");
-                break;
-            case 2:
-                System.out.println("4");
-                break;
-            case 3:
-                System.out.println("3");
-                break;
-            case 4:
-                System.out.println("4");
-                break;
-            case 5:
-                System.out.println("4");
-                break;
 
-        }
     }
+
     @Override
     public void onNothingSelected(AdapterView<?> parent) {
 
@@ -255,7 +232,6 @@ public class HotelInformationActivity extends AppCompatActivity implements Adapt
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
     }
-
     private void callApiHotelInformation(int id){
         Appclient.getClient().create(Api.class).getHotelInformation(id).enqueue(new Callback<HotelOutfit>() {
             @Override
@@ -268,6 +244,7 @@ public class HotelInformationActivity extends AppCompatActivity implements Adapt
                     txtNumRatingHotelInf.setText("( " + String.valueOf(hotel.getData().getNumRating()) + " reviews)");
                     txtProvinceHotelInf.setText(hotel.getData().getProvinceId());
                     txtAddressHotelInf.setText(hotel.getData().getAddress());
+                    saveData(hotel.getData().getName(), Float.valueOf(String.valueOf(hotel.getData().getRating())),hotel.getData().getId(),hotel.getData().getAvatar());
 //                    if(hotel.getData().getRoomTypes()!=null) {
 //                        mRoomTypesList.addAll(hotel.getData().getRoomTypes());
 //                        roomTypesAdapter.notifyDataSetChanged();
@@ -331,34 +308,25 @@ public class HotelInformationActivity extends AppCompatActivity implements Adapt
             }
         });
     }
-    public void saveData(){
+    public void saveData(String hotelName, Float rating,int idHotel,String hotelImgUrl){
         SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREFS,MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
 
-//        editor.putString(CHECK_IN, "2023-04-16");
-//        editor.putString(CHECK_OUT, "2023-04-20");
-//        editor.putInt(TRAVELLER, 1);
-//        editor.putString(HOTEL_NAME, "LOTUS RESIDENCE - Landmark 81 Vinhomes Central Park");
-//        editor.putFloat(RATING, new Float(4.8));
+        editor.putString(HOTEL_NAME, hotelName);
+        editor.putFloat(RATING, rating);
 //        editor.putString(ROOM_TYPE, "Phòng đơn");
 //        editor.putFloat(PRICE, new Float(125.0));
-//        editor.putFloat(TAX, new Float(10.0));
-//        editor.putFloat(SERVICE_FEE,new Float(10.0));
 //        editor.putInt(ROOM_TYPE_ID, 1);
-//        editor.putString(PHONE, "0325542310");
-//        editor.putInt(USER_ID, 6);
-//        editor.putString(USERNAME,"viet pham");
-//        editor.putInt(HOTEL_ID, 1);
+        editor.putInt(HOTEL_ID, idHotel);
 //        editor.putInt(QUANTITY, 1);
-//        editor.putString(HOTEL_IMG_URL, "https://media-cdn.tripadvisor.com/media/photo-s/23/ca/38/3a/au-lac-charner-hotel.jpg");
-//        editor.putString(CUSTOMER_NAME, "Viet Pham");
+        editor.putString(HOTEL_IMG_URL, hotelImgUrl);
         editor.apply();
     }
     public void showDataToConsole(){
         SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREFS,MODE_PRIVATE);
 
-        price = sharedPreferences.getFloat(PRICE, 0f);
-        System.out.println(price + "+++++++++++");
+//        price = sharedPreferences.getFloat(PRICE, 0f);
+//        System.out.println(price + "+++++++++++");
         idHotel= sharedPreferences.getInt(HOTEL_ID,0);
         System.out.println(idHotel+"llllllll");
 
