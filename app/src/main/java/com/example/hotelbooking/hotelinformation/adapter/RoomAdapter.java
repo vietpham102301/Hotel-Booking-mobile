@@ -124,7 +124,7 @@ public class RoomAdapter extends RecyclerView.Adapter<RoomAdapter.RoomHolder> {
                 idRoom=room.getId();
                 nameRoom=room.getName();
                 quantityRoom=room.getQuantity();
-                priceRoom=Float.parseFloat(String.valueOf(room.getPrice()));
+                priceRoom=Float.parseFloat(String.valueOf(room.getPrice()*NumRoom));
         }
 
     }
