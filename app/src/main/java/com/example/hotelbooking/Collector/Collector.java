@@ -3,6 +3,7 @@ package com.example.hotelbooking.Collector;
 import java.util.ArrayList;
 
 public class Collector {
+    public static int id;
     public static String prv;
     public static String ci;
     public static String co;

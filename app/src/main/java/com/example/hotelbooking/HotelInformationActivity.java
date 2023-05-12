@@ -67,52 +67,28 @@ public class HotelInformationActivity extends AppCompatActivity implements Adapt
     public static final String HOTEL_IMG_URL = "hotel_img_url";
     public static final String CUSTOMER_NAME = "customer_name";
     private Float price;
-    //private String countDate;
-
+    private int idHotel;
     TextView txtNoiDung;
     Button btnDescription;
     Button btnFeatures;
     Button btnRoomandprice;
-    Button btnClick;
-
-
     private TextView txtNameHotelInf;
     private TextView txtRatingHotelInf;
     private TextView txtNumRatingHotelInf;
     private TextView txtProvinceHotelInf;
     private TextView txtNameHotelInfSub;
     private TextView txtAddressHotelInf;
-    private TextView txtTimeBooking;
-    private TextView txtPriceRoomHotel;
-
-
     private DatePickerDialog datePickerDialog;
     private DatePickerDialog datePickerDialog1;
-    private Button checkInButtonPay;
-    private Button checkOutButtonPay;
     private RecyclerView rcvRoomList;
-//    private RoomTypesAdapter roomTypesAdapter;
-//    private ArrayList<Roomtypes> mRoomTypesList;
+
     private RoomAdapter roomAdapter;
     private ArrayList<Room> mRoomList;
 
     //private String Description;
-
-
     private RecyclerView rcvCommentList;
     private CommentAdapter commentAdapter;
     private ArrayList<Comments> mCommnetList;
-
-
-
-
-    private Spinner spinner;
-    private static final String[] paths = {"2 người lớn",
-            "2 người lớn 1 trẻ em",
-            "2 người lớn 2 trẻ em",
-            "3 người lớn",
-            "3 người lớn 1 trẻ em",
-            "4 người lớn"};
 
     private ViewPager2 viewPager2;
     private Handler sliderHandler = new Handler();
@@ -141,13 +117,6 @@ public class HotelInformationActivity extends AppCompatActivity implements Adapt
                     btnFeatures = (Button) findViewById(R.id.btnFeatures);
                     btnRoomandprice = (Button) findViewById(R.id.btnRoomandprice);
                     txtNoiDung = (TextView) findViewById(R.id.textDescription);
-                //Payment
-
-                    txtPriceRoomHotel=findViewById(R.id.txtPriceRoomHotel);
-                    txtTimeBooking=findViewById(R.id.txtTimeBooking);
-                    checkInButtonPay = findViewById(R.id.checkinButton);
-                    checkOutButtonPay = findViewById(R.id.checkoutButton);
-                    spinner = (Spinner)findViewById(R.id.spinner);
 
                 //Room
 //                    mRoomTypesList=new ArrayList<>();
@@ -159,7 +128,7 @@ public class HotelInformationActivity extends AppCompatActivity implements Adapt
                     mRoomList=new ArrayList<Room>();
                     rcvRoomList=findViewById(R.id.rcvRoomList);
                     rcvRoomList.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
-                    roomAdapter=new RoomAdapter(HotelInformationActivity.this,mRoomList,txtPriceRoomHotel);
+                    roomAdapter=new RoomAdapter(HotelInformationActivity.this,mRoomList);
                     rcvRoomList.setAdapter(roomAdapter);
 //                    showDataToConsole();
 //                    txtPriceRoomHotel.setText(String.valueOf(price));
@@ -202,22 +171,6 @@ public class HotelInformationActivity extends AppCompatActivity implements Adapt
             }
         });
 
-
-        //Date
-        checkInButtonPay.setText(getTodaysDate());
-        checkOutButtonPay.setText(getTodaysDate());
-        initDatePicker();
-
-
-
-        //Spinner Traveller
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(HotelInformationActivity.this,
-                R.layout.spinner_item,paths);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinner.setAdapter(adapter);
-        spinner.setOnItemSelectedListener(this);
-
-
         //ViewPage2 ImageHotel
         List<SliderItem> sliderItemArrayList = new ArrayList<>();
         sliderItemArrayList.add(new SliderItem(R.drawable.hotel_amanoi));
@@ -251,141 +204,14 @@ public class HotelInformationActivity extends AppCompatActivity implements Adapt
             }
         });
 
+        showDataToConsole();
+        System.out.println(idHotel+"mmmm");
 
-        callApiRoomInHotel(1,"2023-04-16","2023-04-20");
-        callApiHotelInformation(1);
-        callApiCommentInHotel(1,5,1);
-
-
+        callApiRoomInHotel(idHotel,"2023-04-16","2023-04-20");
+        callApiHotelInformation(idHotel);
+        callApiCommentInHotel(idHotel,5,1);
     }
-    //Date in Checkin-Checkout
-    private String getTodaysDate()
-    {
-        Calendar cal = Calendar.getInstance();
-        int year = cal.get(Calendar.YEAR);
-        int month = cal.get(Calendar.MONTH);
-        month = month + 1;
-        int day = cal.get(Calendar.DAY_OF_MONTH);
-        return makeDateString(day, month, year);
-    }
-    private void initDatePicker()
-    {
-        DatePickerDialog.OnDateSetListener dateSetListener = new DatePickerDialog.OnDateSetListener()
-        {
-            @Override
-            public void onDateSet(DatePicker datePicker, int year, int month, int day)
-            {
-                month = month + 1;
-                String date = makeDateString(day, month, year);
-                checkInButtonPay.setText(date);
-                //System.out.println(datePickerDialog.getDatePicker().getDayOfMonth());
-//                String datetocall= makeDayToCallApi(day,month,year);
-                Collector.ci=makeDayToCallApi(day,month,year);
-                System.out.println(Collector.ci);
 
-
-
-            }
-
-        };
-        DatePickerDialog.OnDateSetListener dateSetListener1 = new DatePickerDialog.OnDateSetListener()
-        {
-            @Override
-            public void onDateSet(DatePicker datePicker, int year, int month, int day)
-            {
-                month = month + 1;
-                String date1 = makeDateString(day, month, year);
-                String checkOut=makeDayToCallApi(day,month,year);
-                String countDate;
-                if(compareDate(Collector.ci,checkOut)){
-                    Toast.makeText(HotelInformationActivity.this,"Check-out Error",Toast.LENGTH_SHORT).show();
-                }else {
-                    checkOutButtonPay.setText(date1);
-                    Collector.co = makeDayToCallApi(day, month, year);
-                    System.out.println(Collector.co);
-                    countDate=countDate(Collector.ci,Collector.co);
-                    txtTimeBooking.setText(countDate + " nights");
-                }
-            }
-        };
-        Calendar cal = Calendar.getInstance();
-        int year = cal.get(Calendar.YEAR);
-        int month = cal.get(Calendar.MONTH);
-        int day = cal.get(Calendar.DAY_OF_MONTH);
-        int style = AlertDialog.THEME_HOLO_LIGHT;
-        cal.set(year,month,day);
-        datePickerDialog = new DatePickerDialog(this, style, dateSetListener, year, month, day);
-        datePickerDialog.getDatePicker().setMinDate(cal.getTimeInMillis());
-        datePickerDialog1 = new DatePickerDialog(this, style, dateSetListener1, year, month, day);
-        datePickerDialog1.getDatePicker().setMinDate(cal.getTimeInMillis());
-
-        //datePickerDialog.getDatePicker().setMaxDate(System.currentTimeMillis());
-    }
-    private String makeDateString(int day, int month, int year)
-    {
-        return getMonthFormat(month) + " " + day + " " + year;
-    }
-    private String makeDayToCallApi(int day, int month, int year){
-        return year+"-"+month+"-"+day;
-    }
-    private String getMonthFormat(int month)
-    {
-        if(month == 1)
-            return "JAN";
-        if(month == 2)
-            return "FEB";
-        if(month == 3)
-            return "MAR";
-        if(month == 4)
-            return "APR";
-        if(month == 5)
-            return "MAY";
-        if(month == 6)
-            return "JUN";
-        if(month == 7)
-            return "JUL";
-        if(month == 8)
-            return "AUG";
-        if(month == 9)
-            return "SEP";
-        if(month == 10)
-            return "OCT";
-        if(month == 11)
-            return "NOV";
-        if(month == 12)
-            return "DEC";
-
-        //default should never happen
-        return "JAN";
-    }
-    public void openCheckInPicker(View view)
-    {
-        datePickerDialog.show();
-    }
-    public void openCheckOutPicker(View view)
-    {
-        datePickerDialog1.show();
-    }
-    public static boolean compareDate(String ci,String co){
-        Date date1 = Date.valueOf(ci);
-        Date date2 = Date.valueOf(co);
-
-        if (date2.equals(date1)) return false;
-        else if (date2.after(date1)) return false;
-        else return true;
-
-    }
-    public static String countDate(String ci, String co){
-        Date date1 = Date.valueOf(ci);
-        Date date2 = Date.valueOf(co);
-
-        long start=date1.getTime();
-        long end=date2.getTime();
-        long tmp=Math.abs(start-end);
-        long result=tmp/(24*60*60*1000);
-
-        return String.valueOf(result);
-    }
 
 
 
@@ -509,23 +335,23 @@ public class HotelInformationActivity extends AppCompatActivity implements Adapt
         SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREFS,MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
 
-        editor.putString(CHECK_IN, "2023-04-16");
-        editor.putString(CHECK_OUT, "2023-04-20");
-        editor.putInt(TRAVELLER, 1);
-        editor.putString(HOTEL_NAME, "LOTUS RESIDENCE - Landmark 81 Vinhomes Central Park");
-        editor.putFloat(RATING, new Float(4.8));
-        editor.putString(ROOM_TYPE, "Phòng đơn");
-        editor.putFloat(PRICE, new Float(125.0));
-        editor.putFloat(TAX, new Float(10.0));
-        editor.putFloat(SERVICE_FEE,new Float(10.0));
-        editor.putInt(ROOM_TYPE_ID, 1);
-        editor.putString(PHONE, "0325542310");
-        editor.putInt(USER_ID, 6);
-        editor.putString(USERNAME,"viet pham");
-        editor.putInt(HOTEL_ID, 1);
-        editor.putInt(QUANTITY, 1);
-        editor.putString(HOTEL_IMG_URL, "https://media-cdn.tripadvisor.com/media/photo-s/23/ca/38/3a/au-lac-charner-hotel.jpg");
-        editor.putString(CUSTOMER_NAME, "Viet Pham");
+//        editor.putString(CHECK_IN, "2023-04-16");
+//        editor.putString(CHECK_OUT, "2023-04-20");
+//        editor.putInt(TRAVELLER, 1);
+//        editor.putString(HOTEL_NAME, "LOTUS RESIDENCE - Landmark 81 Vinhomes Central Park");
+//        editor.putFloat(RATING, new Float(4.8));
+//        editor.putString(ROOM_TYPE, "Phòng đơn");
+//        editor.putFloat(PRICE, new Float(125.0));
+//        editor.putFloat(TAX, new Float(10.0));
+//        editor.putFloat(SERVICE_FEE,new Float(10.0));
+//        editor.putInt(ROOM_TYPE_ID, 1);
+//        editor.putString(PHONE, "0325542310");
+//        editor.putInt(USER_ID, 6);
+//        editor.putString(USERNAME,"viet pham");
+//        editor.putInt(HOTEL_ID, 1);
+//        editor.putInt(QUANTITY, 1);
+//        editor.putString(HOTEL_IMG_URL, "https://media-cdn.tripadvisor.com/media/photo-s/23/ca/38/3a/au-lac-charner-hotel.jpg");
+//        editor.putString(CUSTOMER_NAME, "Viet Pham");
         editor.apply();
     }
     public void showDataToConsole(){
@@ -533,6 +359,8 @@ public class HotelInformationActivity extends AppCompatActivity implements Adapt
 
         price = sharedPreferences.getFloat(PRICE, 0f);
         System.out.println(price + "+++++++++++");
+        idHotel= sharedPreferences.getInt(HOTEL_ID,0);
+        System.out.println(idHotel+"llllllll");
 
     }
 

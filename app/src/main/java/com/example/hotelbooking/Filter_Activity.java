@@ -263,8 +263,8 @@ public class Filter_Activity extends AppCompatActivity {
                 String date = makeDateString(day, month, year);
                 checkInButtonSearch.setText(date);
                 //System.out.println(datePickerDialog.getDatePicker().getDayOfMonth());
-                String datetocall= makeDayToCallApi(day,month,year);
-                Collector.ci=makeDayToCallApi(day,month,year);
+                String checkIn= makeDayToCallApi(day,month,year);
+                Collector.ci=checkIn;
                 System.out.println(Collector.ci);
 
             }
@@ -277,9 +277,11 @@ public class Filter_Activity extends AppCompatActivity {
             {
                 month = month + 1;
                 String date1 = makeDateString(day, month, year);
+                String checkOut=makeDayToCallApi(day,month,year);
                 checkOutButtonSearch.setText(date1);
-                Collector.co=makeDayToCallApi(day,month,year);
+                Collector.co=checkOut;
                 System.out.println(Collector.co);
+
             }
         };
         Calendar cal = Calendar.getInstance();

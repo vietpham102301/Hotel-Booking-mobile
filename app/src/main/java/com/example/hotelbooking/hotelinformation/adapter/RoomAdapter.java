@@ -23,12 +23,12 @@ import java.util.ArrayList;
 public class RoomAdapter extends RecyclerView.Adapter<RoomAdapter.RoomHolder> {
     private Context context;
     private ArrayList<Room> roomList;
-    private TextView txtpriceRoomHotel;
 
-    public RoomAdapter(Context context, ArrayList<Room> roomList, TextView txtpriceRoomHotel) {
+
+    public RoomAdapter(Context context, ArrayList<Room> roomList ) {
         this.context = context;
         this.roomList = roomList;
-        this.txtpriceRoomHotel = txtpriceRoomHotel;
+
     }
 
     @NonNull
@@ -92,15 +92,12 @@ public class RoomAdapter extends RecyclerView.Adapter<RoomAdapter.RoomHolder> {
                     }
                 }
             });
-            btnSelectRoom.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-//                    System.out.println(priceRoom);
+//            btnSelectRoom.setOnClickListener(new View.OnClickListener() {
+//                @Override
+//                public void onClick(View v) {
 //
-//                    saveData(priceRoom);
-                    txtpriceRoomHotel.setText(String.valueOf(priceRoom *NumRoom)+" VND");
-                }
-            });
+//                }
+//            });
         }
 
 

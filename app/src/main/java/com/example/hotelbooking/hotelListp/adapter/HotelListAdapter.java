@@ -1,9 +1,15 @@
 package com.example.hotelbooking.hotelListp.adapter;
 
+import static android.content.Context.MODE_PRIVATE;
+
 import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
+import android.content.SharedPreferences.Editor;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -11,14 +17,20 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.example.hotelbooking.Collector.Collector;
+import com.example.hotelbooking.Filter_Activity;
+import com.example.hotelbooking.HotelInformationActivity;
+import com.example.hotelbooking.HotelListActivity;
 import com.example.hotelbooking.R;
 import com.example.hotelbooking.hotelListp.model.Hotel;
+import com.example.hotelbooking.hotelListp.model.HotelList;
 
 import java.util.ArrayList;
 
 public class HotelListAdapter extends RecyclerView.Adapter<HotelListAdapter.HotelListHoler>{
     private final ArrayList<Hotel> listHotel;
     private static Context context;
+
 
     public HotelListAdapter(Context context, ArrayList<Hotel> listHotel) {
         this.context= context;
@@ -34,6 +46,8 @@ public class HotelListAdapter extends RecyclerView.Adapter<HotelListAdapter.Hote
     @Override
     public void onBindViewHolder(@NonNull HotelListHoler holder, int position) {
         holder.blind(listHotel.get(position));
+
+
 
     }
 
@@ -51,6 +65,10 @@ public class HotelListAdapter extends RecyclerView.Adapter<HotelListAdapter.Hote
         private final TextView txtPhone;
         private final TextView txtPrice;
         private  ImageView imgViewHotel;
+        private int idHotel;
+
+        private Button btnNextHotelInf;
+
         public HotelListHoler(@NonNull View itemView) {
             super(itemView);
             txtNameHotel=itemView.findViewById(R.id.txtNameHotel);
@@ -61,6 +79,18 @@ public class HotelListAdapter extends RecyclerView.Adapter<HotelListAdapter.Hote
             txtPhone=itemView.findViewById(R.id.txtPhoneHotel);
             txtPrice= itemView.findViewById(R.id.txtPriceHotel);
             imgViewHotel=itemView.findViewById(R.id.imgViewHotel);
+            btnNextHotelInf=itemView.findViewById(R.id.btnNextHotelInf);
+            btnNextHotelInf.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent=new Intent(context, HotelInformationActivity.class);
+                    context.startActivity(intent);
+                    System.out.println(idHotel+"pppppp");
+                    saveData();
+
+                }
+            });
+            //System.out.println(idHotel);
         }
         public void blind(Hotel hotel){
             txtNameHotel.setText(hotel.getName());
@@ -70,6 +100,14 @@ public class HotelListAdapter extends RecyclerView.Adapter<HotelListAdapter.Hote
             txtAddress.setText(hotel.getAddress());
             txtPhone.setText(hotel.getPhone());
             Glide.with(context).load(hotel.getAvatar()).into(imgViewHotel);
+            idHotel=hotel.getId();
+
+        }
+        public void saveData(){
+            SharedPreferences sharedPreferences = context.getSharedPreferences(HotelListActivity.SHARED_PREFS, MODE_PRIVATE);
+            SharedPreferences.Editor editor = sharedPreferences.edit();
+            editor.putInt(HotelListActivity.HOTEL_ID, idHotel);
+            editor.apply();
         }
     }
 }
