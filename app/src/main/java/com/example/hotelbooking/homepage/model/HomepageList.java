@@ -1,6 +1,11 @@
 package com.example.hotelbooking.homepage.model;
 
-public class Homepage {
+import android.view.View;
+
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
+
+public class HomepageList  {
     private String id;
     private String name;
     private String avatar;

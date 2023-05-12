@@ -2,14 +2,13 @@ package com.example.hotelbooking;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import androidx.recyclerview.widget.RecyclerViewAccessibilityDelegate;
 import androidx.viewpager2.widget.CompositePageTransformer;
 import androidx.viewpager2.widget.MarginPageTransformer;
 import androidx.viewpager2.widget.ViewPager2;
 
-import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.content.Intent;
@@ -21,35 +20,33 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.HorizontalScrollView;
+import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.example.hotelbooking.filter.api.ApiService;
-import com.example.hotelbooking.filter.model.ProvicesOutFit;
-import com.example.hotelbooking.homepage.ApiClient;
-import com.example.hotelbooking.homepage.HomepageApiResponse;
-import com.example.hotelbooking.homepage.adapter.HomepageAdapter;
+//import com.example.hotelbooking.homepage.adapter.ListViewAdapter;
+import com.example.hotelbooking.homepage.api.ApiClient;
+import com.example.hotelbooking.homepage.model.HomepageListApiResponse;
+import com.example.hotelbooking.homepage.adapter.HomepageListAdapter;
 import com.example.hotelbooking.homepage.api.ApiHomepage;
-import com.example.hotelbooking.homepage.model.Homepage;
-import com.example.hotelbooking.hotelListp.model.HotelList;
+import com.example.hotelbooking.homepage.model.HomepageList;
 import com.example.hotelbooking.hotelinformation.SliderItem;
 import com.example.hotelbooking.hotelinformation.SliderAdapter;
 
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
-import java.util.ResourceBundle;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
 public class HomePageActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
-    HomepageAdapter homepageAdapter;
-    RecyclerView hp_listitem;
-    ArrayList<Homepage> homepages;
+    private HomepageListAdapter homepageListAdapter;
+//    private ListViewAdapter mlistviewAdapter;
+    private RecyclerView hp_listitem;
+    private ArrayList<HomepageList> mListHomePage;
+    //ArrayList<Homepage> homepages;
     public static final String SHARED_PREFS = "bookingApp";
     private ViewPager2 viewPager;
     private DatePickerDialog datePickerDialogHp;
@@ -59,20 +56,26 @@ public class HomePageActivity extends AppCompatActivity implements AdapterView.O
     private TextView customerNameTxtView;
     private String customerName;
     private Button btnSearch;
-    private Button btnpsg;
+    private Spinner btnpsg;
     private EditText locationsearch;
+
+
+
     ArrayList<String> arrayList;
-    ArrayAdapter<String> adapter;
+//    ArrayAdapter<String> adapter;
 
     private Handler sliderHandler = new Handler();
 
-    private static final String[] paths = {"2 người lớn",
+    private static final String[] paths = {
+            "PASSENGER",
+            "2 người lớn",
             "2 người lớn 1 trẻ em",
             "2 người lớn 2 trẻ em",
             "3 người lớn",
             "3 người lớn 1 trẻ em",
             "4 người lớn"};
 
+    private Spinner spinner;
 
     private Runnable sliderRunnable = new Runnable() {
         @Override
@@ -86,19 +89,20 @@ public class HomePageActivity extends AppCompatActivity implements AdapterView.O
         super.onCreate(savedInstanceState);
         setContentView(R.layout.homepage);
 
-        //call Api
-        homepages = new ArrayList<>();
-        hp_listitem = findViewById(R.id.hp_listitem);
-        hp_listitem.setHasFixedSize(true);
-        hp_listitem.setLayoutManager(new LinearLayoutManager(getApplicationContext(),LinearLayoutManager.VERTICAL,false));
-        homepageAdapter = new HomepageAdapter(HomePageActivity.this, homepages);
-        hp_listitem.setAdapter(homepageAdapter);
-        populateHomepage();
-
-//        RecyclerView myRecyclerView = (RecyclerView) findViewById(R.id.hp_listitem);
-//        myRecyclerView.setHasFixedSize(true);
-//        myRecyclerView.setLayoutManager(new LinearLayoutManager(this, , false));
-
+//        //call Api
+//        mListHomePage = new ArrayList<>();
+//        populateHomepage();
+//        hp_listitem = findViewById(R.id.hp_listitem);
+//        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
+//        linearLayoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
+//
+//        hp_listitem.setHasFixedSize(true);
+//        hp_listitem.setLayoutManager(linearLayoutManager);
+//        hp_listitem.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.HORIZONTAL));
+////        hp_listitem.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL,false));
+////        mlistviewAdapter = new ListViewAdapter(HomePageActivity.this, );
+//        homepageListAdapter = new HomepageListAdapter(HomePageActivity.this, mListHomePage);
+//        hp_listitem.setAdapter(homepageListAdapter);
 
         //item payment
         Spinner spinner = findViewById(R.id.spinner);
@@ -116,7 +120,6 @@ public class HomePageActivity extends AppCompatActivity implements AdapterView.O
         customerNameTxtView.setText(customerName);
         customerNameTxtView.setOnClickListener( view -> startActivity(new Intent(HomePageActivity.this, ProfileActivity.class)));
 
-        btnpsg = findViewById(R.id.btnpsg);
         btnSearch = findViewById(R.id.btnSearch);
         btnSearch.setOnClickListener(view -> startActivity( new Intent(HomePageActivity.this, HotelListActivity.class)));
 
@@ -168,29 +171,28 @@ public class HomePageActivity extends AppCompatActivity implements AdapterView.O
         checkInButton.setText(getTodaysDate());
         checkOutButton = findViewById(R.id.checkOutButton);
         checkOutButton.setText(getTodaysDate());
-//        spinner = (Spinner)findViewById(R.id.spinner);
-//        ArrayAdapter<String> adapter = new ArrayAdapter<String>(HomePageActivity.this,
-//                R.layout.spinner_item,paths);
-//
-//        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-//        spinner.setAdapter(adapter);
-//        spinner.setOnItemSelectedListener(this);
+        spinner = (Spinner) findViewById(R.id.btnpsg);
+        ArrayAdapter<String> adapter2 = new ArrayAdapter<String>(HomePageActivity.this,
+                R.layout.spinner_item,paths);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner.setAdapter(adapter2);
+        spinner.setOnItemSelectedListener(this);
 
     }
 
     public void populateHomepage(){
-        ApiClient.getClient().create(ApiHomepage.class).getHomepage().enqueue(new Callback<HomepageApiResponse>() {
+        ApiClient.getClient().create(ApiHomepage.class).getHomepage().enqueue(new Callback<HomepageListApiResponse>() {
             @Override
-            public void onResponse(Call<HomepageApiResponse> call, Response<HomepageApiResponse> response) {
+            public void onResponse(Call<HomepageListApiResponse> call, Response<HomepageListApiResponse> response) {
+                System.out.println("SUCCESS");
                 if (response.code() == 200){
-                    if (response.body().isStatus()){
-                        homepages.addAll(response.body().getData());
-                        homepageAdapter.notifyDataSetChanged();
-                    }
+                        mListHomePage.addAll(response.body().getData());
+                        homepageListAdapter.notifyDataSetChanged();
                 }
             }
             @Override
-            public void onFailure(Call<HomepageApiResponse> call, Throwable t) {
+            public void onFailure(Call<HomepageListApiResponse> call, Throwable t) {
+                System.out.println("error");
             }
         });
     }

@@ -22,7 +22,7 @@ public interface Api {
     Call<CommentsOutfit> getCommentsHotel(@Path("id") int id,
                                           @Query("page") int page,
                                           @Query("size") int size);
-//
+
 //    @GET("api/v1/room-type/hotel/1?checkin=2023-04-16&checkout=2023-04-20")
 //    Call<RoomOutFit> getRoomInHotel1();
 }
