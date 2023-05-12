@@ -98,6 +98,7 @@ public class HotelInformationActivity extends AppCompatActivity implements Adapt
 
     //private String Description;
 
+
     private RecyclerView rcvCommentList;
     private CommentAdapter commentAdapter;
     private ArrayList<Comments> mCommnetList;
@@ -491,6 +492,7 @@ public class HotelInformationActivity extends AppCompatActivity implements Adapt
         Appclient.getClient().create(Api.class).getCommentsHotel(id,page,size).enqueue(new Callback<CommentsOutfit>() {
             @Override
             public void onResponse(Call<CommentsOutfit> call, Response<CommentsOutfit> response) {
+                Toast.makeText(HotelInformationActivity.this,"Success",Toast.LENGTH_SHORT).show();
                 CommentsOutfit comment= response.body();
                 mCommnetList.addAll(comment.getData().getData());
                 commentAdapter.notifyDataSetChanged();
@@ -498,6 +500,7 @@ public class HotelInformationActivity extends AppCompatActivity implements Adapt
 
             @Override
             public void onFailure(Call<CommentsOutfit> call, Throwable t) {
+                Toast.makeText(HotelInformationActivity.this,"Error",Toast.LENGTH_SHORT).show();
 
             }
         });

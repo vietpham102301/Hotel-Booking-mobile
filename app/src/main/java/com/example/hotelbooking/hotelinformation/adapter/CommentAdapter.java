@@ -10,7 +10,6 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.bumptech.glide.Glide;
 import com.example.hotelbooking.R;
 import com.example.hotelbooking.hotelinformation.model.Comments;
 
@@ -20,7 +19,7 @@ public class CommentAdapter extends RecyclerView.Adapter<CommentAdapter.CommentH
     private ArrayList<Comments> mCommentList;
     private Context context;
 
-    public CommentAdapter( Context context,ArrayList<Comments> mCommentList) {
+    public CommentAdapter(Context context, ArrayList<Comments> mCommentList) {
         this.mCommentList = mCommentList;
         this.context = context;
     }
@@ -59,10 +58,10 @@ public class CommentAdapter extends RecyclerView.Adapter<CommentAdapter.CommentH
             txtCommentUser=itemView.findViewById(R.id.txtCommnetUser);
         }
         public void blind(Comments comments){
-            Glide.with(context).load(comments.getAvatar()).into(imgAvatarUser);
+            //Glide.with(context).load(comments.getAvatar()).into(imgAvatarUser);
             txtNameUser.setText(comments.getName());
             txtGenderUser.setText(comments.getGender());
-            txtRatingUser.setText(comments.getRating());
+            txtRatingUser.setText(String.valueOf(comments.getRating()));
             txtModifyTime.setText(comments.getModifyTime());
             txtCommentUser.setText(comments.getComment());
         }

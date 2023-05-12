@@ -43,8 +43,7 @@
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/alegreya_bold"
                             android:text="Pham H Ngan Phuong"
-                            android:textSize="16sp">
-                        </TextView>
+                            android:textSize="16sp"></TextView>
                         <TextView
                             android:id="@+id/txtGenderUser"
                             android:layout_width="wrap_content"
@@ -95,6 +94,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="15dp"
                         android:gravity="right">
+
                         <TextView
                             android:id="@+id/txtModifyTime"
                             android:layout_width="wrap_content"
