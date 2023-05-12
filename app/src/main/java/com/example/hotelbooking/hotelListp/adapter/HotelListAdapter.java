@@ -4,11 +4,13 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.example.hotelbooking.R;
 import com.example.hotelbooking.hotelListp.model.Hotel;
 
@@ -16,7 +18,7 @@ import java.util.ArrayList;
 
 public class HotelListAdapter extends RecyclerView.Adapter<HotelListAdapter.HotelListHoler>{
     private final ArrayList<Hotel> listHotel;
-    Context context;
+    private static Context context;
 
     public HotelListAdapter(Context context, ArrayList<Hotel> listHotel) {
         this.context= context;
@@ -31,13 +33,8 @@ public class HotelListAdapter extends RecyclerView.Adapter<HotelListAdapter.Hote
 
     @Override
     public void onBindViewHolder(@NonNull HotelListHoler holder, int position) {
-        Hotel hotels = listHotel.get(position);
-        holder.txtNameHotel.setText(hotels.getName());
-        holder.txtRating.setText(String.valueOf(hotels.getRating()));
-        holder.txtNumrating.setText("( "+String.valueOf(hotels.getNumRating())+" reviews)");
-        holder.txtProvice.setText(hotels.getProvinceId());
-        holder.txtAddress.setText(hotels.getAddress());
-        holder.txtPhone.setText(hotels.getPhone());
+        holder.blind(listHotel.get(position));
+
     }
 
     @Override
@@ -53,6 +50,7 @@ public class HotelListAdapter extends RecyclerView.Adapter<HotelListAdapter.Hote
         private final TextView txtAddress;
         private final TextView txtPhone;
         private final TextView txtPrice;
+        private  ImageView imgViewHotel;
         public HotelListHoler(@NonNull View itemView) {
             super(itemView);
             txtNameHotel=itemView.findViewById(R.id.txtNameHotel);
@@ -62,6 +60,16 @@ public class HotelListAdapter extends RecyclerView.Adapter<HotelListAdapter.Hote
             txtAddress=itemView.findViewById(R.id.txtAddressHotel);
             txtPhone=itemView.findViewById(R.id.txtPhoneHotel);
             txtPrice= itemView.findViewById(R.id.txtPriceHotel);
+            imgViewHotel=itemView.findViewById(R.id.imgViewHotel);
+        }
+        public void blind(Hotel hotel){
+            txtNameHotel.setText(hotel.getName());
+            txtRating.setText(String.valueOf(hotel.getRating()));
+            txtNumrating.setText("( "+String.valueOf(hotel.getNumRating())+" reviews)");
+            txtProvice.setText(hotel.getProvinceId());
+            txtAddress.setText(hotel.getAddress());
+            txtPhone.setText(hotel.getPhone());
+            Glide.with(context).load(hotel.getAvatar()).into(imgViewHotel);
         }
     }
 }
