@@ -326,19 +326,19 @@ public class PaymentActivity extends AppCompatActivity implements AdapterView.On
         editor.putString(CHECK_IN, "2023-04-16");
         editor.putString(CHECK_OUT, "2023-04-20");
         editor.putInt(TRAVELLER, 1);
-        editor.putString(HOTEL_NAME, "LOTUS RESIDENCE - Landmark 81 Vinhomes Central Park");
-        editor.putFloat(RATING, new Float(4.8));
-        editor.putString(ROOM_TYPE, "Phòng đơn");
-        editor.putFloat(PRICE, new Float(125.0));
+//        editor.putString(HOTEL_NAME, "LOTUS RESIDENCE - Landmark 81 Vinhomes Central Park");
+//        editor.putFloat(RATING, new Float(4.8));
+//        editor.putString(ROOM_TYPE, "Phòng đơn");
+//        editor.putFloat(PRICE, new Float(125.0));
         editor.putFloat(TAX, new Float(10.0));
         editor.putFloat(SERVICE_FEE,new Float(10.0));
-        editor.putInt(ROOM_TYPE_ID, 1);
+//        editor.putInt(ROOM_TYPE_ID, 1);
         editor.putString(PHONE, "0325542310");
         editor.putInt(USER_ID, 6);
-        editor.putString(USERNAME,"viet pham");
-        editor.putInt(HOTEL_ID, 1);
-        editor.putInt(QUANTITY, 1);
-        editor.putString(HOTEL_IMG_URL, "https://media-cdn.tripadvisor.com/media/photo-s/23/ca/38/3a/au-lac-charner-hotel.jpg");
+//        editor.putString(USERNAME,"viet pham");
+//        editor.putInt(HOTEL_ID, 1);
+//        editor.putInt(QUANTITY, 1);
+//        editor.putString(HOTEL_IMG_URL, "https://media-cdn.tripadvisor.com/media/photo-s/23/ca/38/3a/au-lac-charner-hotel.jpg");
         editor.putString(CUSTOMER_NAME, "Viet Pham");
         editor.apply();
     }

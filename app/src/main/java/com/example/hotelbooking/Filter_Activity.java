@@ -5,6 +5,7 @@ import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
@@ -36,7 +37,6 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class Filter_Activity extends AppCompatActivity {
-
     TextView textView;
     EditText editText;
     ListView listView;
@@ -369,4 +369,5 @@ public class Filter_Activity extends AppCompatActivity {
             }
         });
     }
+
 }
