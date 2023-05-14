@@ -1,8 +1,5 @@
 package com.example.hotelbooking;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.AsyncTask;
@@ -10,20 +7,10 @@ import android.os.Bundle;
 import android.util.Log;
 import android.widget.Toast;
 
-import com.example.hotelbooking.barChart.model.BarChartData;
-import com.example.hotelbooking.barChart.model.RevenueRes;
-import com.example.hotelbooking.order.adapter.HotelRecViewAdapter;
-import com.example.hotelbooking.order.model.Hotel;
-import com.example.hotelbooking.order.model.HotelOrder;
-import com.example.hotelbooking.order.model.HotelResposne;
-import com.example.hotelbooking.order.model.Order;
-import com.example.hotelbooking.order.model.OrderResponse;
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.example.hotelbooking.pieChart.BookedRoomRes;
-import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.charts.PieChart;
-import com.github.mikephil.charting.data.BarData;
-import com.github.mikephil.charting.data.BarDataSet;
-import com.github.mikephil.charting.data.BarEntry;
 import com.github.mikephil.charting.data.PieData;
 import com.github.mikephil.charting.data.PieDataSet;
 import com.github.mikephil.charting.data.PieEntry;
