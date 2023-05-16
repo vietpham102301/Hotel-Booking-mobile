@@ -76,25 +76,25 @@ public class HotelListActivity extends AppCompatActivity {
 
 
 
-        callApiGetHotel("HOCHIMINH","2023-04-16","2023-04-20");
+//        callApiGetHotel("HOCHIMINH","2023-04-16","2023-04-20");
 
 
 
-//        if(Collector.prv!=null && Collector.ci!=null && Collector.co!=null){
-//            System.out.println("Nhận tham số thành công");
-//            System.out.println(Collector.prv);
-//            System.out.println(Collector.ci);
-//            System.out.println(Collector.co);
-//            System.out.println(Collector.rating);
-//            System.out.println(Collector.typeHotel);
-//            System.out.println(Collector.price);
-//            callApiGetHotel(Collector.prv,Collector.ci,Collector.co);
-//            Toast.makeText(HotelListActivity.this,"Success",Toast.LENGTH_SHORT).show();
-//        }
-//        else {
-//            System.out.println("Nhận tham số thất bại");
-//            Toast.makeText(HotelListActivity.this,"Error",Toast.LENGTH_SHORT).show();
-//        }
+        if(Collector.prv!=null && Collector.ci!=null && Collector.co!=null){
+            System.out.println("Nhận tham số thành công");
+            System.out.println(Collector.prv);
+            System.out.println(Collector.ci);
+            System.out.println(Collector.co);
+            System.out.println(Collector.rating);
+            System.out.println(Collector.typeHotel);
+            System.out.println(Collector.price);
+            callApiGetHotel(Collector.prv,Collector.ci,Collector.co);
+            Toast.makeText(HotelListActivity.this,"Success",Toast.LENGTH_SHORT).show();
+        }
+        else {
+            System.out.println("Nhận tham số thất bại");
+            Toast.makeText(HotelListActivity.this,"Error",Toast.LENGTH_SHORT).show();
+        }
 
 
 

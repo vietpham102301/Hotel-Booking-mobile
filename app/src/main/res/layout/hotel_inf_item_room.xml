@@ -15,13 +15,15 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@drawable/card_view_hotel">
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:layout_marginTop="10dp"
                 android:layout_marginStart="15dp"
-                android:layout_marginBottom="10dp">
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:layout_marginEnd="10dp"
+                android:orientation="vertical">
 
                 <TextView
                     android:id="@+id/txtNameRoom"
@@ -38,142 +40,151 @@
                     android:fontFamily="@font/aleo_light"
                     android:text="Offer Conditions"
                     android:textSize="12sp"></TextView>
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
                     android:orientation="horizontal"
-                    android:weightSum="2"
-                    android:layout_marginTop="10dp">
+                    android:weightSum="2">
+
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:orientation="vertical">
+
                         <LinearLayout
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:orientation="horizontal"
-                            android:gravity="center">
+                            android:gravity="center"
+                            android:orientation="horizontal">
+
                             <ImageView
                                 android:layout_width="20dp"
                                 android:layout_height="20dp"
-                                android:src="@drawable/icon_check">
-                            </ImageView>
+                                android:src="@drawable/icon_check"></ImageView>
+
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="5dp"
-                                android:textSize="12sp"
-                                android:text="Non - refundable">
-                            </TextView>
+                                android:text="Non - refundable"
+                                android:textSize="12sp"></TextView>
                         </LinearLayout>
+
                         <LinearLayout
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:orientation="horizontal"
                             android:layout_marginTop="5dp"
-                            android:gravity="center">
+                            android:gravity="center"
+                            android:orientation="horizontal">
+
                             <ImageView
                                 android:layout_width="20dp"
                                 android:layout_height="20dp"
-                                android:src="@drawable/icon_check">
-                            </ImageView>
+                                android:src="@drawable/icon_check"></ImageView>
+
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="5dp"
-                                android:textSize="12sp"
-                                android:text="Free wifi">
-                            </TextView>
+                                android:text="Free wifi"
+                                android:textSize="12sp"></TextView>
                         </LinearLayout>
+
                         <LinearLayout
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:orientation="horizontal"
                             android:layout_marginTop="5dp"
-                            android:gravity="center">
+                            android:gravity="center"
+                            android:orientation="horizontal">
+
                             <ImageView
                                 android:layout_width="20dp"
                                 android:layout_height="20dp"
-                                android:src="@drawable/icon_check">
-                            </ImageView>
+                                android:src="@drawable/icon_check"></ImageView>
+
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="5dp"
-                                android:textSize="12sp"
-                                android:text="Breakfast for 3 people">
-                            </TextView>
+                                android:text="Breakfast for 3 people"
+                                android:textSize="12sp"></TextView>
                         </LinearLayout>
 
-                            <LinearLayout
-                                android:layout_width="match_parent"
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginVertical="10dp">
+
+                            <Button
+                                android:id="@+id/removeBtn"
+                                android:layout_width="20dp"
+                                android:layout_height="20dp"
+                                android:layout_alignParentStart="true"
+                                android:layout_centerVertical="true"
+                                android:background="@drawable/custom_btn_remove"
+                                android:backgroundTint="#C5BCBC" />
+
+                            <EditText
+                                android:id="@+id/edtNumRoom"
+                                android:layout_width="50dp"
                                 android:layout_height="wrap_content"
-                                android:layout_marginVertical="10dp">
-                                <Button
-                                    android:id="@+id/removeBtn"
-                                    android:layout_width="20dp"
-                                    android:layout_height="20dp"
-                                    android:layout_alignParentStart="true"
-                                    android:layout_centerVertical="true"
-                                    android:background="@drawable/custom_btn_remove"
-                                    android:backgroundTint="#C5BCBC" />
+                                android:layout_centerInParent="true"
+                                android:layout_marginHorizontal="10dp"
+                                android:background="@drawable/border_load"
+                                android:inputType="number"
+                                android:minEms="1"
+                                android:text="1"
+                                android:textAlignment="center"
+                                android:textAllCaps="false"
+                                android:textColor="@android:color/black"
+                                android:textSize="10sp" />
 
-                                <EditText
-                                    android:id="@+id/edtNumRoom"
-                                    android:layout_width="50dp"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginHorizontal="10dp"
-                                    android:layout_centerInParent="true"
-                                    android:inputType="number"
-                                    android:minEms="1"
-                                    android:text="1"
-                                    android:textAlignment="center"
-                                    android:textAllCaps="false"
-                                    android:textColor="@android:color/black"
-                                    android:background="@drawable/border_load"
-                                    android:textSize="10sp" />
+                            <Button
+                                android:id="@+id/addBtn"
+                                android:layout_width="20dp"
+                                android:layout_height="20dp"
+                                android:layout_alignParentEnd="true"
+                                android:layout_centerVertical="true"
+                                android:background="@drawable/custom_btn_add"
+                                android:backgroundTint="#C5BCBC" />
+                        </LinearLayout>
 
-                                <Button
-                                    android:id="@+id/addBtn"
-                                    android:layout_width="20dp"
-                                    android:layout_height="20dp"
-                                    android:layout_alignParentEnd="true"
-                                    android:layout_centerVertical="true"
-                                    android:background="@drawable/custom_btn_add"
-                                    android:backgroundTint="#C5BCBC" />
-                            </LinearLayout>
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="30dp"
                             android:gravity="center_vertical">
-                                <Button
-                                    android:id="@+id/btnSelectRoom"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="20dp"
-                                    android:background="@drawable/border"
-                                    android:outlineAmbientShadowColor="@color/black"
-                                    android:shadowColor="#48000000"
-                                    android:text="Select"
-                                    android:textSize="12sp"
-                                    android:textColor="@color/white"
-                                    tools:ignore="TouchTargetSizeCheck">
-                                </Button>
+
+                            <Button
+                                android:id="@+id/btnSelectRoom"
+                                android:layout_width="match_parent"
+                                android:layout_height="20dp"
+                                android:background="@drawable/border"
+                                android:outlineAmbientShadowColor="@color/black"
+                                android:shadowColor="#48000000"
+                                android:text="Select"
+                                android:textColor="@color/white"
+                                android:textSize="12sp"
+                                tools:ignore="TouchTargetSizeCheck"></Button>
                         </LinearLayout>
 
                     </LinearLayout>
+
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
                         android:layout_marginTop="65dp"
+                        android:layout_weight="1"
                         android:orientation="vertical">
+
                         <LinearLayout
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:orientation="horizontal"
-                            android:layout_marginStart="20dp"
-                            android:layout_marginTop="30dp">
+                            android:layout_marginStart="0dp"
+                            android:layout_marginTop="30dp"
+                            android:orientation="horizontal">
 
                             <TextView
                                 android:id="@+id/txtPriceRoom"
@@ -182,21 +193,21 @@
                                 android:fontFamily="@font/b612_bold"
                                 android:text="4000000.0 VND"
                                 android:textColor="#F44336"
-                                android:textSize="14sp"></TextView>
+                                android:textSize="13sp"></TextView>
+
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="/night"
-                                android:textSize="12sp">
-                            </TextView>
+                                android:textSize="12sp"></TextView>
                         </LinearLayout>
+
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginStart="90dp"
+                            android:layout_marginStart="65dp"
                             android:text="on TripGuide "
-                            android:textSize="12sp">
-                        </TextView>
+                            android:textSize="12sp"></TextView>
 
                     </LinearLayout>
                 </LinearLayout>
