@@ -207,9 +207,12 @@ public class HotelInformationActivity extends AppCompatActivity implements Adapt
         showDataToConsole();
         System.out.println(idHotel+"mmmm");
 
-        callApiRoomInHotel(idHotel,"2023-04-16","2023-04-20");
-        callApiHotelInformation(idHotel);
-        callApiCommentInHotel(idHotel,5,1);
+//        callApiRoomInHotel(idHotel,"2023-04-16","2023-04-20");
+//        callApiHotelInformation(idHotel);
+//        callApiCommentInHotel(idHotel,5,1);
+        callApiRoomInHotel(1,"2023-04-16","2023-04-20");
+        callApiHotelInformation(1);
+        callApiCommentInHotel(1,5,1);
     }
     private Runnable sliderRunnable = new Runnable() {
         @Override
