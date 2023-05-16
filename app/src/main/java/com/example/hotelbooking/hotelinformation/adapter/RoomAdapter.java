@@ -62,6 +62,7 @@ public class RoomAdapter extends RecyclerView.Adapter<RoomAdapter.RoomHolder> {
         private int NumRoom =1 ;
         private int MaxRoom;
         private float priceRoom;
+        private float price;
         private int idRoom;
         private String nameRoom;
         private int quantityRoom;
@@ -81,8 +82,8 @@ public class RoomAdapter extends RecyclerView.Adapter<RoomAdapter.RoomHolder> {
                     if(NumRoom>=1 && NumRoom <=MaxRoom-1) {
                         NumRoom += 1;
                         edtNumRoom.setText(String.valueOf(NumRoom));
-                        txtPriceRoom.setText(String.valueOf(priceRoom*NumRoom)+"VND");
-                        priceRoom=Float.parseFloat(String.valueOf(priceRoom*NumRoom));
+                        txtPriceRoom.setText(String.valueOf(price*NumRoom)+"VND");
+                        //priceRoom=Float.parseFloat(String.valueOf(priceRoom*NumRoom));
                     }
                 }
             });
@@ -92,7 +93,8 @@ public class RoomAdapter extends RecyclerView.Adapter<RoomAdapter.RoomHolder> {
                     if(NumRoom>1) {
                         NumRoom -= 1;
                         edtNumRoom.setText(String.valueOf(NumRoom));
-                        txtPriceRoom.setText(String.valueOf(priceRoom*NumRoom)+"VND");
+                        System.out.println(NumRoom);
+                        txtPriceRoom.setText(String.valueOf(price*NumRoom)+"VND");
                         //txtQuatity.setText(String.valueOf(MaxRoom-1));
 
                     }
@@ -131,7 +133,8 @@ public class RoomAdapter extends RecyclerView.Adapter<RoomAdapter.RoomHolder> {
                 idRoom=room.getId();
                 nameRoom=room.getName();
                 quantityRoom=NumRoom;
-                priceRoom=Float.parseFloat(String.valueOf(room.getPrice()*NumRoom));
+                price=Float.parseFloat(String.valueOf(room.getPrice()));
+                priceRoom=Float.parseFloat(String.valueOf(room.getPrice()*quantityRoom));
         }
 
     }
