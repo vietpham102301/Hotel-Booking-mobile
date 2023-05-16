@@ -104,7 +104,7 @@ public class OrderHistory extends AppCompatActivity implements AdapterView.OnIte
                                     break;
                                 }
                             }
-                            HotelOrder hotelOrder = new HotelOrder(hotel.getName(), hotel.getRating(), roomType, order.getCheckin(), order.getCheckout(), hotel.getAvatar());
+                            HotelOrder hotelOrder = new HotelOrder(hotel.getName(), hotel.getRating(), roomType, order.getCheckin(), order.getCheckout(),"http://14.225.255.238/booking"+ hotel.getAvatar());
                             res.add(hotelOrder);
                         }
 
