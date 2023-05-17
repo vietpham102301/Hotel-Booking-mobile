@@ -28,6 +28,8 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 
 public class OrderHistory extends AppCompatActivity implements AdapterView.OnItemSelectedListener{
@@ -104,7 +106,27 @@ public class OrderHistory extends AppCompatActivity implements AdapterView.OnIte
                                     break;
                                 }
                             }
-                            HotelOrder hotelOrder = new HotelOrder(hotel.getName(), hotel.getRating(), roomType, order.getCheckin(), order.getCheckout(),"http://14.225.255.238/booking"+ hotel.getAvatar());
+                            Double pricePerNight = order.getOrderDetails().get(0).getPrice();
+                            Integer quantity = order.getOrderDetails().get(0).getQuantity();
+                            String[] receiveDate1 = order.getCheckin().split("-");
+                            String[] receiveDate2 = order.getCheckout().split("-");
+                            LocalDate fromDate = null; // January 1st, 2023
+                            if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+                                fromDate = LocalDate.of(Integer.parseInt(receiveDate1[0]), Integer.parseInt(receiveDate1[1]), Integer.parseInt(receiveDate1[2]));
+                            }
+                            LocalDate toDate = null; // April 17th, 2023
+                            if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+                                toDate = LocalDate.of(Integer.parseInt(receiveDate2[0]), Integer.parseInt(receiveDate2[1]), Integer.parseInt(receiveDate2[2]));
+                            }
+
+                            long stayedDays = 0;
+                            if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+                                stayedDays = ChronoUnit.DAYS.between(fromDate, toDate);
+                            }
+                            Double totalPrice = pricePerNight*quantity*stayedDays;
+                            String cmt = order.getComment();
+                            Double cmtRating = order.getRating();
+                            HotelOrder hotelOrder = new HotelOrder(hotel.getName(), hotel.getRating(), roomType, order.getCheckin(), order.getCheckout(),"http://14.225.255.238/booking"+ hotel.getAvatar(), order.getStatusId(), totalPrice, order.getId(), order.getComment(), order.getRating());
                             res.add(hotelOrder);
                         }
 

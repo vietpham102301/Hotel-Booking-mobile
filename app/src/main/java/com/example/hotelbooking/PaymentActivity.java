@@ -335,7 +335,7 @@ public class PaymentActivity extends AppCompatActivity implements AdapterView.On
 //        editor.putInt(ROOM_TYPE_ID, 1);
         editor.putString(PHONE, "0325542310");
         editor.putInt(USER_ID, 6);
-//        editor.putString(USERNAME,"viet pham");
+        editor.putString(USERNAME,"viet pham");
 //        editor.putInt(HOTEL_ID, 1);
 //        editor.putInt(QUANTITY, 1);
 //        editor.putString(HOTEL_IMG_URL, "https://media-cdn.tripadvisor.com/media/photo-s/23/ca/38/3a/au-lac-charner-hotel.jpg");

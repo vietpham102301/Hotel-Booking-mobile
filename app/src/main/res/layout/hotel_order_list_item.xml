@@ -11,9 +11,74 @@
     app:cardElevation="5dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal">
+
+        <ImageView
+            android:id="@+id/star6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/txtHotelName"
+            app:tint="@color/gray"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="20dp"
+            android:layout_toLeftOf="@id/txtRating"
+            android:src="@drawable/star_fill"
+            app:layout_constraintStart_toEndOf="@+id/star5"
+            app:layout_constraintTop_toBottomOf="@+id/textView42" />
+
+        <ImageView
+            android:id="@+id/star3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/txtHotelName"
+            app:tint="@color/gray"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="20dp"
+            android:layout_toLeftOf="@id/txtRating"
+            android:src="@drawable/star_fill"
+            app:layout_constraintStart_toEndOf="@+id/star2"
+            app:layout_constraintTop_toBottomOf="@+id/textView42" />
+
+        <ImageView
+            android:id="@+id/star2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/txtHotelName"
+            app:tint="@color/gray"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="20dp"
+            android:layout_toLeftOf="@id/txtRating"
+            android:src="@drawable/star_fill"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView42" />
+
+        <ImageView
+            android:id="@+id/star7"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/txtHotelName"
+            app:tint="@color/gray"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="20dp"
+            android:layout_toLeftOf="@id/txtRating"
+            android:src="@drawable/star_fill"
+            app:layout_constraintStart_toEndOf="@+id/star6"
+            app:layout_constraintTop_toBottomOf="@+id/textView42" />
+
+        <ImageView
+            android:id="@+id/star5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/txtHotelName"
+            app:tint="@color/gray"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="20dp"
+            android:layout_toLeftOf="@id/txtRating"
+            android:src="@drawable/star_fill"
+            app:layout_constraintStart_toEndOf="@+id/star3"
+            app:layout_constraintTop_toBottomOf="@+id/textView42" />
 
         <TextView
             android:id="@+id/txtHotelName"
@@ -89,8 +154,6 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="15dp"
             android:layout_marginTop="15dp"
-            android:layout_marginBottom="20dp"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/txtRoomType">
 
@@ -146,6 +209,86 @@
             </LinearLayout>
 
         </LinearLayout>
+
+        <TextView
+            android:id="@+id/textView30"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="40dp"
+            android:layout_marginTop="10dp"
+            android:fontFamily="@font/andada"
+            android:text="Status: "
+            android:textColor="@color/black"
+            android:textSize="14sp"
+            app:layout_constraintStart_toEndOf="@+id/txtRoomType"
+            app:layout_constraintTop_toBottomOf="@+id/imgHotel" />
+
+        <TextView
+            android:id="@+id/statusTxtView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="10dp"
+            android:fontFamily="@font/andada"
+            android:text="Cho xac nhan"
+            android:textColor="@color/black"
+            app:layout_constraintStart_toEndOf="@+id/textView30"
+            app:layout_constraintTop_toBottomOf="@+id/imgHotel" />
+
+        <EditText
+            android:id="@+id/commentEditTxt"
+            style="@style/Widget.AppCompat.EditText"
+            android:layout_width="270dp"
+            android:layout_height="48dp"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="90dp"
+            android:background="@android:color/transparent"
+            android:ems="10"
+            android:hint="Your comment here..."
+            android:outlineAmbientShadowColor="@color/black"
+            android:outlineSpotShadowColor="@color/black"
+            android:shadowColor="@color/black"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout3" />
+
+        <Button
+            android:id="@+id/submitButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="13dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="20dp"
+            android:text="Submit"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/commentEditTxt" />
+
+        <TextView
+            android:id="@+id/textView42"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="20dp"
+            android:text="Price: "
+            android:textSize="14sp"
+            android:textColor="@color/black"
+            android:fontFamily="@font/andada"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout3" />
+
+        <TextView
+            android:id="@+id/priceTxtView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="20dp"
+            android:text="$400"
+            android:textSize="14sp"
+            android:textColor="@color/black"
+            android:fontFamily="@font/andada"
+            app:layout_constraintStart_toEndOf="@+id/textView42"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout3" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

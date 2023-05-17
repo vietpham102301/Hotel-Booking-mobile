@@ -129,6 +129,9 @@ public class OrderSuccessful extends AppCompatActivity implements AdapterView.On
         calPriceTxtView.setText(calPrice);
         roomTypeTxtView.setText(roomType);
 
+        Float total = tax+serviceFee+price*stayedDays;
+        totalTxtView.setText("$"+total);
+
         Glide.with(this).asBitmap().load(hotelImgUrl).into(hotelImgView);
 
 
