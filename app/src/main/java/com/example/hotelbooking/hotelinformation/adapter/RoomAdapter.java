@@ -59,13 +59,12 @@ public class RoomAdapter extends RecyclerView.Adapter<RoomAdapter.RoomHolder> {
         private Button btnremove;
         private Button btnSelectRoom;
         private EditText edtNumRoom;
-        private int NumRoom =1 ;
-        private int MaxRoom;
+        private int numRoom =1 ;
+        private int maxRoom;
         private float priceRoom;
-        private float price;
         private int idRoom;
         private String nameRoom;
-        private int quantityRoom;
+
         public RoomHolder(@NonNull View itemView) {
             super(itemView);
             txtNameRoom=itemView.findViewById(R.id.txtNameRoom);
@@ -79,10 +78,11 @@ public class RoomAdapter extends RecyclerView.Adapter<RoomAdapter.RoomHolder> {
             btnadd.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    if(NumRoom>=1 && NumRoom <=MaxRoom-1) {
-                        NumRoom += 1;
-                        edtNumRoom.setText(String.valueOf(NumRoom));
-                        txtPriceRoom.setText(String.valueOf(price*NumRoom)+"VND");
+                    if(numRoom>=1 && numRoom <=maxRoom-1) {
+                        numRoom += 1;
+                        edtNumRoom.setText(String.valueOf(numRoom));
+                        System.out.println(numRoom+"+++");
+                        txtPriceRoom.setText(String.valueOf(priceRoom*numRoom)+"VND");
                         //priceRoom=Float.parseFloat(String.valueOf(priceRoom*NumRoom));
                     }
                 }
@@ -90,11 +90,11 @@ public class RoomAdapter extends RecyclerView.Adapter<RoomAdapter.RoomHolder> {
             btnremove.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    if(NumRoom>1) {
-                        NumRoom -= 1;
-                        edtNumRoom.setText(String.valueOf(NumRoom));
-                        System.out.println(NumRoom);
-                        txtPriceRoom.setText(String.valueOf(price*NumRoom)+"VND");
+                    if(numRoom>1) {
+                        numRoom -= 1;
+                        edtNumRoom.setText(String.valueOf(numRoom));
+                        System.out.println(numRoom+"---");
+                        txtPriceRoom.setText(String.valueOf(priceRoom*numRoom)+"VND");
                         //txtQuatity.setText(String.valueOf(MaxRoom-1));
 
                     }
@@ -105,11 +105,12 @@ public class RoomAdapter extends RecyclerView.Adapter<RoomAdapter.RoomHolder> {
                 public void onClick(View v) {
                     Intent intent=new Intent(context, PaymentActivity.class);
                     context.startActivity(intent);
-                    saveData(idRoom,nameRoom,quantityRoom,priceRoom);
+
+                    saveData(idRoom,nameRoom,numRoom,priceRoom*numRoom);
                     System.out.println(idRoom);
                     System.out.println(nameRoom);
-                    System.out.println(quantityRoom);
-                    System.out.println(priceRoom);
+                    System.out.println(numRoom);
+                    System.out.println(priceRoom*numRoom);
                 }
             });
         }
@@ -129,12 +130,10 @@ public class RoomAdapter extends RecyclerView.Adapter<RoomAdapter.RoomHolder> {
                 txtNameRoom.setText(room.getName());
                 txtQuatity.setText(String.valueOf(room.getQuantity())+ " rooms left");
                 txtPriceRoom.setText(String.valueOf(room.getPrice()) + " VND");
-                MaxRoom=room.getQuantity();
+                maxRoom=room.getQuantity();
                 idRoom=room.getId();
                 nameRoom=room.getName();
-                quantityRoom=NumRoom;
-                price=Float.parseFloat(String.valueOf(room.getPrice()));
-                priceRoom=Float.parseFloat(String.valueOf(room.getPrice()*quantityRoom));
+                priceRoom=Float.parseFloat(String.valueOf(room.getPrice()));
         }
 
     }

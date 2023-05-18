@@ -5,7 +5,10 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -26,7 +29,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class HotelListActivity extends AppCompatActivity {
+public class HotelListActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
     public static final String SHARED_PREFS = "bookingApp";
     public static final String CHECK_IN = "checkin";
     public static final String CHECK_OUT = "checkout";
@@ -46,6 +49,10 @@ public class HotelListActivity extends AppCompatActivity {
     public static final String HOTEL_ID = "hotel_id";
     public static final String HOTEL_IMG_URL = "hotel_img_url";
     public static final String CUSTOMER_NAME = "customer_name";
+
+    private String customerName;
+
+    private TextView customerNameTxtView;
     private RecyclerView rcvHotelList;
     private HotelListAdapter hotelListAdapter;
     private ArrayList<Hotel> mhotelsList;
@@ -58,19 +65,40 @@ public class HotelListActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.hotel_list);
 
+        //get Data
+        saveData();
+        showDataToConsole();
+
+
+        //Navigation-Bar
+        Spinner spinner = findViewById(R.id.spinner);
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.lang, R.layout.payment_spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner.setAdapter(adapter);
+        spinner.setSelected(false);
+        spinner.setSelection(0,true);
+        spinner.setOnItemSelectedListener(this);
+        customerNameTxtView = findViewById(R.id.customerNameTxtView);
+        customerNameTxtView.setText(customerName);
+        customerNameTxtView.setOnClickListener(view -> {
+            openProfile();
+        });
+
+
+        //HotelList
         mhotelsList= new ArrayList<>();
         rcvHotelList=findViewById(R.id.rcvHotelList);
         rcvHotelList.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
         hotelListAdapter = new HotelListAdapter(HotelListActivity.this, mhotelsList);
         rcvHotelList.setAdapter(hotelListAdapter);
+
+
+        //Btn-NextHotelInf
         fltLocationAndHotel=findViewById(R.id.filterLocationAndHotel);
-
-
         fltLocationAndHotel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent=new Intent(HotelListActivity.this,Filter_Activity.class);
-                startActivity(intent);
+                nextHotelInf();
             }
         });
 
@@ -104,9 +132,9 @@ public class HotelListActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<HotelsOutfit> call, Response<HotelsOutfit> response) {
                 if(response.code()==200){
-                        mhotelsList.addAll(response.body().getData().getData());
-                        hotelListAdapter.notifyDataSetChanged();
-                        Toast.makeText(HotelListActivity.this,"Success",Toast.LENGTH_SHORT).show();
+                    mhotelsList.addAll(response.body().getData().getData());
+                    hotelListAdapter.notifyDataSetChanged();
+                    Toast.makeText(HotelListActivity.this,"Success",Toast.LENGTH_SHORT).show();
 
 
                 }
@@ -140,7 +168,30 @@ public class HotelListActivity extends AppCompatActivity {
 //        editor.putInt(HOTEL_ID, 1);
 //        editor.putInt(QUANTITY, 1);
 //        editor.putString(HOTEL_IMG_URL, "https://media-cdn.tripadvisor.com/media/photo-s/23/ca/38/3a/au-lac-charner-hotel.jpg");
-//        editor.putString(CUSTOMER_NAME, "Viet Pham");
+        editor.putString(CUSTOMER_NAME, "Viet Pham");
         editor.apply();
+    }
+
+    public void showDataToConsole(){
+        SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREFS,MODE_PRIVATE);
+        customerName = sharedPreferences.getString(CUSTOMER_NAME, "");
+    }
+    public void openProfile(){
+        Intent intent = new Intent(this, ProfileActivity.class);
+        startActivity(intent);
+    }
+    public void nextHotelInf(){
+        Intent intent=new Intent(this,Filter_Activity.class);
+        startActivity(intent);
+    }
+
+    @Override
+    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> parent) {
+
     }
 }
