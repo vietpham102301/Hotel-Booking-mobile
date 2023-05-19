@@ -3,6 +3,7 @@ package com.example.hotelbooking;
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -66,7 +67,7 @@ public class HotelInformationActivity extends AppCompatActivity implements Adapt
     public static final String HOTEL_ID = "hotel_id";
     public static final String HOTEL_IMG_URL = "hotel_img_url";
     public static final String CUSTOMER_NAME = "customer_name";
-    private Float price;
+    private String customerName;
     private int idHotel;
     TextView txtNoiDung;
     Button btnDescription;
@@ -78,14 +79,10 @@ public class HotelInformationActivity extends AppCompatActivity implements Adapt
     private TextView txtProvinceHotelInf;
     private TextView txtNameHotelInfSub;
     private TextView txtAddressHotelInf;
-    private DatePickerDialog datePickerDialog;
-    private DatePickerDialog datePickerDialog1;
+    private TextView customerNameTxtView;
     private RecyclerView rcvRoomList;
-
     private RoomAdapter roomAdapter;
     private ArrayList<Room> mRoomList;
-
-    //private String Description;
     private RecyclerView rcvCommentList;
     private CommentAdapter commentAdapter;
     private ArrayList<Comments> mCommnetList;
@@ -99,48 +96,63 @@ public class HotelInformationActivity extends AppCompatActivity implements Adapt
         super.onCreate(savedInstanceState);
         setContentView(R.layout.hotel_information);
 
+        showDataToConsole();
+
 
 
         //Declare
-            //Header
-                txtNameHotelInf=findViewById(R.id.txtNameHotelInf);
-                txtRatingHotelInf=findViewById(R.id.txtRatingHotelInf);
-                txtNumRatingHotelInf=findViewById(R.id.txtNumRatingHotelInf);
-                txtProvinceHotelInf=findViewById(R.id.txtProviceHotelInf);
-            //Body
-                txtNameHotelInfSub=findViewById(R.id.txtNameHotelInfSub);
-                txtAddressHotelInf=findViewById(R.id.txtAddressHotelInf);
-                //View ImageHotel
-                    viewPager2 = findViewById(R.id.pager);
-                //Description-Features-Roomandprice
-                    btnDescription = (Button) findViewById(R.id.btnDescription);
-                    btnFeatures = (Button) findViewById(R.id.btnFeatures);
-                    btnRoomandprice = (Button) findViewById(R.id.btnRoomandprice);
-                    txtNoiDung = (TextView) findViewById(R.id.textDescription);
+        customerNameTxtView = findViewById(R.id.customerNameTxtView);
+        //Header
+        txtNameHotelInf=findViewById(R.id.txtNameHotelInf);
+        txtRatingHotelInf=findViewById(R.id.txtRatingHotelInf);
+        txtNumRatingHotelInf=findViewById(R.id.txtNumRatingHotelInf);
+        txtProvinceHotelInf=findViewById(R.id.txtProviceHotelInf);
+        //Body
+        txtNameHotelInfSub=findViewById(R.id.txtNameHotelInfSub);
+        txtAddressHotelInf=findViewById(R.id.txtAddressHotelInf);
+        //View ImageHotel
+        viewPager2 = findViewById(R.id.pager);
+        //Description-Features-Roomandprice
+        btnDescription = (Button) findViewById(R.id.btnDescription);
+        btnFeatures = (Button) findViewById(R.id.btnFeatures);
+        btnRoomandprice = (Button) findViewById(R.id.btnRoomandprice);
+        txtNoiDung = (TextView) findViewById(R.id.textDescription);
 
-                //Room
+        //Room
 //                    mRoomTypesList=new ArrayList<>();
 //                    rcvRoomList=findViewById(R.id.rcvRoomList);
 //                    rcvRoomList.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
 //                    roomTypesAdapter = new RoomTypesAdapter(HotelInformationActivity.this,mRoomTypesList);
 //                    rcvRoomList.setAdapter(roomTypesAdapter);
 
-                    mRoomList=new ArrayList<Room>();
-                    rcvRoomList=findViewById(R.id.rcvRoomList);
-                    rcvRoomList.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
-                    roomAdapter=new RoomAdapter(HotelInformationActivity.this,mRoomList);
-                    rcvRoomList.setAdapter(roomAdapter);
+        mRoomList=new ArrayList<Room>();
+        rcvRoomList=findViewById(R.id.rcvRoomList);
+        rcvRoomList.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
+        roomAdapter=new RoomAdapter(HotelInformationActivity.this,mRoomList);
+        rcvRoomList.setAdapter(roomAdapter);
 //                    showDataToConsole();
 //                    txtPriceRoomHotel.setText(String.valueOf(price));
-                //Comments
-                    mCommnetList=new ArrayList<>();
-                    rcvCommentList=findViewById(R.id.rcvCommentList);
-                    rcvCommentList.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
-                    commentAdapter=new CommentAdapter(HotelInformationActivity.this,mCommnetList);
-                    rcvCommentList.setAdapter(commentAdapter);
+        //Comments
+        mCommnetList=new ArrayList<>();
+        rcvCommentList=findViewById(R.id.rcvCommentList);
+        rcvCommentList.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
+        commentAdapter=new CommentAdapter(HotelInformationActivity.this,mCommnetList);
+        rcvCommentList.setAdapter(commentAdapter);
 
 
+        customerNameTxtView.setText(customerName);
 
+        customerNameTxtView.setOnClickListener(view -> {
+            openProfile();
+        });
+
+        Spinner spinner = findViewById(R.id.spinner);
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.lang, R.layout.payment_spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner.setAdapter(adapter);
+        spinner.setSelected(false);
+        spinner.setSelection(0,true);
+        spinner.setOnItemSelectedListener(this);
 
         //Description-Features-Roomandprice
         btnFeatures.setOnClickListener(new View.OnClickListener() {
@@ -204,12 +216,15 @@ public class HotelInformationActivity extends AppCompatActivity implements Adapt
             }
         });
 
-        showDataToConsole();
+
         System.out.println(idHotel+"mmmm");
 
-        callApiRoomInHotel(idHotel,"2023-04-16","2023-04-20");
-        callApiHotelInformation(idHotel);
-        callApiCommentInHotel(idHotel,5,1);
+//        callApiRoomInHotel(idHotel,"2023-04-16","2023-04-20");
+//        callApiHotelInformation(idHotel);
+//        callApiCommentInHotel(idHotel,5,1);
+        callApiRoomInHotel(1,"2023-04-16","2023-04-20");
+        callApiHotelInformation(1);
+        callApiCommentInHotel(1,5,1);
     }
     private Runnable sliderRunnable = new Runnable() {
         @Override
@@ -264,32 +279,32 @@ public class HotelInformationActivity extends AppCompatActivity implements Adapt
         });
     }
     private void callApiRoomInHotel(int id, String ci, String co){
-       Appclient.getClient().create(Api.class).getRoomInHotel(id, ci, co).enqueue(new Callback<RoomOutFit>() {
-           @Override
-           public void onResponse(Call<RoomOutFit> call, Response<RoomOutFit> response) {
-               Toast.makeText(HotelInformationActivity.this,"Success",Toast.LENGTH_SHORT).show();
-               RoomOutFit room = response.body();
-               for(int i=0;i<room.getData().size();i++){
-                   if(room.getData().get(i).getQuantity()>0){
-                       mRoomList.add(room.getData().get(i));
-                       roomAdapter.notifyDataSetChanged();
+        Appclient.getClient().create(Api.class).getRoomInHotel(id, ci, co).enqueue(new Callback<RoomOutFit>() {
+            @Override
+            public void onResponse(Call<RoomOutFit> call, Response<RoomOutFit> response) {
+                Toast.makeText(HotelInformationActivity.this,"Success",Toast.LENGTH_SHORT).show();
+                RoomOutFit room = response.body();
+                for(int i=0;i<room.getData().size();i++){
+                    if(room.getData().get(i).getQuantity()>0){
+                        mRoomList.add(room.getData().get(i));
+                        roomAdapter.notifyDataSetChanged();
 //                       Collector.priceRoom = new ArrayList<>();
 //                       Collector.priceRoom.add(i,String.valueOf(room.getData().get(i).getPrice()));
 //                       System.out.println(Collector.priceRoom);
 
-                   }
-               }
+                    }
+                }
 
 //               for (int i = 0; i < Collector.priceRoom.size(); i++) {
 //                   System.out.println(Collector.priceRoom.get(i));}
 //               if(Collector.priceRoom==null) System.out.println("NUll");
-           }
+            }
 
-           @Override
-           public void onFailure(Call<RoomOutFit> call, Throwable t) {
-               Toast.makeText(HotelInformationActivity.this,"Error",Toast.LENGTH_SHORT).show();
-           }
-       });
+            @Override
+            public void onFailure(Call<RoomOutFit> call, Throwable t) {
+                Toast.makeText(HotelInformationActivity.this,"Error",Toast.LENGTH_SHORT).show();
+            }
+        });
     }
     private void callApiCommentInHotel(int id, int size, int page){
         Appclient.getClient().create(Api.class).getCommentsHotel(id,page,size).enqueue(new Callback<CommentsOutfit>() {
@@ -330,8 +345,13 @@ public class HotelInformationActivity extends AppCompatActivity implements Adapt
 //        price = sharedPreferences.getFloat(PRICE, 0f);
 //        System.out.println(price + "+++++++++++");
         idHotel= sharedPreferences.getInt(HOTEL_ID,0);
+        customerName = sharedPreferences.getString(CUSTOMER_NAME, "");
         System.out.println(idHotel+"llllllll");
 
+    }
+    public void openProfile(){
+        Intent intent = new Intent(this, ProfileActivity.class);
+        startActivity(intent);
     }
 
 }

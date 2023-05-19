@@ -139,7 +139,7 @@ public class PieChartActivity extends AppCompatActivity {
     public void saveData(){
         android.content.SharedPreferences sharedPreferences = getSharedPreferences(PaymentActivity.SHARED_PREFS,MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putString("header", "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiI4IiwiaWF0IjoxNjgzNDI4NzczLCJleHAiOjE2ODM1OTU0MTh9.wWyU2kK42JT4Ds3AgZxvTRlYPRljXAhnnMKDf3Yr-7GIgXc-xiqTRgKvpmQDMGJ3iQGKQp5g0cUuxLbXNqpJUg");
+        editor.putString("header", "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiI4IiwiaWF0IjoxNjgzNTU3MzAwLCJleHAiOjE2ODM2OTIyOTh9.hUQCc-hOzlatqReYSVUX2lblEePRyqp-XPuh2RIRuzRP6OE0fXS_2_dkGE56saw4HWogsdB4frA-HrQhX7TDVg");
         editor.apply();
     }
 

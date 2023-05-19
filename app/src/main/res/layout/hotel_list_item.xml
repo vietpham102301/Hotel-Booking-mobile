@@ -37,7 +37,7 @@
                     android:id="@+id/txtNameHotel"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/b612_bold"
+                    android:fontFamily="@font/andada"
                     android:textColor="@color/black"
                     android:textSize="32sp" />
             </LinearLayout>
@@ -62,7 +62,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="2dp"
-                        android:fontFamily="More Fonts..."
+                        android:fontFamily="@font/andada"
                         android:text="2.0"
                         android:textSize="12sp" />
 
@@ -258,7 +258,7 @@
                             android:id="@+id/txtPriceHotel"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:fontFamily="@font/b612_bold"
+                            android:fontFamily="@font/andada"
                             android:text="2000000 VND"
                             android:textSize="16sp"></TextView>
                         <TextView

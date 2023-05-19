@@ -7,14 +7,24 @@ public class HotelOrder {
     private String checkIn;
     private String checkOut;
     private String hotelImg;
+    private String status;
+    private Double price;
+    private int orderID;
+    private String comment;
+    private Double ratingComment;
 
-    public HotelOrder(String hotelName, double rating, String roomType, String checkIn, String checkOut, String hotelImg) {
+    public HotelOrder(String hotelName, double rating, String roomType, String checkIn, String checkOut, String hotelImg, String status, Double price, int orderID, String comment, Double ratingComment) {
         this.hotelName = hotelName;
         this.rating = rating;
         this.roomType = roomType;
         this.checkIn = checkIn;
         this.checkOut = checkOut;
         this.hotelImg = hotelImg;
+        this.status = status;
+        this.price = price;
+        this.orderID = orderID;
+        this.comment = comment;
+        this.ratingComment = ratingComment;
     }
 
     public String getHotelName() {
@@ -65,6 +75,26 @@ public class HotelOrder {
         this.checkOut = checkOut;
     }
 
+    public String getStatus() {
+        return status;
+    }
+
+    public Double getPrice() {
+        return price;
+    }
+
+    public int getOrderID() {
+        return orderID;
+    }
+
+    public String getComment() {
+        return comment;
+    }
+
+    public Double getRatingComment() {
+        return ratingComment;
+    }
+
     @Override
     public String toString() {
         return "HotelOrder{" +
@@ -76,4 +106,5 @@ public class HotelOrder {
                 ", hotelImg='" + hotelImg + '\'' +
                 '}';
     }
+
 }
