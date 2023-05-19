@@ -85,11 +85,26 @@
         android:textColor="@color/white"
         android:textColorHint="@color/white" />
 
+    <CheckBox
+        android:id="@+id/cbRemember"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/password"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginStart="200dp"
+        android:text="Remember me"
+        android:textSize="18sp"
+        android:textColor="@color/white"
+        android:buttonTint="@color/white"
+        android:checked="false"
+        />
+
     <Button
         android:id="@+id/loginbtn"
         android:layout_width="154dp"
         android:layout_height="wrap_content"
-        android:layout_below="@id/password"
+        android:layout_below="@id/cbRemember"
         android:layout_centerHorizontal="true"
         android:layout_marginStart="10dp"
         android:layout_marginTop="10dp"

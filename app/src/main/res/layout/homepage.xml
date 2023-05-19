@@ -159,18 +159,24 @@
                         android:layout_marginEnd="30dp"
                         android:background="@android:color/darker_gray" />
 
-                    <EditText
-                        android:id="@+id/locationsearch"
-                        android:layout_width="264dp"
+                    <TextView
+                        android:id="@+id/search_barhomepage"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:layout_margin="10dp"
+                        android:layout_marginHorizontal="34dp"
+                        android:layout_marginStart="17dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginEnd="17dp"
+                        android:layout_marginBottom="20dp"
                         android:background="@drawable/border_shape"
-                        android:maxLines="2"
-                        android:minHeight="48dp"
-                        android:paddingLeft="15dp"
-                        android:hint="Location \nWhere are you from?"
-                        tools:ignore="InvalidId" />
+                        android:drawableEnd="@drawable/icon_search"
+                        android:fontFamily="@font/andada"
+                        android:textStyle="bold"
+                        android:textColorHint="#252323"
+                        android:gravity="center_vertical"
+                        android:hint="Search Location And Hotel"
+                        android:padding="12dp"
+                        android:textSize="16sp"></TextView>
 
                     <LinearLayout
                         android:layout_width="match_parent"
