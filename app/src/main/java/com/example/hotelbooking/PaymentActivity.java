@@ -244,7 +244,6 @@ public class PaymentActivity extends AppCompatActivity implements AdapterView.On
         startActivity(intent);
     }
 
-    IResponseAPI iResponseAPI;
     public void makeOrderRequest(){
         Thread thread = new Thread(() -> {
             try  {
