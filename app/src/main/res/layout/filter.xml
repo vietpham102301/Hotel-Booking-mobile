@@ -64,7 +64,7 @@
                         />
                     <Button
                         android:id="@+id/checkInButtonSearch"
-                        android:layout_width="150dp"
+                        android:layout_width="130dp"
                         android:layout_height="wrap_content"
                         android:background="@drawable/border_load"
                         android:text="JAN 01 2020"
@@ -80,7 +80,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
-                    android:layout_marginStart="40dp">
+                    android:layout_marginStart="25dp">
                     <TextView
                         android:id="@+id/customerNameTxtView"
                         android:layout_width="wrap_content"
@@ -94,7 +94,7 @@
                         />
                     <Button
                         android:id="@+id/checkOutButtonSearch"
-                        android:layout_width="150dp"
+                        android:layout_width="130dp"
                         android:layout_height="wrap_content"
                         android:background="@drawable/border_load"
                         android:text="JAN 01 2020"

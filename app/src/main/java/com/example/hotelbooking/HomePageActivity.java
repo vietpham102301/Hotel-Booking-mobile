@@ -11,20 +11,30 @@ import androidx.viewpager2.widget.ViewPager2;
 
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
+import android.app.Dialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.os.Handler;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 //import com.example.hotelbooking.homepage.adapter.ListViewAdapter;
+import com.example.hotelbooking.Collector.Collector;
+import com.example.hotelbooking.filter.api.ApiService;
+import com.example.hotelbooking.filter.model.ProvicesOutFit;
 import com.example.hotelbooking.homepage.api.ApiClient;
 import com.example.hotelbooking.homepage.model.HomepageListApiResponse;
 import com.example.hotelbooking.homepage.adapter.HomepageListAdapter;
@@ -56,14 +66,12 @@ public class HomePageActivity extends AppCompatActivity implements AdapterView.O
     private TextView customerNameTxtView;
     private String customerName;
     private Button btnSearch;
-    private Spinner btnpsg;
-    private EditText locationsearch;
-
-
-
+    TextView textView;
+    Dialog dialog;
+    EditText editText;
+    ListView listView;
     ArrayList<String> arrayList;
-//    ArrayAdapter<String> adapter;
-
+    ArrayAdapter<String> adapter3;
     private Handler sliderHandler = new Handler();
 
     private static final String[] paths = {
@@ -106,9 +114,9 @@ public class HomePageActivity extends AppCompatActivity implements AdapterView.O
 
         //item payment
         Spinner spinner = findViewById(R.id.spinner);
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.lang, R.layout.payment_spinner_item);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinner.setAdapter(adapter);
+        final ArrayAdapter<CharSequence>[] adapter = new ArrayAdapter[]{ArrayAdapter.createFromResource(this, R.array.lang, R.layout.payment_spinner_item)};
+        adapter[0].setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner.setAdapter(adapter[0]);
         spinner.setSelected(false);
         spinner.setSelection(0,true);
         spinner.setOnItemSelectedListener(this);
@@ -121,7 +129,7 @@ public class HomePageActivity extends AppCompatActivity implements AdapterView.O
         customerNameTxtView.setOnClickListener( view -> startActivity(new Intent(HomePageActivity.this, ProfileActivity.class)));
 
         btnSearch = findViewById(R.id.btnSearch);
-        btnSearch.setOnClickListener(view -> startActivity( new Intent(HomePageActivity.this, HotelListActivity.class)));
+        btnSearch.setOnClickListener(view -> startActivity( new Intent(HomePageActivity.this, HotelInformationActivity.class)));
 
         arrayList =new ArrayList<>();
 //        callApiListProvinces(arrayList);
@@ -129,7 +137,6 @@ public class HomePageActivity extends AppCompatActivity implements AdapterView.O
 
         //banner
         viewPager = findViewById(R.id.pager);
-
         List<SliderItem> sliderItemArrayList = new ArrayList<>();
         sliderItemArrayList.add(new SliderItem(R.drawable.home_amanoi2));
         sliderItemArrayList.add(new SliderItem(R.drawable.home_amina));
@@ -174,12 +181,59 @@ public class HomePageActivity extends AppCompatActivity implements AdapterView.O
         spinner = (Spinner) findViewById(R.id.btnpsg);
         ArrayAdapter<String> adapter2 = new ArrayAdapter<String>(HomePageActivity.this,
                 R.layout.spinner_item,paths);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        adapter[0].setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter2);
         spinner.setOnItemSelectedListener(this);
 
+        //SearchBar
+        arrayList =new ArrayList<>();
+        callApiListProvinces(arrayList);
+
+        textView = findViewById(R.id.search_barhomepage);
+        textView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                 dialog = new Dialog(HomePageActivity.this);
+                 dialog.setContentView(R.layout.dialog_searchble_spinner);
+                 dialog.getWindow().setLayout(650,800);
+                 dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+                 dialog.show();
+                 editText = dialog.findViewById(R.id.edit_search_filter);
+                 listView = dialog.findViewById(R.id.search_list_name_hotel);
+                 adapter3 = new ArrayAdapter<>(HomePageActivity.this, android.R.layout.simple_list_item_1,arrayList);
+                 listView.setAdapter(adapter3);
+                 editText.addTextChangedListener(new TextWatcher() {
+                     @Override
+                     public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+                     @Override
+                     public void onTextChanged(CharSequence s, int start, int before, int count) {
+                         adapter3.getFilter().filter(s);
+                     }
+                     @Override
+                     public void afterTextChanged(Editable s) {}
+                 });
+
+                 listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                     @Override
+                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                         textView.setText(adapter3.getItem(position));
+                         Collector.prv= adapter3.getItem(position);
+                         System.out.println(Collector.prv);
+                         dialog.dismiss();
+                     }
+                 });
+            }
+        });
+        btnSearch.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+
     }
 
+    //Call Api
     public void populateHomepage(){
         ApiClient.getClient().create(ApiHomepage.class).getHomepage().enqueue(new Callback<HomepageListApiResponse>() {
             @Override
@@ -238,12 +292,10 @@ public class HomePageActivity extends AppCompatActivity implements AdapterView.O
         datePickerDialogHp1.getDatePicker().setMinDate(cal.getTimeInMillis());
         //datePickerDialog.getDatePicker().setMaxDate(System.currentTimeMillis());
     }
-
     private String makeDateString(int day, int month, int year)
     {
         return getMonthFormat(month) + " " + day + " " + year;
     }
-
     private String getMonthFormat(int month)
     {
         if(month == 1)
@@ -288,21 +340,23 @@ public class HomePageActivity extends AppCompatActivity implements AdapterView.O
     public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {return;}
     @Override
     public void onNothingSelected(AdapterView<?> adapterView) {return;}
-//    private void callApiListProvinces(ArrayList arrayList){
-//        ApiService.apiService.provinces().enqueue(new Callback<ProvicesOutFit>() {
-//            @Override
-//            public void onResponse(Call<ProvicesOutFit> call, Response<ProvicesOutFit> response) {
-//                Toast.makeText(HomePageActivity.this, "Call Api Success", Toast.LENGTH_SHORT).show();
-//                ProvicesOutFit data = response.body();
-//                for (int i=0;i<data.getData().size();i++) {
-//                    System.out.println(data.getData().get(i).getId());
-//                    arrayList.add(data.getData().get(i).getId());
-//                }
-//            }
-//            @Override
-//            public void onFailure(Call<ProvicesOutFit> call, Throwable t) {
-//                Toast.makeText(HomePageActivity.this, "Call Api Error", Toast.LENGTH_SHORT).show();
-//            }
-//        });
-//    }
+
+
+    private void callApiListProvinces(ArrayList arrayList){
+        ApiService.apiService.provinces().enqueue(new Callback<ProvicesOutFit>() {
+            @Override
+            public void onResponse(Call<ProvicesOutFit> call, Response<ProvicesOutFit> response) {
+                Toast.makeText(HomePageActivity.this, "Call Api Success", Toast.LENGTH_SHORT).show();
+                ProvicesOutFit data = response.body();
+                for (int i=0;i<data.getData().size();i++) {
+                    System.out.println(data.getData().get(i).getId());
+                    arrayList.add(data.getData().get(i).getId());
+                }
+            }
+            @Override
+            public void onFailure(Call<ProvicesOutFit> call, Throwable t) {
+                Toast.makeText(HomePageActivity.this, "Call Api Error", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
 }
