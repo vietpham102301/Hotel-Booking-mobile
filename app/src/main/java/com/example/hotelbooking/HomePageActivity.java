@@ -43,6 +43,7 @@ import com.example.hotelbooking.homepage.model.HomepageList;
 import com.example.hotelbooking.hotelinformation.SliderItem;
 import com.example.hotelbooking.hotelinformation.SliderAdapter;
 
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
@@ -178,12 +179,25 @@ public class HomePageActivity extends AppCompatActivity implements AdapterView.O
         checkInButton.setText(getTodaysDate());
         checkOutButton = findViewById(R.id.checkOutButton);
         checkOutButton.setText(getTodaysDate());
+
+
         spinner = (Spinner) findViewById(R.id.btnpsg);
         ArrayAdapter<String> adapter2 = new ArrayAdapter<String>(HomePageActivity.this,
                 R.layout.spinner_item,paths);
         adapter[0].setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter2);
-        spinner.setOnItemSelectedListener(this);
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                System.out.println(adapter2.getItem(position));
+                Collector.traveller=adapter2.getItem(position);
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
 
         //SearchBar
         arrayList =new ArrayList<>();
@@ -227,7 +241,10 @@ public class HomePageActivity extends AppCompatActivity implements AdapterView.O
         btnSearch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                if(Collector.prv==null) Toast.makeText(HomePageActivity.this,"Province Blank",Toast.LENGTH_SHORT).show();
+                else if (Collector.traveller==null) Toast.makeText(HomePageActivity.this,"Traveller Blank",Toast.LENGTH_SHORT).show();
+                else if (compareDate(Collector.ci,Collector.co)) Toast.makeText(HomePageActivity.this,"Check Out Error",Toast.LENGTH_SHORT).show();
+                else nextPageHotelList();
             }
         });
 
@@ -272,12 +289,18 @@ public class HomePageActivity extends AppCompatActivity implements AdapterView.O
             month = month + 1;
             String date = makeDateString(day, month, year);
             checkInButton.setText(date);
+            String checkIn=makeDayToCallApi(day,month,year);
+            Collector.ci=checkIn;
+            System.out.println(Collector.ci);
 //            checkOutButton.setText(date);
         };
         DatePickerDialog.OnDateSetListener dateSetListener1 = (datePicker, year, month, day) -> {
             month = month + 1;
             String date = makeDateString(day, month, year);
+            String checkOut=makeDayToCallApi(day,month,year);
             checkOutButton.setText(date);
+            Collector.co=checkOut;
+            System.out.println(Collector.co);
         };
         Calendar cal = Calendar.getInstance();
         int year = cal.get(Calendar.YEAR);
@@ -295,6 +318,9 @@ public class HomePageActivity extends AppCompatActivity implements AdapterView.O
     private String makeDateString(int day, int month, int year)
     {
         return getMonthFormat(month) + " " + day + " " + year;
+    }
+    private String makeDayToCallApi(int day, int month, int year){
+        return year+"-"+month+"-"+day;
     }
     private String getMonthFormat(int month)
     {
@@ -340,6 +366,20 @@ public class HomePageActivity extends AppCompatActivity implements AdapterView.O
     public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {return;}
     @Override
     public void onNothingSelected(AdapterView<?> adapterView) {return;}
+    public static boolean compareDate(String ci,String co){
+        Date date1 = Date.valueOf(ci);
+        Date date2 = Date.valueOf(co);
+
+        if (date2.equals(date1)) return false;
+        else if (date2.after(date1)) return false;
+        else return true;
+
+    }
+
+    public void nextPageHotelList(){
+        Intent intent=new Intent(this,HotelListActivity.class);
+        startActivity(intent);
+    }
 
 
     private void callApiListProvinces(ArrayList arrayList){
