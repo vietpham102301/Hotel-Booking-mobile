@@ -66,7 +66,7 @@ public class HotelListActivity extends AppCompatActivity implements AdapterView.
         setContentView(R.layout.hotel_list);
 
         //get Data
-        saveData();
+        saveData(Collector.ci,Collector.co);
         showDataToConsole();
 
 
@@ -148,12 +148,12 @@ public class HotelListActivity extends AppCompatActivity implements AdapterView.
         });
 
     }
-    public void saveData(){
+    public void saveData(String checkIn,String checkOut){
         SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREFS,MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
 //
-//        editor.putString(CHECK_IN, "2023-04-16");
-//        editor.putString(CHECK_OUT, "2023-04-20");
+        editor.putString(CHECK_IN, checkIn);
+        editor.putString(CHECK_OUT, checkOut);
 //        editor.putInt(TRAVELLER, 1);
 //        editor.putString(HOTEL_NAME, "LOTUS RESIDENCE - Landmark 81 Vinhomes Central Park");
 //        editor.putFloat(RATING, new Float(4.8));
