@@ -241,13 +241,13 @@
                 android:layout_marginEnd="5dp"
                 android:text="Already have an account?"
                 android:textSize="20sp"
-                android:textColor="@color/black" />
+                android:textColor="@color/white" />
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Sign in!"
                 android:textSize="20sp"
-                android:textColor="@color/teal_200"
+                android:textColor="@color/black"
                 android:id="@+id/txt_signin"
                 tools:ignore="InvalidId" />
         </LinearLayout>

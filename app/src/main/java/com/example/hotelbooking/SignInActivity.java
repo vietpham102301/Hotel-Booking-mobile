@@ -65,7 +65,7 @@ public class SignInActivity extends AppCompatActivity {
                 else
                     clearData();//xóa thông tin đã lưu
                 //nếu thông tin đăng nhập đúng thì đến màng hình home
-                if (username.getText().toString().equals(username) && password.getText().toString().equals(password)) {
+                if (username.getText().toString().equals(username) && password.getText().toString().equals(password)){
                     Intent intent = new Intent(SignInActivity.this, HomePageActivity.class);
                     startActivity(intent);
                 } else
@@ -97,9 +97,7 @@ public class SignInActivity extends AppCompatActivity {
     private void checkLoginDetails(String authToken) {
         Retrofit retrofit = Appclient.getClient();
         final ApiSignIn apiSignIn = retrofit.create(ApiSignIn.class);
-
         Call<User> call = apiSignIn.checkUsers(authToken);
-
         call.enqueue(new Callback<User>() {
             @Override
             public void onResponse(Call<User> call, Response<User> response) {

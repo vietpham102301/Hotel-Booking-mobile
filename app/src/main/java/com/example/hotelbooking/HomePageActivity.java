@@ -130,11 +130,9 @@ public class HomePageActivity extends AppCompatActivity implements AdapterView.O
         customerNameTxtView.setOnClickListener( view -> startActivity(new Intent(HomePageActivity.this, ProfileActivity.class)));
 
         btnSearch = findViewById(R.id.btnSearch);
-        btnSearch.setOnClickListener(view -> startActivity( new Intent(HomePageActivity.this, HotelInformationActivity.class)));
 
         arrayList =new ArrayList<>();
 //        callApiListProvinces(arrayList);
-
 
         //banner
         viewPager = findViewById(R.id.pager);
@@ -151,7 +149,6 @@ public class HomePageActivity extends AppCompatActivity implements AdapterView.O
         viewPager.setClipChildren(false);
         viewPager.setOffscreenPageLimit(5);
         viewPager.getChildAt(0).setOverScrollMode(RecyclerView.OVER_SCROLL_NEVER);
-
 
         CompositePageTransformer compositePageTransformer = new CompositePageTransformer();
         compositePageTransformer.addTransformer(new MarginPageTransformer(250));
@@ -172,14 +169,12 @@ public class HomePageActivity extends AppCompatActivity implements AdapterView.O
             }
         });
 
-
         //check in - out
         initDatePicker();
         checkInButton = findViewById(R.id.checkInButton);
         checkInButton.setText(getTodaysDate());
         checkOutButton = findViewById(R.id.checkOutButton);
         checkOutButton.setText(getTodaysDate());
-
 
         spinner = (Spinner) findViewById(R.id.btnpsg);
         ArrayAdapter<String> adapter2 = new ArrayAdapter<String>(HomePageActivity.this,
@@ -197,7 +192,6 @@ public class HomePageActivity extends AppCompatActivity implements AdapterView.O
 
             }
         });
-
 
         //SearchBar
         arrayList =new ArrayList<>();
@@ -226,7 +220,6 @@ public class HomePageActivity extends AppCompatActivity implements AdapterView.O
                      @Override
                      public void afterTextChanged(Editable s) {}
                  });
-
                  listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                      @Override
                      public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -247,7 +240,6 @@ public class HomePageActivity extends AppCompatActivity implements AdapterView.O
                 else nextPageHotelList();
             }
         });
-
     }
 
     //Call Api
@@ -267,7 +259,6 @@ public class HomePageActivity extends AppCompatActivity implements AdapterView.O
             }
         });
     }
-
 
     public void setData(){
         SharedPreferences sharedPreferences = getSharedPreferences(PaymentActivity.SHARED_PREFS,MODE_PRIVATE);
@@ -361,7 +352,6 @@ public class HomePageActivity extends AppCompatActivity implements AdapterView.O
         datePickerDialogHp1.show();
     }
 
-
     @Override
     public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {return;}
     @Override
@@ -380,7 +370,6 @@ public class HomePageActivity extends AppCompatActivity implements AdapterView.O
         Intent intent=new Intent(this,HotelListActivity.class);
         startActivity(intent);
     }
-
 
     private void callApiListProvinces(ArrayList arrayList){
         ApiService.apiService.provinces().enqueue(new Callback<ProvicesOutFit>() {
