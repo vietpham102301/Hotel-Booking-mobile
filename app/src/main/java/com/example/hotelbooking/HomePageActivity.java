@@ -153,7 +153,7 @@ public class HomePageActivity extends AppCompatActivity implements AdapterView.O
 
 
         CompositePageTransformer compositePageTransformer = new CompositePageTransformer();
-        compositePageTransformer.addTransformer(new MarginPageTransformer(150));
+        compositePageTransformer.addTransformer(new MarginPageTransformer(250));
         compositePageTransformer.addTransformer(new ViewPager2.PageTransformer() {
             @Override
             public void transformPage(@NonNull View page, float position) {
@@ -167,7 +167,7 @@ public class HomePageActivity extends AppCompatActivity implements AdapterView.O
             public void onPageSelected(int position) {
                 super.onPageSelected(position);
                 sliderHandler.removeCallbacks(sliderRunnable);
-                sliderHandler.postDelayed(sliderRunnable, 5000);//Slide Duration 3 sec
+                sliderHandler.postDelayed(sliderRunnable, 3000);//Slide Duration 3 sec
             }
         });
 

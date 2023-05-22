@@ -29,11 +29,12 @@ import retrofit2.Retrofit;
 public class SignInActivity extends AppCompatActivity {
     public static final String SHARED_PREFS = "bookingApp";
     public static final String REMEMBER = "remember";
-    public static final String EMAIL = "emailKey";
     public static final String PASS = "passKey";
     public static final String USER_ID = "user_id";
     public static final String USERNAME = "username";
-    SharedPreferences sharedpreferences;
+    public static final String TOKEN ="token";
+    SharedPreferences sharedPreferences;
+    private Integer userID;
     private TextView txtsign;
     private EditText username;
     private EditText password;
@@ -51,10 +52,10 @@ public class SignInActivity extends AppCompatActivity {
         txtsign.setOnClickListener(view -> startActivity( new Intent(SignInActivity.this, SignUpActivity.class)));
 
 
-        SharedPreferences sharedpreferences = getSharedPreferences(SHARED_PREFS, Context.MODE_PRIVATE);
-//        userID = sharedPreferences.getInt(USER_ID, 0);
-        username.setText(sharedpreferences.getString(USERNAME, ""));
-        password.setText(sharedpreferences.getString(PASS, ""));
+        SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREFS, Context.MODE_PRIVATE);
+        userID = sharedPreferences.getInt(USER_ID, 0);
+        username.setText(sharedPreferences.getString(USERNAME, ""));
+        password.setText(sharedPreferences.getString(PASS, "123456"));
         loginbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -79,16 +80,17 @@ public class SignInActivity extends AppCompatActivity {
     }
 
     private void clearData() {
-        SharedPreferences.Editor editor = sharedpreferences.edit();
+        SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.clear();
         editor.commit();
     }
 
     private void saveData(String email, String Pass) {
-        SharedPreferences.Editor editor = sharedpreferences.edit();
+        SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putString(USERNAME, email);
         editor.putString(PASS, Pass);
         editor.putBoolean(REMEMBER,cbRemember.isChecked());
+        editor.putInt(USER_ID, 6);
         editor.commit();
     }
 
