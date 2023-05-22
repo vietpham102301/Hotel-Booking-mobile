@@ -38,6 +38,7 @@ public class OrderHistory extends AppCompatActivity implements AdapterView.OnIte
     private Integer userID;
 
     private String customerName;
+    private String token;
 
     private TextView customerNameTxtView;
 
@@ -45,6 +46,7 @@ public class OrderHistory extends AppCompatActivity implements AdapterView.OnIte
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_order_history);
+        saveData();
         setData();
 
         customerNameTxtView = findViewById(R.id.customerNameTxtView);
@@ -155,7 +157,7 @@ public class OrderHistory extends AppCompatActivity implements AdapterView.OnIte
                 bookingHistoryRecyclerView = findViewById(R.id.bookingHistory);
                 HotelRecViewAdapter adapter = new HotelRecViewAdapter(OrderHistory.this);
                 adapter.setHotelOrders(hotelOrders);
-
+//                adapter.setToken(token);
                 bookingHistoryRecyclerView.setAdapter(adapter);
                 bookingHistoryRecyclerView.setLayoutManager(new LinearLayoutManager(OrderHistory.this));
             }
@@ -166,6 +168,7 @@ public class OrderHistory extends AppCompatActivity implements AdapterView.OnIte
                 URL url = new URL(u);
                 HttpURLConnection con = (HttpURLConnection) url.openConnection();
                 con.setRequestMethod(requestType);
+                con.setRequestProperty("Authorization", token);
                 int responseCode = con.getResponseCode();
 
                 if (responseCode == HttpURLConnection.HTTP_OK) {
@@ -194,6 +197,16 @@ public class OrderHistory extends AppCompatActivity implements AdapterView.OnIte
     public void setData(){
         SharedPreferences sharedPreferences = getSharedPreferences(PaymentActivity.SHARED_PREFS,MODE_PRIVATE);
         customerName = sharedPreferences.getString(PaymentActivity.CUSTOMER_NAME, "");
+        token = sharedPreferences.getString("token", "");
+
+    }
+
+    public void saveData(){
+        SharedPreferences sharedPreferences = getSharedPreferences(PaymentActivity.SHARED_PREFS,MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+
+        editor.putString("token", "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiI2IiwiaWF0IjoxNjg0NDIwODA5LCJleHAiOjE2ODQ1OTYxOTh9.Vbzhbau12939WTo6UnsNNmPk7iaK5xbKlTm8ci3NiG9vtBL4Rk8is0aDeD0P2TtMxrgiW4R7t_A7kWV9ljqHxg");
+        editor.apply();
     }
 
     public void openProfile(){

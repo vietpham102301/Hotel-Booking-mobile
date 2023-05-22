@@ -1,6 +1,7 @@
 package com.example.hotelbooking.order.adapter;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,6 +18,7 @@ import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.example.hotelbooking.PaymentActivity;
 import com.example.hotelbooking.R;
 import com.example.hotelbooking.order.model.HotelOrder;
 
@@ -32,6 +34,7 @@ public class HotelRecViewAdapter extends RecyclerView.Adapter<HotelRecViewAdapte
     private ArrayList<HotelOrder> hotelOrders = new ArrayList<>();
 
     private Context context;
+    private String token;
 
     public HotelRecViewAdapter(Context context) {
         this.context = context;
@@ -49,7 +52,7 @@ public class HotelRecViewAdapter extends RecyclerView.Adapter<HotelRecViewAdapte
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         holder.setIsRecyclable(false);
         holder.hoteNameTxtView.setText(hotelOrders.get(position).getHotelName());
-        holder.ratingTxtView.setText(hotelOrders.get(position).getRating() + " rating");
+        holder.ratingTxtView.setText((int)hotelOrders.get(position).getRating() + " stars");
         holder.roomTypeTxtView.setText(hotelOrders.get(position).getRoomType());
         holder.checkInTxtView.setText(hotelOrders.get(position).getCheckIn());
         holder.checkOutTxtView.setText(hotelOrders.get(position).getCheckOut());
@@ -158,15 +161,17 @@ public class HotelRecViewAdapter extends RecyclerView.Adapter<HotelRecViewAdapte
             });
         }
 
-
+                setData();
 
                 holder.submitButton.setOnClickListener(view -> {
                     String cmt = String.valueOf(holder.commentEditTxt.getText());
 
                     if (!cmt.equals("") && status.equals("DAHOANTHANH") && !(rating[0] == -1)) {
-                        String url = "http://14.225.255.238/booking/api/v1/order/" + hotelOrders.get(position).getOrderID() + "/rating?comment=" + cmt + "&rating=" + rating[0];
+                        String url = "http://14.225.255.238/booking/api/v1/order/" + hotelOrders.get(position).getOrderID() + "/rating?comment=" + cmt + "&rating=" + (int)rating[0];
                         try{
                             makeRequest("PATCH", url);
+                            holder.submitButton.setEnabled(false);
+                            holder.commentEditTxt.setFocusable(false);
                         }catch (Exception e){
                             Log.e("ERR", "API call failed", e);
                             return;
@@ -198,34 +203,37 @@ public class HotelRecViewAdapter extends RecyclerView.Adapter<HotelRecViewAdapte
         return hotelOrders.size();
     }
 
-    public String makeRequest(String requestType, String u){
-        try {
-            URL url = new URL(u);
-            HttpURLConnection con = (HttpURLConnection) url.openConnection();
-            con.setRequestMethod(requestType);
-            int responseCode = con.getResponseCode();
+    public void makeRequest(String requestType, String u){
+        Thread thread = new Thread(()->{
+            try {
+                URL url = new URL(u);
+                HttpURLConnection con = (HttpURLConnection) url.openConnection();
+                con.setRequestMethod(requestType);
+                con.setRequestProperty("Authorization", token);
+                Log.d("token", token);
+                Log.d("url", u);
+                Log.d("requestType", requestType);
+                int responseCode = con.getResponseCode();
 
-            if (responseCode == HttpURLConnection.HTTP_OK) {
-                BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream()));
-                String inputLine;
-                StringBuffer response = new StringBuffer();
+                if (responseCode == HttpURLConnection.HTTP_OK) {
+                    BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream()));
+                    String inputLine;
+                    StringBuffer response = new StringBuffer();
 
-                while ((inputLine = in.readLine()) != null) {
-                    response.append(inputLine);
+                    while ((inputLine = in.readLine()) != null) {
+                        response.append(inputLine);
+                    }
+
+                    in.close();
+                    String apiResponse = response.toString();
+                } else {
+                    Log.e("ERR", "API call failed with response code: " + responseCode);
                 }
-
-                in.close();
-                String apiResponse = response.toString();
-                return apiResponse; //sua cho nay thang success hay gi do de check ben tren
-            } else {
-                Log.e("ERR", "API call failed with response code: " + responseCode);
+            } catch (Exception e) {
+                Log.e("ERR", "API call failed", e);
             }
-        } catch (Exception e) {
-            Log.e("ERR", "API call failed", e);
-            return null;
-        }
-
-        return null;
+        });
+        thread.start();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder{
@@ -271,4 +279,14 @@ public class HotelRecViewAdapter extends RecyclerView.Adapter<HotelRecViewAdapte
         this.hotelOrders = hotelOrders;
         notifyDataSetChanged();
     }
+
+    public void setData(){
+        SharedPreferences sharedPreferences = context.getSharedPreferences(PaymentActivity.SHARED_PREFS, PaymentActivity.MODE_PRIVATE);
+        token = sharedPreferences.getString("token", "");
+
+    }
+
+//    public void setToken(String token) {
+//        this.token = token;
+//    }
 }
