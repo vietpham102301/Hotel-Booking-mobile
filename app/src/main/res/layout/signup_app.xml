@@ -43,7 +43,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/signup"
-            android:gravity="center">
+            android:gravity="center"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp">
 
             <ImageView
                 android:layout_width="35dp"
@@ -66,17 +68,19 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            tools:ignore="InvalidId">
+            tools:ignore="InvalidId"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp">
 
             <EditText
                 android:id="@+id/edt_fname"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
+
                 android:layout_weight="1"
                 android:background="#30ffffff"
                 android:drawableLeft="@drawable/ic_baseline_person_outline_24"
-                android:drawablePadding="20dp"
+                android:drawablePadding="10dp"
                 android:hint="Firstname"
                 android:padding="15dp"
                 android:textColor="@color/white"
@@ -86,11 +90,10 @@
                 android:layout_weight="1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:layout_marginEnd="10dp"
                 android:background="#30ffffff"
                 android:drawableLeft="@drawable/ic_baseline_person_outline_24"
-                android:drawablePadding="20dp"
+                android:drawablePadding="10dp"
+                android:layout_marginStart="5dp"
                 android:hint="Lastname"
                 android:padding="15dp"
                 android:textColor="@color/white"
@@ -109,7 +112,7 @@
             android:layout_marginBottom="10dp"
             android:background="#30ffffff"
             android:drawableLeft="@drawable/ic_baseline_person_outline_24"
-            android:drawablePadding="20dp"
+            android:drawablePadding="10dp"
             android:hint="Email"
             android:padding="15dp"
             android:textColor="@color/white"
@@ -125,7 +128,7 @@
             android:layout_marginBottom="10dp"
             android:background="#30ffffff"
             android:drawableLeft="@drawable/ic_baseline_person_outline_24"
-            android:drawablePadding="20dp"
+            android:drawablePadding="10dp"
             android:hint="Username"
             android:padding="15dp"
             android:textColor="@color/white"
@@ -140,7 +143,7 @@
             android:layout_marginEnd="10dp"
             android:background="#30ffffff"
             android:drawableLeft="@drawable/baseline_lock_24"
-            android:drawablePadding="20dp"
+            android:drawablePadding="10dp"
             android:hint="Password"
             android:inputType="textPassword"
             android:padding="15dp"
@@ -158,7 +161,7 @@
             android:layout_marginBottom="10dp"
             android:background="#30ffffff"
             android:drawableLeft="@drawable/ic_baseline_person_outline_24"
-            android:drawablePadding="20dp"
+            android:drawablePadding="10dp"
             android:hint="Birthday yyyy-mm-dd"
             android:padding="15dp"
             android:textColor="@color/white"
@@ -174,7 +177,7 @@
             android:layout_marginBottom="10dp"
             android:background="#30ffffff"
             android:drawableLeft="@drawable/ic_baseline_person_outline_24"
-            android:drawablePadding="20dp"
+            android:drawablePadding="10dp"
             android:hint="Gender male/female"
             android:padding="15dp"
             android:textColor="@color/white"
@@ -190,7 +193,7 @@
             android:layout_marginBottom="10dp"
             android:background="#30ffffff"
             android:drawableLeft="@drawable/ic_baseline_person_outline_24"
-            android:drawablePadding="20dp"
+            android:drawablePadding="10dp"
             android:hint="Phone"
             android:padding="15dp"
             android:textColor="@color/white"
@@ -241,13 +244,13 @@
                 android:layout_marginEnd="5dp"
                 android:text="Already have an account?"
                 android:textSize="20sp"
-                android:textColor="@color/black" />
+                android:textColor="@color/white" />
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Sign in!"
                 android:textSize="20sp"
-                android:textColor="@color/teal_200"
+                android:textColor="@color/black"
                 android:id="@+id/txt_signin"
                 tools:ignore="InvalidId" />
         </LinearLayout>
