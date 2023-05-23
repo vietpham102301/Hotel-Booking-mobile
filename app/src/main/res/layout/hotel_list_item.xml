@@ -253,7 +253,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/andada"
-                            android:text="2000000 VND"
+                            android:text="20 VND"
                             android:textSize="16sp"></TextView>
                         <TextView
                             android:layout_width="wrap_content"

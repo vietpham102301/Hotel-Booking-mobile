@@ -99,6 +99,7 @@ public class HotelListAdapter extends RecyclerView.Adapter<HotelListAdapter.Hote
             txtProvice.setText(hotel.getProvinceId());
             txtAddress.setText(hotel.getAddress());
             txtPhone.setText(hotel.getPhone());
+            txtPrice.setText(String.valueOf(hotel.getPriceMin()));
             Glide.with(context).load("http://14.225.255.238/booking"+hotel.getAvatar()).into(imgViewHotel);
             idHotel=hotel.getId();
 

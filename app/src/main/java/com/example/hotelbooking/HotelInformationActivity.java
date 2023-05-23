@@ -260,7 +260,7 @@ public class HotelInformationActivity extends AppCompatActivity implements Adapt
                     txtNumRatingHotelInf.setText("( " + String.valueOf(hotel.getData().getNumRating()) + " reviews)");
                     txtProvinceHotelInf.setText(hotel.getData().getProvinceId());
                     txtAddressHotelInf.setText(hotel.getData().getAddress());
-                    saveData(hotel.getData().getName(), Float.valueOf(String.valueOf(hotel.getData().getRating())),hotel.getData().getId(),"http://14.225.255.238/booking"+hotel.getData().getAvatar());
+                    saveData(hotel.getData().getName(),Float.valueOf(String.valueOf(hotel.getData().getRating())),hotel.getData().getId(),"http://14.225.255.238/booking"+hotel.getData().getAvatar());
 //                    if(hotel.getData().getRoomTypes()!=null) {
 //                        mRoomTypesList.addAll(hotel.getData().getRoomTypes());
 //                        roomTypesAdapter.notifyDataSetChanged();
