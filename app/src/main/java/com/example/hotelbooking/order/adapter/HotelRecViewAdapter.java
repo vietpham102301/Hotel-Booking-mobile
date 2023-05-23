@@ -210,7 +210,7 @@ public class HotelRecViewAdapter extends RecyclerView.Adapter<HotelRecViewAdapte
                 HttpURLConnection con = (HttpURLConnection) url.openConnection();
                 con.setRequestMethod(requestType);
                 con.setRequestProperty("Authorization", token);
-                Log.d("token", token);
+                Log.d("token at adapter", token);
                 Log.d("url", u);
                 Log.d("requestType", requestType);
                 int responseCode = con.getResponseCode();

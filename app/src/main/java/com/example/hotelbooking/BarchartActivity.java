@@ -70,7 +70,7 @@ public class BarchartActivity extends AppCompatActivity {
         @Override
         protected RevenueRes doInBackground(Void... voids) {
             try {
-                saveData();
+//                saveData();
                 showDataToConsole();
                 Map<String, String> headers = new HashMap<String, String>();
                 headers.put("Authorization", header);
@@ -150,15 +150,15 @@ public class BarchartActivity extends AppCompatActivity {
         }
     }
 
-    public void saveData(){
-        android.content.SharedPreferences sharedPreferences = getSharedPreferences(PaymentActivity.SHARED_PREFS,MODE_PRIVATE);
-        SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putString("header", "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiI4IiwiaWF0IjoxNjgzNTU3MzAwLCJleHAiOjE2ODM2OTIyOTh9.hUQCc-hOzlatqReYSVUX2lblEePRyqp-XPuh2RIRuzRP6OE0fXS_2_dkGE56saw4HWogsdB4frA-HrQhX7TDVg");
-        editor.apply();
-    }
+//    public void saveData(){
+//        android.content.SharedPreferences sharedPreferences = getSharedPreferences(PaymentActivity.SHARED_PREFS,MODE_PRIVATE);
+//        SharedPreferences.Editor editor = sharedPreferences.edit();
+//        editor.putString("header", "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiI4IiwiaWF0IjoxNjgzNTU3MzAwLCJleHAiOjE2ODM2OTIyOTh9.hUQCc-hOzlatqReYSVUX2lblEePRyqp-XPuh2RIRuzRP6OE0fXS_2_dkGE56saw4HWogsdB4frA-HrQhX7TDVg");
+//        editor.apply();
+//    }
 
     public void showDataToConsole(){
         SharedPreferences sharedPreferences = getSharedPreferences(PaymentActivity.SHARED_PREFS,MODE_PRIVATE);
-        header = sharedPreferences.getString("header", "");
+        header = sharedPreferences.getString("token", "");
     }
 }

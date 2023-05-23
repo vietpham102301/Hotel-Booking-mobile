@@ -20,6 +20,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -75,6 +76,8 @@ public class HomePageActivity extends AppCompatActivity implements AdapterView.O
     ArrayAdapter<String> adapter3;
     private Handler sliderHandler = new Handler();
 
+    private String token;
+
     private static final String[] paths = {
             "PASSENGER",
             "2 người lớn",
@@ -98,20 +101,6 @@ public class HomePageActivity extends AppCompatActivity implements AdapterView.O
         super.onCreate(savedInstanceState);
         setContentView(R.layout.homepage);
 
-//        //call Api
-//        mListHomePage = new ArrayList<>();
-//        populateHomepage();
-//        hp_listitem = findViewById(R.id.hp_listitem);
-//        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
-//        linearLayoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
-//
-//        hp_listitem.setHasFixedSize(true);
-//        hp_listitem.setLayoutManager(linearLayoutManager);
-//        hp_listitem.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.HORIZONTAL));
-////        hp_listitem.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL,false));
-////        mlistviewAdapter = new ListViewAdapter(HomePageActivity.this, );
-//        homepageListAdapter = new HomepageListAdapter(HomePageActivity.this, mListHomePage);
-//        hp_listitem.setAdapter(homepageListAdapter);
 
         //item payment
         Spinner spinner = findViewById(R.id.spinner);
@@ -240,6 +229,10 @@ public class HomePageActivity extends AppCompatActivity implements AdapterView.O
                 else nextPageHotelList();
             }
         });
+
+        SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREFS,MODE_PRIVATE);
+        token = sharedPreferences.getString("token", "");
+        Log.d("token at home page", token);
     }
 
     //Call Api
@@ -375,7 +368,7 @@ public class HomePageActivity extends AppCompatActivity implements AdapterView.O
         ApiService.apiService.provinces().enqueue(new Callback<ProvicesOutFit>() {
             @Override
             public void onResponse(Call<ProvicesOutFit> call, Response<ProvicesOutFit> response) {
-                Toast.makeText(HomePageActivity.this, "Call Api Success", Toast.LENGTH_SHORT).show();
+//                Toast.makeText(HomePageActivity.this, "Call Api Success", Toast.LENGTH_SHORT).show();
                 ProvicesOutFit data = response.body();
                 for (int i=0;i<data.getData().size();i++) {
                     System.out.println(data.getData().get(i).getId());

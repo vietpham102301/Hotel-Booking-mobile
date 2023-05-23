@@ -67,7 +67,6 @@ public class PaymentActivity extends AppCompatActivity implements AdapterView.On
     private Integer roomTypeID;
     private String phone;
     private Integer userID;
-    private String username;
     private Integer hotelID;
     private Integer quantity;
     private String hotelImgURL;
@@ -266,7 +265,7 @@ public class PaymentActivity extends AppCompatActivity implements AdapterView.On
                         "    ],\n" +
                         "    \"phone\": \"%s\",\n" +
                         "    \"userId\": %d\n" +
-                        "}", checkIn, checkOut, hotelID, username, quantity, roomTypeID, phone, userID);
+                        "}", checkIn, checkOut, hotelID, customerName, quantity, roomTypeID, phone, userID);
                 Log.d("Request Body", requestBody);
 
                 OutputStream outputStream = connection.getOutputStream();
@@ -332,13 +331,12 @@ public class PaymentActivity extends AppCompatActivity implements AdapterView.On
         editor.putFloat(TAX, new Float(10.0));
         editor.putFloat(SERVICE_FEE,new Float(10.0));
 //        editor.putInt(ROOM_TYPE_ID, 1);
-        editor.putString(PHONE, "0325542310");
-        editor.putInt(USER_ID, 6);
-        editor.putString(USERNAME,"viet pham");
+//        editor.putString(PHONE, "0325542310");
+//        editor.putInt(USER_ID, 6);
 //        editor.putInt(HOTEL_ID, 1);
 //        editor.putInt(QUANTITY, 1);
 //        editor.putString(HOTEL_IMG_URL, "https://media-cdn.tripadvisor.com/media/photo-s/23/ca/38/3a/au-lac-charner-hotel.jpg");
-        editor.putString(CUSTOMER_NAME, "Viet Pham");
+//        editor.putString(CUSTOMER_NAME, "Viet Pham");
         editor.apply();
     }
     public void showDataToConsole(){
@@ -355,7 +353,6 @@ public class PaymentActivity extends AppCompatActivity implements AdapterView.On
         roomTypeID = sharedPreferences.getInt(ROOM_TYPE_ID, 0);
         phone = sharedPreferences.getString(PHONE, "");
         userID = sharedPreferences.getInt(USER_ID, 0);
-        username = sharedPreferences.getString(USERNAME, "");
         quantity = sharedPreferences.getInt(QUANTITY, 0);
         hotelID = sharedPreferences.getInt(HOTEL_ID, 0);
         hotelImgURL = sharedPreferences.getString(HOTEL_IMG_URL, "");
