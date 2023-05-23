@@ -154,6 +154,7 @@ public class HotelListActivity extends AppCompatActivity implements AdapterView.
 //
         editor.putString(CHECK_IN, checkIn);
         editor.putString(CHECK_OUT, checkOut);
+        System.out.println(checkIn+"++++++"+checkOut);
 //        editor.putInt(TRAVELLER, 1);
 //        editor.putString(HOTEL_NAME, "LOTUS RESIDENCE - Landmark 81 Vinhomes Central Park");
 //        editor.putFloat(RATING, new Float(4.8));
