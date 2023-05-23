@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#04CFEA">
+    android:background="@color/white">
 
     <TextView
         android:id="@+id/signin"
@@ -17,7 +17,7 @@
         android:fontFamily="@font/andada"
         android:gravity="center"
         android:text="Welcome back!"
-        android:textColor="@color/white"
+        android:textColor="@color/black"
         android:textSize="35sp"
         android:textStyle="bold" />
     <TextView
@@ -27,7 +27,7 @@
         android:layout_above="@id/socialicons"
         android:textSize="16sp"
         android:text="or sign in with"
-        android:textColor="@color/white"
+        android:textColor="@color/black"
         android:layout_centerHorizontal="true"/>
 
 
@@ -61,13 +61,12 @@
         android:layout_marginTop="10dp"
         android:layout_marginEnd="10dp"
         android:layout_marginBottom="10dp"
-        android:background="#30ffffff"
-        android:drawableLeft="@drawable/ic_baseline_person_outline_24"
+        android:background="#306A6363"
+        android:drawableLeft="@drawable/baseline_person_outline_24"
         android:drawablePadding="20dp"
         android:hint="Enter your Email"
         android:padding="15dp"
-        android:textColor="@color/white"
-        android:textColorHint="@color/white" />
+        android:textColorHint="@color/black" />
 
     <EditText
         android:id="@+id/password"
@@ -76,14 +75,13 @@
         android:layout_below="@id/edt_email"
         android:layout_marginStart="10dp"
         android:layout_marginEnd="10dp"
-        android:background="#30ffffff"
+        android:background="#306A6363"
         android:drawableLeft="@drawable/baseline_lock_24"
         android:drawablePadding="20dp"
         android:hint="Enter your Password"
         android:inputType="textPassword"
         android:padding="15dp"
-        android:textColor="@color/white"
-        android:textColorHint="@color/white" />
+        android:textColorHint="@color/black" />
 
     <CheckBox
         android:id="@+id/cbRemember"
@@ -92,11 +90,11 @@
         android:layout_below="@id/password"
         android:layout_marginTop="10dp"
         android:layout_marginEnd="10dp"
-        android:layout_marginStart="200dp"
+        android:layout_marginStart="10dp"
         android:text="Remember me"
         android:textSize="18sp"
-        android:textColor="@color/white"
-        android:buttonTint="@color/white"
+        android:textColor="@color/black"
+        android:buttonTint="@color/black"
         android:checked="false"
         />
 
@@ -131,19 +129,13 @@
             android:layout_marginEnd="5dp"
             android:text="Forgot password?"
             android:textSize="20sp"
-            android:textColor="@color/white" />
+            android:textColor="@color/black" />
         <TextView
             android:id="@+id/txt_sign"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Sign up!"
             android:textSize="20sp"
-            android:textColor="@color/black"
-
-            />
+            android:textColor="@color/teal_200" />
     </LinearLayout>
-
-
-
-
 </RelativeLayout>

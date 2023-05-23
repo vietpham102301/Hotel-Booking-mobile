@@ -202,7 +202,7 @@ public class HomePageActivity extends AppCompatActivity implements AdapterView.O
                 System.out.println("selected" + adapter2.getItem(position));
                 String selectedKey = adapter2.getItem(position);
                 Collector.traveller = pathMap.get(selectedKey);
-                System.out.println("selected" + pathMap.get(selectedKey));
+                System.out.println("selected " + pathMap.get(selectedKey));
             }
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
