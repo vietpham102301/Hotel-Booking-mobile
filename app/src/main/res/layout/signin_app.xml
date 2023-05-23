@@ -64,7 +64,7 @@
         android:background="#306A6363"
         android:drawableLeft="@drawable/baseline_person_outline_24"
         android:drawablePadding="20dp"
-        android:hint="Enter your Email"
+        android:hint="Username"
         android:padding="15dp"
         android:textColorHint="@color/black" />
 
@@ -78,7 +78,7 @@
         android:background="#306A6363"
         android:drawableLeft="@drawable/baseline_lock_24"
         android:drawablePadding="20dp"
-        android:hint="Enter your Password"
+        android:hint="Password"
         android:inputType="textPassword"
         android:padding="15dp"
         android:textColorHint="@color/black" />
@@ -105,16 +105,16 @@
         android:layout_below="@id/cbRemember"
         android:layout_centerHorizontal="true"
         android:layout_marginStart="10dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="10dp"
         android:layout_marginBottom="10dp"
         android:background="@drawable/border_shape"
         android:backgroundTint="@color/design_default_color_secondary"
-        android:text="Sign in"
         android:fontFamily="@font/alegreya_sans_bold"
-        android:textStyle="bold"
+        android:text="Sign in"
         android:textColor="@color/white"
-        android:textSize="28sp" />
+        android:textSize="28sp"
+        android:textStyle="bold" />
 
     <LinearLayout
         android:layout_width="wrap_content"

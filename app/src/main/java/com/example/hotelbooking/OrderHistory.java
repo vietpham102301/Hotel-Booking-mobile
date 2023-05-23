@@ -46,9 +46,9 @@ public class OrderHistory extends AppCompatActivity implements AdapterView.OnIte
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_order_history);
-        saveData();
+//        saveData();
         setData();
-
+        Log.d("token at Orderhis", token);
         customerNameTxtView = findViewById(R.id.customerNameTxtView);
         //cusname
         customerNameTxtView.setText(customerName);
@@ -201,13 +201,13 @@ public class OrderHistory extends AppCompatActivity implements AdapterView.OnIte
 
     }
 
-    public void saveData(){
-        SharedPreferences sharedPreferences = getSharedPreferences(PaymentActivity.SHARED_PREFS,MODE_PRIVATE);
-        SharedPreferences.Editor editor = sharedPreferences.edit();
-
-        editor.putString("token", "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiI2IiwiaWF0IjoxNjg0NDIwODA5LCJleHAiOjE2ODQ1OTYxOTh9.Vbzhbau12939WTo6UnsNNmPk7iaK5xbKlTm8ci3NiG9vtBL4Rk8is0aDeD0P2TtMxrgiW4R7t_A7kWV9ljqHxg");
-        editor.apply();
-    }
+//    public void saveData(){
+//        SharedPreferences sharedPreferences = getSharedPreferences(PaymentActivity.SHARED_PREFS,MODE_PRIVATE);
+//        SharedPreferences.Editor editor = sharedPreferences.edit();
+//
+//        editor.putString("token", "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiI2IiwiaWF0IjoxNjg0NDIwODA5LCJleHAiOjE2ODQ1OTYxOTh9.Vbzhbau12939WTo6UnsNNmPk7iaK5xbKlTm8ci3NiG9vtBL4Rk8is0aDeD0P2TtMxrgiW4R7t_A7kWV9ljqHxg");
+//        editor.apply();
+//    }
 
     public void openProfile(){
         Intent intent = new Intent(this, ProfileActivity.class);
