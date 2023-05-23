@@ -177,7 +177,8 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="65dp"
                         android:layout_weight="1"
-                        android:orientation="vertical">
+                        android:orientation="vertical"
+                        android:gravity="center">
 
                         <LinearLayout
                             android:layout_width="wrap_content"
@@ -191,7 +192,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:fontFamily="@font/b612_bold"
-                                android:text="4000000.0 VND"
+                                android:text="$ 400.0"
                                 android:textColor="#F44336"
                                 android:textSize="13sp"></TextView>
 
@@ -205,9 +206,9 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginStart="65dp"
+                            android:layout_marginStart="15dp"
                             android:text="on TripGuide "
-                            android:textSize="12sp"></TextView>
+                            android:textSize="10sp"></TextView>
 
                     </LinearLayout>
                 </LinearLayout>

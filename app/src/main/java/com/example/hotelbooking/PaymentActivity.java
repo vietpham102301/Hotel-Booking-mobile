@@ -323,7 +323,7 @@ public class PaymentActivity extends AppCompatActivity implements AdapterView.On
 
 //        editor.putString(CHECK_IN, "2023-04-16");
 //        editor.putString(CHECK_OUT, "2023-04-20");
-        editor.putInt(TRAVELLER, 1);
+//        editor.putInt(TRAVELLER, 1);
 //        editor.putString(HOTEL_NAME, "LOTUS RESIDENCE - Landmark 81 Vinhomes Central Park");
 //        editor.putFloat(RATING, new Float(4.8));
 //        editor.putString(ROOM_TYPE, "Phòng đơn");

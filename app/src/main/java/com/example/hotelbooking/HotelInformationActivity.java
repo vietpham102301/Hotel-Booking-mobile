@@ -51,24 +51,19 @@ public class HotelInformationActivity extends AppCompatActivity implements Adapt
     public static final String SHARED_PREFS = "bookingApp";
     public static final String CHECK_IN = "checkin";
     public static final String CHECK_OUT = "checkout";
-    public static final String TRAVELLER = "traveller";
     public static final String HOTEL_NAME = "hotel_name";
     public static final String RATING = "rating";
     public static final String ROOM_TYPE = "room_type";
     public static final String PRICE = "price";
-    public static final String SERVICE_FEE = "fee";
-    public static final String TAX ="tax";
-
     public static final String ROOM_TYPE_ID = "room_type_id";
-    public static final String PHONE = "phone";
-    public static final String USER_ID = "user_id";
-    public static final String USERNAME = "username";
     public static final String QUANTITY = "quantity";
     public static final String HOTEL_ID = "hotel_id";
     public static final String HOTEL_IMG_URL = "hotel_img_url";
     public static final String CUSTOMER_NAME = "customer_name";
     private String customerName;
     private int idHotel;
+    private String checkIn;
+    private String checkOut;
     TextView txtNoiDung;
     Button btnDescription;
     Button btnFeatures;
@@ -101,51 +96,40 @@ public class HotelInformationActivity extends AppCompatActivity implements Adapt
 
 
         //Declare
-        customerNameTxtView = findViewById(R.id.customerNameTxtView);
-        //Header
-        txtNameHotelInf=findViewById(R.id.txtNameHotelInf);
-        txtRatingHotelInf=findViewById(R.id.txtRatingHotelInf);
-        txtNumRatingHotelInf=findViewById(R.id.txtNumRatingHotelInf);
-        txtProvinceHotelInf=findViewById(R.id.txtProviceHotelInf);
-        //Body
-        txtNameHotelInfSub=findViewById(R.id.txtNameHotelInfSub);
-        txtAddressHotelInf=findViewById(R.id.txtAddressHotelInf);
-        //View ImageHotel
-        viewPager2 = findViewById(R.id.pager);
-        //Description-Features-Roomandprice
-        btnDescription = (Button) findViewById(R.id.btnDescription);
-        btnFeatures = (Button) findViewById(R.id.btnFeatures);
-        btnRoomandprice = (Button) findViewById(R.id.btnRoomandprice);
-        txtNoiDung = (TextView) findViewById(R.id.textDescription);
+            customerNameTxtView = findViewById(R.id.customerNameTxtView);
+            //Header
+                txtNameHotelInf=findViewById(R.id.txtNameHotelInf);
+                txtRatingHotelInf=findViewById(R.id.txtRatingHotelInf);
+                txtNumRatingHotelInf=findViewById(R.id.txtNumRatingHotelInf);
+                txtProvinceHotelInf=findViewById(R.id.txtProviceHotelInf);
+            //Body
+                txtNameHotelInfSub=findViewById(R.id.txtNameHotelInfSub);
+                txtAddressHotelInf=findViewById(R.id.txtAddressHotelInf);
+            //View ImageHotel
+                viewPager2 = findViewById(R.id.pager);
+            //Description-Features-Roomandprice
+                btnDescription = (Button) findViewById(R.id.btnDescription);
+                btnFeatures = (Button) findViewById(R.id.btnFeatures);
+                btnRoomandprice = (Button) findViewById(R.id.btnRoomandprice);
+                txtNoiDung = (TextView) findViewById(R.id.textDescription);
+            //Room
+                mRoomList=new ArrayList<Room>();
+                rcvRoomList=findViewById(R.id.rcvRoomList);
+                rcvRoomList.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
+                roomAdapter=new RoomAdapter(HotelInformationActivity.this,mRoomList);
+                rcvRoomList.setAdapter(roomAdapter);
+            //Comments
+                mCommnetList=new ArrayList<>();
+                rcvCommentList=findViewById(R.id.rcvCommentList);
+                rcvCommentList.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
+                commentAdapter=new CommentAdapter(HotelInformationActivity.this,mCommnetList);
+                rcvCommentList.setAdapter(commentAdapter);
 
-        //Room
-//                    mRoomTypesList=new ArrayList<>();
-//                    rcvRoomList=findViewById(R.id.rcvRoomList);
-//                    rcvRoomList.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
-//                    roomTypesAdapter = new RoomTypesAdapter(HotelInformationActivity.this,mRoomTypesList);
-//                    rcvRoomList.setAdapter(roomTypesAdapter);
-
-        mRoomList=new ArrayList<Room>();
-        rcvRoomList=findViewById(R.id.rcvRoomList);
-        rcvRoomList.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
-        roomAdapter=new RoomAdapter(HotelInformationActivity.this,mRoomList);
-        rcvRoomList.setAdapter(roomAdapter);
-//                    showDataToConsole();
-//                    txtPriceRoomHotel.setText(String.valueOf(price));
-        //Comments
-        mCommnetList=new ArrayList<>();
-        rcvCommentList=findViewById(R.id.rcvCommentList);
-        rcvCommentList.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
-        commentAdapter=new CommentAdapter(HotelInformationActivity.this,mCommnetList);
-        rcvCommentList.setAdapter(commentAdapter);
-
-
+        //CustomeName
         customerNameTxtView.setText(customerName);
-
         customerNameTxtView.setOnClickListener(view -> {
             openProfile();
         });
-
         Spinner spinner = findViewById(R.id.spinner);
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.lang, R.layout.payment_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -217,37 +201,27 @@ public class HotelInformationActivity extends AppCompatActivity implements Adapt
             }
         });
 
+//        System.out.println(idHotel+"mmmm");
+        callApiRoomInHotel(idHotel,checkIn,checkOut);
+        callApiHotelInformation(idHotel);
+        callApiCommentInHotel(idHotel,5,1);
 
-        System.out.println(idHotel+"mmmm");
-
-//        callApiRoomInHotel(idHotel,"2023-04-16","2023-04-20");
-//        callApiHotelInformation(idHotel);
-//        callApiCommentInHotel(idHotel,5,1);
-        callApiRoomInHotel(1,"2023-04-16","2023-04-20");
-        callApiHotelInformation(1);
-        callApiCommentInHotel(1,5,1);
+//        callApiRoomInHotel(1,"2023-04-16","2023-04-20");
+//        callApiHotelInformation(1);
+//        callApiCommentInHotel(1,5,1);
     }
     private Runnable sliderRunnable = new Runnable() {
         @Override
         public void run() {
             viewPager2.setCurrentItem(viewPager2.getCurrentItem() + 1);
-        }
-    };
-
-
+        }};
     @Override
-    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-
-    }
-
+    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {}
     @Override
-    public void onNothingSelected(AdapterView<?> parent) {
-
-    }
+    public void onNothingSelected(AdapterView<?> parent) {}
     @Override
-    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {}
 
-    }
     private void callApiHotelInformation(int id){
         Appclient.getClient().create(Api.class).getHotelInformation(id).enqueue(new Callback<HotelOutfit>() {
             @Override
@@ -256,11 +230,11 @@ public class HotelInformationActivity extends AppCompatActivity implements Adapt
                 if (hotel!=null) {
                     txtNameHotelInf.setText(hotel.getData().getName());
                     txtNameHotelInfSub.setText(hotel.getData().getName());
-                    txtRatingHotelInf.setText(String.valueOf(hotel.getData().getRating()));
+                    txtRatingHotelInf.setText(String.valueOf(Math.round((hotel.getData().getRating())*10)/10));
                     txtNumRatingHotelInf.setText("( " + String.valueOf(hotel.getData().getNumRating()) + " reviews)");
                     txtProvinceHotelInf.setText(hotel.getData().getProvinceId());
                     txtAddressHotelInf.setText(hotel.getData().getAddress());
-                    saveData(hotel.getData().getName(),Float.valueOf(String.valueOf(hotel.getData().getRating())),hotel.getData().getId(),"http://14.225.255.238/booking"+hotel.getData().getAvatar());
+                    saveData(hotel.getData().getName(),Float.valueOf(String.valueOf(Math.round((hotel.getData().getRating())*10)/10)),hotel.getData().getId(),"http://14.225.255.238/booking"+hotel.getData().getAvatar());
 //                    if(hotel.getData().getRoomTypes()!=null) {
 //                        mRoomTypesList.addAll(hotel.getData().getRoomTypes());
 //                        roomTypesAdapter.notifyDataSetChanged();
@@ -328,27 +302,21 @@ public class HotelInformationActivity extends AppCompatActivity implements Adapt
         SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREFS,MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
 
-//        editor.putString(CHECK_IN, checkin);
-//        editor.putString(CHECK_OUT, checkout);
         editor.putString(HOTEL_NAME, hotelName);
         editor.putFloat(RATING, rating);
-//        editor.putString(ROOM_TYPE, "Phòng đơn");
-//        editor.putFloat(PRICE, new Float(125.0));
-//        editor.putInt(ROOM_TYPE_ID, 1);
         editor.putInt(HOTEL_ID, idHotel);
-//        editor.putInt(QUANTITY, 1);
         editor.putString(HOTEL_IMG_URL, hotelImgUrl);
         editor.apply();
     }
     public void showDataToConsole(){
         SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREFS,MODE_PRIVATE);
-
 //        price = sharedPreferences.getFloat(PRICE, 0f);
 //        System.out.println(price + "+++++++++++");
         idHotel= sharedPreferences.getInt(HOTEL_ID,0);
+        checkIn = sharedPreferences.getString(CHECK_IN, "");
+        checkOut = sharedPreferences.getString(CHECK_OUT, "");
         customerName = sharedPreferences.getString(CUSTOMER_NAME, "");
         System.out.println(idHotel+"llllllll");
-
     }
     public void openProfile(){
         Intent intent = new Intent(this, ProfileActivity.class);

@@ -94,12 +94,12 @@ public class HotelListAdapter extends RecyclerView.Adapter<HotelListAdapter.Hote
         }
         public void blind(Hotel hotel){
             txtNameHotel.setText(hotel.getName());
-            txtRating.setText(String.valueOf(hotel.getRating()));
+            txtRating.setText(String.valueOf(Math.round((hotel.getRating())*10)/10));
             txtNumrating.setText("( "+String.valueOf(hotel.getNumRating())+" reviews)");
             txtProvice.setText(hotel.getProvinceId());
             txtAddress.setText(hotel.getAddress());
             txtPhone.setText(hotel.getPhone());
-            txtPrice.setText(String.valueOf(hotel.getPriceMin()));
+            txtPrice.setText("$"+String.valueOf(hotel.getPriceMin()));
             Glide.with(context).load("http://14.225.255.238/booking"+hotel.getAvatar()).into(imgViewHotel);
             idHotel=hotel.getId();
 

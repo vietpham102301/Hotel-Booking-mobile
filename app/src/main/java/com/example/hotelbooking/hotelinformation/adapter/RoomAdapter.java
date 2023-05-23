@@ -82,7 +82,7 @@ public class RoomAdapter extends RecyclerView.Adapter<RoomAdapter.RoomHolder> {
                         numRoom += 1;
                         edtNumRoom.setText(String.valueOf(numRoom));
                         System.out.println(numRoom+"+++");
-                        txtPriceRoom.setText(String.valueOf(priceRoom*numRoom)+"VND");
+                        txtPriceRoom.setText("$"+String.valueOf(priceRoom*numRoom));
                         //priceRoom=Float.parseFloat(String.valueOf(priceRoom*NumRoom));
                     }
                 }
@@ -94,7 +94,7 @@ public class RoomAdapter extends RecyclerView.Adapter<RoomAdapter.RoomHolder> {
                         numRoom -= 1;
                         edtNumRoom.setText(String.valueOf(numRoom));
                         System.out.println(numRoom+"---");
-                        txtPriceRoom.setText(String.valueOf(priceRoom*numRoom)+"VND");
+                        txtPriceRoom.setText("$"+String.valueOf(priceRoom*numRoom));
                         //txtQuatity.setText(String.valueOf(MaxRoom-1));
 
                     }
@@ -129,7 +129,7 @@ public class RoomAdapter extends RecyclerView.Adapter<RoomAdapter.RoomHolder> {
         public void blind(Room room){
                 txtNameRoom.setText(room.getName());
                 txtQuatity.setText(String.valueOf(room.getQuantity())+ " rooms left");
-                txtPriceRoom.setText(String.valueOf(room.getPrice()) + " VND");
+                txtPriceRoom.setText("$"+String.valueOf(room.getPrice()));
                 maxRoom=room.getQuantity();
                 idRoom=room.getId();
                 nameRoom=room.getName();
