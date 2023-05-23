@@ -322,8 +322,8 @@ public class PaymentActivity extends AppCompatActivity implements AdapterView.On
         SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREFS,MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
 
-        editor.putString(CHECK_IN, "2023-04-16");
-        editor.putString(CHECK_OUT, "2023-04-20");
+//        editor.putString(CHECK_IN, "2023-04-16");
+//        editor.putString(CHECK_OUT, "2023-04-20");
         editor.putInt(TRAVELLER, 1);
 //        editor.putString(HOTEL_NAME, "LOTUS RESIDENCE - Landmark 81 Vinhomes Central Park");
 //        editor.putFloat(RATING, new Float(4.8));

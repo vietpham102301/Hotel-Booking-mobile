@@ -185,11 +185,12 @@ public class HotelInformationActivity extends AppCompatActivity implements Adapt
 
         //ViewPage2 ImageHotel
         List<SliderItem> sliderItemArrayList = new ArrayList<>();
-        sliderItemArrayList.add(new SliderItem(R.drawable.hotel_amanoi));
-        sliderItemArrayList.add(new SliderItem(R.drawable.hotel_amanoi));
-        sliderItemArrayList.add(new SliderItem(R.drawable.hotel_amanoi));
-        sliderItemArrayList.add(new SliderItem(R.drawable.hotel_amanoi));
-        sliderItemArrayList.add(new SliderItem(R.drawable.hotel_amanoi));
+        sliderItemArrayList.add(new SliderItem(R.drawable.hotel1));
+        sliderItemArrayList.add(new SliderItem(R.drawable.hotel2));
+        sliderItemArrayList.add(new SliderItem(R.drawable.hotel3));
+        sliderItemArrayList.add(new SliderItem(R.drawable.hotel4));
+        sliderItemArrayList.add(new SliderItem(R.drawable.hotel5));
+        sliderItemArrayList.add(new SliderItem(R.drawable.hotel6));
 
         viewPager2.setAdapter(new SliderAdapter(sliderItemArrayList, viewPager2));
         viewPager2.setClipToPadding(false);
@@ -259,7 +260,7 @@ public class HotelInformationActivity extends AppCompatActivity implements Adapt
                     txtNumRatingHotelInf.setText("( " + String.valueOf(hotel.getData().getNumRating()) + " reviews)");
                     txtProvinceHotelInf.setText(hotel.getData().getProvinceId());
                     txtAddressHotelInf.setText(hotel.getData().getAddress());
-                    saveData(hotel.getData().getName(),hotel.getData().getCheckin(),hotel.getData().getCheckout(), Float.valueOf(String.valueOf(hotel.getData().getRating())),hotel.getData().getId(),"http://14.225.255.238/booking"+hotel.getData().getAvatar());
+                    saveData(hotel.getData().getName(), Float.valueOf(String.valueOf(hotel.getData().getRating())),hotel.getData().getId(),"http://14.225.255.238/booking"+hotel.getData().getAvatar());
 //                    if(hotel.getData().getRoomTypes()!=null) {
 //                        mRoomTypesList.addAll(hotel.getData().getRoomTypes());
 //                        roomTypesAdapter.notifyDataSetChanged();
@@ -323,12 +324,12 @@ public class HotelInformationActivity extends AppCompatActivity implements Adapt
             }
         });
     }
-    public void saveData(String hotelName,String checkin, String checkout, Float rating,int idHotel,String hotelImgUrl){
+    public void saveData(String hotelName, Float rating,int idHotel,String hotelImgUrl){
         SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREFS,MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
 
-        editor.putString(CHECK_IN, checkin);
-        editor.putString(CHECK_OUT, checkout);
+//        editor.putString(CHECK_IN, checkin);
+//        editor.putString(CHECK_OUT, checkout);
         editor.putString(HOTEL_NAME, hotelName);
         editor.putFloat(RATING, rating);
 //        editor.putString(ROOM_TYPE, "Phòng đơn");
