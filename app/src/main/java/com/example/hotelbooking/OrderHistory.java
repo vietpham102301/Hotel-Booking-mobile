@@ -1,5 +1,6 @@
 package com.example.hotelbooking;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
@@ -41,7 +42,9 @@ public class OrderHistory extends AppCompatActivity implements AdapterView.OnIte
     private String token;
 
     private TextView customerNameTxtView;
+    private TextView removeHomePage;
 
+    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -56,6 +59,15 @@ public class OrderHistory extends AppCompatActivity implements AdapterView.OnIte
         customerNameTxtView.setOnClickListener(view -> {
             openProfile();
         });
+
+//        //Btn-RemoveHomePage
+//        removeHomePage=findViewById(R.id.txtTripGuide);
+//        removeHomePage.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                removeHomePage();
+//            }
+//        });
 
         Spinner spinner = findViewById(R.id.spinner);
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.lang, R.layout.payment_spinner_item);
@@ -211,6 +223,10 @@ public class OrderHistory extends AppCompatActivity implements AdapterView.OnIte
 
     public void openProfile(){
         Intent intent = new Intent(this, ProfileActivity.class);
+        startActivity(intent);
+    }
+    public void removeHomePage(){
+        Intent intent = new Intent(this, HomePageActivity.class);
         startActivity(intent);
     }
 }

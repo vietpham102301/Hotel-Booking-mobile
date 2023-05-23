@@ -1,5 +1,6 @@
 package com.example.hotelbooking;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -87,6 +88,7 @@ public class PaymentActivity extends AppCompatActivity implements AdapterView.On
     private TextView feeTxtView;
     private TextView totalTxtView;
     private TextView priceCalTxtView;
+    private TextView removeHomePage;
     private Button confirmButton;
     private ImageView hotelImg;
     private CheckBox paymentCheckBox;
@@ -95,6 +97,7 @@ public class PaymentActivity extends AppCompatActivity implements AdapterView.On
     private EditText editTxtCVC;
     private TextView customerNameTxtView;
 
+    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -124,6 +127,7 @@ public class PaymentActivity extends AppCompatActivity implements AdapterView.On
         priceCalTxtView = findViewById(R.id.calPriceTxtView);
         hotelImg = findViewById(R.id.hotelImgView);
         customerNameTxtView = findViewById(R.id.customerNameTxtView);
+        removeHomePage=findViewById(R.id.txtTripGuide);
 
 
         showDataToConsole();
@@ -167,6 +171,13 @@ public class PaymentActivity extends AppCompatActivity implements AdapterView.On
 
         customerNameTxtView.setOnClickListener(view -> {
             openProfile();
+        });
+        //Btn-RemoveHomePage
+        removeHomePage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                removeHomePage();
+            }
         });
 
         guestTxtView.setText(traveller.toString() +" guests");
@@ -368,5 +379,9 @@ public class PaymentActivity extends AppCompatActivity implements AdapterView.On
         Log.d("tax: ", String.valueOf(tax));
         Log.d("service fee: ", String.valueOf(serviceFee));
 
+    }
+    public void removeHomePage(){
+        Intent intent = new Intent(this, HomePageActivity.class);
+        startActivity(intent);
     }
 }

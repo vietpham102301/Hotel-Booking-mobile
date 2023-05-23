@@ -1,8 +1,6 @@
 package com.example.hotelbooking;
 
 import android.annotation.SuppressLint;
-import android.app.AlertDialog;
-import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
@@ -12,7 +10,6 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.DatePicker;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -25,22 +22,20 @@ import androidx.viewpager2.widget.CompositePageTransformer;
 import androidx.viewpager2.widget.MarginPageTransformer;
 import androidx.viewpager2.widget.ViewPager2;
 
-import com.example.hotelbooking.Collector.Collector;
-import com.example.hotelbooking.hotelinformation.SliderItem;
+import com.denzcoskun.imageslider.ImageSlider;
+import com.denzcoskun.imageslider.models.SlideModel;
 import com.example.hotelbooking.hotelinformation.adapter.CommentAdapter;
 import com.example.hotelbooking.hotelinformation.adapter.RoomAdapter;
-import com.example.hotelbooking.hotelinformation.adapter.SliderAdapter;
 import com.example.hotelbooking.hotelinformation.api.Api;
 import com.example.hotelbooking.hotelinformation.api.Appclient;
 import com.example.hotelbooking.hotelinformation.model.Comments;
 import com.example.hotelbooking.hotelinformation.model.CommentsOutfit;
 import com.example.hotelbooking.hotelinformation.model.HotelOutfit;
+import com.example.hotelbooking.hotelinformation.model.ImageOutFit;
 import com.example.hotelbooking.hotelinformation.model.Room;
 import com.example.hotelbooking.hotelinformation.model.RoomOutFit;
 
-import java.sql.Date;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.List;
 
 import retrofit2.Call;
@@ -83,8 +78,7 @@ public class HotelInformationActivity extends AppCompatActivity implements Adapt
     private CommentAdapter commentAdapter;
     private ArrayList<Comments> mCommnetList;
 
-    private ViewPager2 viewPager2;
-    private Handler sliderHandler = new Handler();
+    private ImageSlider imgSlider;
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -113,7 +107,7 @@ public class HotelInformationActivity extends AppCompatActivity implements Adapt
                 txtAddressHotelInf=findViewById(R.id.txtAddressHotelInf);
 
             //View ImageHotel
-                viewPager2 = findViewById(R.id.pager);
+                imgSlider=findViewById(R.id.img_slider);
 
             //Description-Features-Roomandprice
                 btnDescription =  findViewById(R.id.btnDescription);
@@ -186,69 +180,32 @@ public class HotelInformationActivity extends AppCompatActivity implements Adapt
         });
 
 
-        //ViewPage2 ImageHotel
-        List<SliderItem> sliderItemArrayList = new ArrayList<>();
-        sliderItemArrayList.add(new SliderItem(R.drawable.hotel1));
-        sliderItemArrayList.add(new SliderItem(R.drawable.hotel2));
-        sliderItemArrayList.add(new SliderItem(R.drawable.hotel3));
-        sliderItemArrayList.add(new SliderItem(R.drawable.hotel4));
-        sliderItemArrayList.add(new SliderItem(R.drawable.hotel5));
-        sliderItemArrayList.add(new SliderItem(R.drawable.hotel6));
-
-        viewPager2.setAdapter(new SliderAdapter(sliderItemArrayList, viewPager2));
-        viewPager2.setClipToPadding(false);
-        viewPager2.setClipChildren(false);
-        viewPager2.setOffscreenPageLimit(5);
-        viewPager2.getChildAt(0).setOverScrollMode(RecyclerView.OVER_SCROLL_NEVER);
-
-        CompositePageTransformer compositePageTransformer = new CompositePageTransformer();
-        compositePageTransformer.addTransformer(new MarginPageTransformer(200));
-        compositePageTransformer.addTransformer(new ViewPager2.PageTransformer() {
-            @Override
-            public void transformPage(@NonNull View page, float position) {
-                float r = 1 - Math.abs(position);
-                page.setScaleY(0.85f + r * 0.15f);
-            }
-        });
-        viewPager2.setPageTransformer(compositePageTransformer);
-        viewPager2.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
-            @Override
-            public void onPageSelected(int position) {
-                super.onPageSelected(position);
-                sliderHandler.removeCallbacks(sliderRunnable);
-                sliderHandler.postDelayed(sliderRunnable, 1000);//Slide Duration 3 sec
-            }
-        });
-
+        //Image-Slider-Hotel
+        callApiImageHotel(idHotel);
 
         //Rooms
         mRoomList=new ArrayList<Room>();
         rcvRoomList.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
         roomAdapter=new RoomAdapter(HotelInformationActivity.this,mRoomList);
         rcvRoomList.setAdapter(roomAdapter);
+        callApiRoomInHotel(idHotel,checkIn,checkOut);
 
         //Comments
         mCommnetList=new ArrayList<>();
         rcvCommentList.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
         commentAdapter=new CommentAdapter(HotelInformationActivity.this,mCommnetList);
         rcvCommentList.setAdapter(commentAdapter);
+        callApiCommentInHotel(idHotel,5,1);
 
         //Call-API
 //        System.out.println(idHotel+"mmmm");
-        callApiRoomInHotel(idHotel,checkIn,checkOut);
+
         callApiHotelInformation(idHotel);
-        callApiCommentInHotel(idHotel,5,1);
 //        callApiRoomInHotel(1,"2023-04-16","2023-04-20");
 //        callApiHotelInformation(1);
 //        callApiCommentInHotel(1,5,1);
     }
 
-
-    private Runnable sliderRunnable = new Runnable() {
-        @Override
-        public void run() {
-            viewPager2.setCurrentItem(viewPager2.getCurrentItem() + 1);
-        }};
 
 
     @Override
@@ -288,6 +245,28 @@ public class HotelInformationActivity extends AppCompatActivity implements Adapt
             @Override
             public void onFailure(Call<HotelOutfit> call, Throwable t) {
                 System.out.println("Error");
+            }
+        });
+    }
+    private void callApiImageHotel(int id){
+        Appclient.getClient().create(Api.class).getImage(id).enqueue(new Callback<ImageOutFit>() {
+            @Override
+            public void onResponse(Call<ImageOutFit> call, Response<ImageOutFit> response) {
+                Toast.makeText(HotelInformationActivity.this,"Success",Toast.LENGTH_SHORT).show();
+                ArrayList<SlideModel> images = new ArrayList<>();
+                ImageOutFit image=response.body();
+                for (int i=0;i<image.getData().size();i++) {
+                    //System.out.println("http://14.225.255.238/booking"+image.getData().get(i).getUrl());
+                    images.add(new SlideModel("http://14.225.255.238/booking"+image.getData().get(i).getUrl(),null));
+                    imgSlider.setImageList(images);
+                }
+
+            }
+
+            @Override
+            public void onFailure(Call<ImageOutFit> call, Throwable t) {
+                Toast.makeText(HotelInformationActivity.this,"Error",Toast.LENGTH_SHORT).show();
+
             }
         });
     }

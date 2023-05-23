@@ -1,5 +1,6 @@
 package com.example.hotelbooking;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -50,10 +51,12 @@ public class OrderSuccessful extends AppCompatActivity implements AdapterView.On
     private TextView totalTxtView;
     private ImageView hotelImgView;
     private TextView customerNameTxtView;
+    private TextView removeHomePage;
 
 
 
 
+    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -71,6 +74,7 @@ public class OrderSuccessful extends AppCompatActivity implements AdapterView.On
         totalTxtView = findViewById(R.id.totalFeeTxtView);
         hotelImgView = findViewById(R.id.hotelImgView);
         customerNameTxtView = findViewById(R.id.customerNameTxtView);
+//        removeHomePage=findViewById(R.id.txtTripGuide);
 
         setData();
 
@@ -141,6 +145,13 @@ public class OrderSuccessful extends AppCompatActivity implements AdapterView.On
         customerNameTxtView.setOnClickListener(view -> {
             openProfile();
         });
+//        //Btn-RemoveHomePage
+//        removeHomePage.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                removeHomePage();
+//            }
+//        });
     }
 
     public void openProfile(){
@@ -172,6 +183,10 @@ public class OrderSuccessful extends AppCompatActivity implements AdapterView.On
         } catch (Exception e) {
             Log.d("toast err", "happened");
         }
+    }
+    public void removeHomePage(){
+        Intent intent = new Intent(this, HomePageActivity.class);
+        startActivity(intent);
     }
 
     @Override

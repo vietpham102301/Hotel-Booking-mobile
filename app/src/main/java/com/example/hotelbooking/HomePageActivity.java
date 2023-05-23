@@ -2,8 +2,6 @@ package com.example.hotelbooking;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.DividerItemDecoration;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager2.widget.CompositePageTransformer;
 import androidx.viewpager2.widget.MarginPageTransformer;
@@ -26,7 +24,6 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -41,8 +38,8 @@ import com.example.hotelbooking.homepage.model.HomepageListApiResponse;
 import com.example.hotelbooking.homepage.adapter.HomepageListAdapter;
 import com.example.hotelbooking.homepage.api.ApiHomepage;
 import com.example.hotelbooking.homepage.model.HomepageList;
-import com.example.hotelbooking.hotelinformation.SliderItem;
 import com.example.hotelbooking.hotelinformation.SliderAdapter;
+import com.example.hotelbooking.hotelinformation.SliderItem;
 
 import java.sql.Date;
 import java.util.ArrayList;

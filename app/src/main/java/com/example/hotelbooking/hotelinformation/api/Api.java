@@ -2,6 +2,7 @@ package com.example.hotelbooking.hotelinformation.api;
 
 import com.example.hotelbooking.hotelinformation.model.CommentsOutfit;
 import com.example.hotelbooking.hotelinformation.model.HotelOutfit;
+import com.example.hotelbooking.hotelinformation.model.ImageOutFit;
 import com.example.hotelbooking.hotelinformation.model.RoomOutFit;
 
 import retrofit2.Call;
@@ -22,6 +23,9 @@ public interface Api {
     Call<CommentsOutfit> getCommentsHotel(@Path("id") int id,
                                           @Query("page") int page,
                                           @Query("size") int size);
+
+    @GET("api/v1/hotels/{id}/images")
+    Call<ImageOutFit> getImage(@Path("id") int id);
 
 //    @GET("api/v1/room-type/hotel/1?checkin=2023-04-16&checkout=2023-04-20")
 //    Call<RoomOutFit> getRoomInHotel1();
