@@ -60,14 +60,14 @@ public class OrderHistory extends AppCompatActivity implements AdapterView.OnIte
             openProfile();
         });
 
-//        //Btn-RemoveHomePage
-//        removeHomePage=findViewById(R.id.txtTripGuide);
-//        removeHomePage.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                removeHomePage();
-//            }
-//        });
+        //Btn-RemoveHomePage
+        removeHomePage=findViewById(R.id.txtTripGuide);
+        removeHomePage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                removeHomePage();
+            }
+        });
 
         Spinner spinner = findViewById(R.id.spinner);
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.lang, R.layout.payment_spinner_item);

@@ -74,7 +74,7 @@ public class OrderSuccessful extends AppCompatActivity implements AdapterView.On
         totalTxtView = findViewById(R.id.totalFeeTxtView);
         hotelImgView = findViewById(R.id.hotelImgView);
         customerNameTxtView = findViewById(R.id.customerNameTxtView);
-//        removeHomePage=findViewById(R.id.txtTripGuide);
+        removeHomePage=findViewById(R.id.txtTripGuide);
 
         setData();
 
@@ -145,13 +145,13 @@ public class OrderSuccessful extends AppCompatActivity implements AdapterView.On
         customerNameTxtView.setOnClickListener(view -> {
             openProfile();
         });
-//        //Btn-RemoveHomePage
-//        removeHomePage.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                removeHomePage();
-//            }
-//        });
+        //Btn-RemoveHomePage
+        removeHomePage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                removeHomePage();
+            }
+        });
     }
 
     public void openProfile(){
