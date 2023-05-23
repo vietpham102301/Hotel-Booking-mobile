@@ -47,7 +47,9 @@ import com.example.hotelbooking.hotelinformation.SliderAdapter;
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -76,16 +78,40 @@ public class HomePageActivity extends AppCompatActivity implements AdapterView.O
     ArrayAdapter<String> adapter3;
     private Handler sliderHandler = new Handler();
 
+
     private String token;
 
-    private static final String[] paths = {
-            "PASSENGER",
-            "2 người lớn",
-            "2 người lớn 1 trẻ em",
-            "2 người lớn 2 trẻ em",
-            "3 người lớn",
-            "3 người lớn 1 trẻ em",
-            "4 người lớn"};
+//    private static final String[] paths = {
+//            "PASSENGER",
+//            "2 người lớn",
+//            "2 người lớn 1 trẻ em",
+//            "2 người lớn 2 trẻ em",
+//            "3 người lớn",
+//            "3 người lớn 1 trẻ em",
+//            "4 người lớn"};
+
+//    private static final String[] paths = {
+//            "2 người lớn",
+//            "2 người lớn 1 trẻ em",
+//            "2 người lớn 2 trẻ em",
+//            "3 người lớn",
+//            "3 người lớn 1 trẻ em",
+//            "4 người lớn"
+//    };
+
+    private static final Map<String, String> pathMap;
+
+    static {
+        pathMap = new HashMap<>();
+        pathMap.put("2 người lớn", "2");
+        pathMap.put("2 người lớn 1 trẻ em", "3");
+        pathMap.put("2 người lớn 2 trẻ em", "4");
+        pathMap.put("3 người lớn", "3");
+        pathMap.put("3 người lớn 1 trẻ em", "4");
+        pathMap.put("4 người lớn", "4");
+
+    }
+
 
     private Spinner spinner;
 
@@ -166,19 +192,20 @@ public class HomePageActivity extends AppCompatActivity implements AdapterView.O
         checkOutButton.setText(getTodaysDate());
 
         spinner = (Spinner) findViewById(R.id.btnpsg);
-        ArrayAdapter<String> adapter2 = new ArrayAdapter<String>(HomePageActivity.this,
-                R.layout.spinner_item,paths);
+        ArrayAdapter<String> adapter2 = new ArrayAdapter<>(HomePageActivity.this,
+                R.layout.spinner_item, pathMap.keySet().toArray(new String[0]));
         adapter[0].setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter2);
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                System.out.println(adapter2.getItem(position));
-                Collector.traveller=adapter2.getItem(position);
+                System.out.println("selected" + adapter2.getItem(position));
+                String selectedKey = adapter2.getItem(position);
+                Collector.traveller = pathMap.get(selectedKey);
+                System.out.println("selected" + pathMap.get(selectedKey));
             }
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
-
             }
         });
 
@@ -197,6 +224,8 @@ public class HomePageActivity extends AppCompatActivity implements AdapterView.O
                  dialog.show();
                  editText = dialog.findViewById(R.id.edit_search_filter);
                  listView = dialog.findViewById(R.id.search_list_name_hotel);
+
+
                  adapter3 = new ArrayAdapter<>(HomePageActivity.this, android.R.layout.simple_list_item_1,arrayList);
                  listView.setAdapter(adapter3);
                  editText.addTextChangedListener(new TextWatcher() {
@@ -276,7 +305,6 @@ public class HomePageActivity extends AppCompatActivity implements AdapterView.O
             String checkIn=makeDayToCallApi(day,month,year);
             Collector.ci=checkIn;
             System.out.println(Collector.ci);
-//            checkOutButton.setText(date);
         };
         DatePickerDialog.OnDateSetListener dateSetListener1 = (datePicker, year, month, day) -> {
             month = month + 1;
@@ -358,7 +386,6 @@ public class HomePageActivity extends AppCompatActivity implements AdapterView.O
         else return true;
 
     }
-
     public void nextPageHotelList(){
         Intent intent=new Intent(this,HotelListActivity.class);
         startActivity(intent);
