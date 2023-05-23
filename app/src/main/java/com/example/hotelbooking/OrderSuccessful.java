@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -52,6 +53,7 @@ public class OrderSuccessful extends AppCompatActivity implements AdapterView.On
     private ImageView hotelImgView;
     private TextView customerNameTxtView;
     private TextView removeHomePage;
+    private Button btnconfirm;
 
 
 
@@ -75,6 +77,7 @@ public class OrderSuccessful extends AppCompatActivity implements AdapterView.On
         hotelImgView = findViewById(R.id.hotelImgView);
         customerNameTxtView = findViewById(R.id.customerNameTxtView);
         removeHomePage=findViewById(R.id.txtTripGuide);
+        btnconfirm=findViewById(R.id.confirmButton);
 
         setData();
 
@@ -147,6 +150,13 @@ public class OrderSuccessful extends AppCompatActivity implements AdapterView.On
         });
         //Btn-RemoveHomePage
         removeHomePage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                removeHomePage();
+            }
+        });
+        //confirmButton
+        btnconfirm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 removeHomePage();
