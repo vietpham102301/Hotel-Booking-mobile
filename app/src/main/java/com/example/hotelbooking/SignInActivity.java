@@ -70,11 +70,8 @@ public class SignInActivity extends AppCompatActivity {
                     startActivity(intent);
                 } else
                     Toast.makeText(SignInActivity.this, "", Toast.LENGTH_SHORT).show();
-
                 String authToken = createAuthToken(username, password);
                 checkLoginDetails(authToken);
-
-
             }
         });
     }

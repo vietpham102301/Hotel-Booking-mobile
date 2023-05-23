@@ -27,9 +27,13 @@ public class SignUpActivity extends AppCompatActivity {
     private EditText passwordSignUp;
     private EditText lastName;
     private EditText firstName;
+    private EditText userName;
+    private EditText Birthday;
+    private EditText Gender;
+    private EditText Phone;
     private CheckBox checkBox;
     private TextView txt_signIn;
-    private Button signUp;
+    private Button btn_signup;
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -41,62 +45,84 @@ public class SignUpActivity extends AppCompatActivity {
         passwordSignUp = findViewById(R.id.password_signup);
         lastName = findViewById(R.id.edt_lname);
         firstName = findViewById(R.id.edt_fname);
+        userName = findViewById(R.id.usernameEditTxt);
+        Birthday = findViewById(R.id.birthdayEditTxt);
+        Gender = findViewById(R.id.genderEditTxt);
+        Phone = findViewById(R.id.phoneEditTxt);
         checkBox = findViewById(R.id.check1);
-//        signUp = findViewById(R.id.btn_signup);
+        txt_signIn = findViewById(R.id.txt_sign);
         findViewById(R.id.btn_signup).setOnClickListener(this::onClick);
         findViewById(R.id.txt_signin).setOnClickListener(this::onClick);
 
-
-        txt_signIn = findViewById(R.id.txt_sign);
-//        txt_signIn.setOnClickListener(view -> startActivity(new Intent(SignUpActivity.this, SignInActivity.class)));
     }
      private void userSignUp(){
+
         String lastname = lastName.getText().toString().trim();
         String firstname = firstName.getText().toString().trim();
         String email = emailSignUp.getText().toString().trim();
         String password = passwordSignUp.getText().toString().trim();
-
-        if (email.isEmpty()){
-            emailSignUp.setError("Email is required");
-            emailSignUp.requestFocus();
-            return;
-        }
-
-        if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()){
-            emailSignUp.setError("Enter a valid email");
-            emailSignUp.requestFocus();
-            return;
-        }
-
-         if (password.isEmpty()){
-             passwordSignUp.setError("Password required");
-             passwordSignUp.requestFocus();
-             return;
-         }
-
-         if (password.length() < 6){
-             passwordSignUp.setError("Password should be atleast 6 character long");
-             passwordSignUp.requestFocus();
-             return;
-         }
+        String username = userName.getText().toString().trim();
+        String birthday = Birthday.getText().toString().trim();
+        String gender = Gender.getText().toString().trim();
+        String phone = Phone.getText().toString().trim();
 
          if (firstname.isEmpty()){
              firstName.setError("Firstname required");
              firstName.requestFocus();
              return;
          }
-
          if (lastname.isEmpty()){
              lastName.setError("Lastname required");
              lastName.requestFocus();
              return;
          }
+         if (email.isEmpty()){
+             emailSignUp.setError("Email is required");
+             emailSignUp.requestFocus();
+             return;
+         }
+         if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()){
+             emailSignUp.setError("Enter a valid email");
+             emailSignUp.requestFocus();
+             return;
+         }
 
+         if (password.isEmpty()){
+             passwordSignUp.setError("Password required");
+             passwordSignUp.requestFocus();
+             return;
+         }
+         if (password.length() < 6){
+             passwordSignUp.setError("Password should be atleast 6 character long");
+             passwordSignUp.requestFocus();
+             return;
+         }
+         if (username.isEmpty()){
+             userName.setError("Username required");
+             userName.requestFocus();
+             return;
+         }
+         if (birthday.isEmpty()){
+             Birthday.setError("Birthday required");
+             Birthday.requestFocus();
+             return;
+         }
+         if (phone.isEmpty()){
+             Phone.setError("Phone required");
+             Phone.requestFocus();
+             return;
+         }
+         if (gender.isEmpty()){
+             Gender.setError("Lastname required");
+             Gender.requestFocus();
+             return;
+         }
+
+         //call api
          Call<ResponseBody> call = SignUpClient
                  .getInstance()
                  .getApi()
-                 .createUser(email, password, lastname, firstname);
-
+                 .createUser(email, password, lastname, firstname, username, phone, birthday, gender );
          call.enqueue(new Callback<ResponseBody>() {
              @Override
              public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
@@ -109,21 +135,19 @@ public class SignUpActivity extends AppCompatActivity {
                      e.printStackTrace();
                  }
              }
-
              @Override
              public void onFailure(Call<ResponseBody> call, Throwable t) {
                  Toast.makeText(SignUpActivity.this, "", Toast.LENGTH_SHORT).show();
              }
          });
      }
-
       public void onClick(View v){
         switch (v.getId()){
             case R.id.btn_signup:
                 userSignUp();
                 break;
             case R.id.txt_signin:
-
+                txt_signIn.setOnClickListener(view -> startActivity(new Intent(SignUpActivity.this, SignInActivity.class)));
                 break;
         }
       }

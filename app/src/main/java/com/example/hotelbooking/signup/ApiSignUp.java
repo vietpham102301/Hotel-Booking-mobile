@@ -14,6 +14,10 @@ public interface ApiSignUp {
             @Field("email") String email,
             @Field("firstname") String firstname,
             @Field("lastname") String lastname,
-            @Field("password") String password
+            @Field("password") String password,
+            @Field("username") String username,
+            @Field("phone") String phone,
+            @Field("gender") String gender,
+            @Field("birthday") String birthday
             );
 }
