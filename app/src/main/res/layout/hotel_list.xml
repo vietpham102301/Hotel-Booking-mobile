@@ -24,7 +24,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
                 <TextView
-                    android:id="@+id/textView28"
+                    android:id="@+id/txtTripGuide"
                     android:layout_width="wrap_content"
                     android:layout_height="48dp"
                     android:layout_marginStart="10dp"
@@ -45,7 +45,7 @@
                     android:layout_marginStart="50dp"
                     android:layout_weight="2"
                     android:contentDescription="language"
-                    app:layout_constraintStart_toEndOf="@+id/textView28"
+                    app:layout_constraintStart_toEndOf="@+id/txtTripGuide"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <ImageView

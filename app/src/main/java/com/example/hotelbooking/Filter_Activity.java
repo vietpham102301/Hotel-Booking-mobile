@@ -37,19 +37,16 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class Filter_Activity extends AppCompatActivity {
-    TextView textView;
-    EditText editText;
-    ListView listView;
-
-    ArrayList<String> arrayList;
-    ArrayAdapter<String> adapter;
-
+    private TextView textView;
+    private EditText editText;
+    private ListView listView;
+    private ArrayList<String> arrayList;
+    private ArrayAdapter<String> adapter;
     private DatePickerDialog datePickerDialog;
     private DatePickerDialog datePickerDialog1;
     private Button checkInButtonSearch;
     private Button checkOutButtonSearch;
     private Button btnNextPage;
-
     private CheckBox checkBoxRating1;
     private CheckBox checkBoxRating2;
     private CheckBox checkBoxRating3;
@@ -62,10 +59,7 @@ public class Filter_Activity extends AppCompatActivity {
     private CheckBox checkBoxHotelType1;
     private CheckBox checkBoxHotelType2;
     private CheckBox checkBoxHotelType3;
-
-
     Dialog dialog;
-
     //String[] nameHotelList=new String[]{"Amanoi","Furama","La Vela","Lotte","Muong Thanh","Preidot Grand","Bel Marina","Phuong","Nhat","Nhung"};
 
     @SuppressLint("MissingInflatedId")
@@ -117,24 +111,20 @@ public class Filter_Activity extends AppCompatActivity {
                 listView.setAdapter(adapter);
                 editText.addTextChangedListener(new TextWatcher() {
                     @Override
-                    public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-                    }
+                    public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
                     @Override
                     public void onTextChanged(CharSequence s, int start, int before, int count) {
                         adapter.getFilter().filter(s);
                     }
                     @Override
-                    public void afterTextChanged(Editable s) {
-                    }
+                    public void afterTextChanged(Editable s) {}
                 });
-
                 listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                     @Override
                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                         textView.setText(adapter.getItem(position));
                         Collector.prv=adapter.getItem(position);
-                        System.out.println(Collector.prv);
+//                        System.out.println(Collector.prv);
                         dialog.dismiss();
                     }
                 });
@@ -142,8 +132,6 @@ public class Filter_Activity extends AppCompatActivity {
         });
         //Check-in and Check-out
         initDatePicker();
-
-
 
         //BTNNextPage
         btnNextPage.setOnClickListener(new View.OnClickListener() {
@@ -232,16 +220,13 @@ public class Filter_Activity extends AppCompatActivity {
                 else if(Collector.co==null){Toast.makeText(Filter_Activity.this,"Check-out Blank",Toast.LENGTH_SHORT).show();}
                 else if(compareDate(Collector.ci,Collector.co)){Toast.makeText(Filter_Activity.this,"Check-out Error",Toast.LENGTH_SHORT).show();}
                 else {
-                    Intent intent=new Intent(Filter_Activity.this,HotelListActivity.class);
-                    startActivity(intent);
+                    nextPageHotelList();
                 }
 
             }
 
         });
     }
-
-
     //Date in Checkin-Checkout
     private String getTodaysDate()
     {
@@ -329,8 +314,6 @@ public class Filter_Activity extends AppCompatActivity {
             return "NOV";
         if(month == 12)
             return "DEC";
-
-        //default should never happen
         return "JAN";
     }
     public void openCheckInPicker(View view)
@@ -344,11 +327,9 @@ public class Filter_Activity extends AppCompatActivity {
     public static boolean compareDate(String ci,String co){
         Date date1 = Date.valueOf(ci);
         Date date2 = Date.valueOf(co);
-
         if (date2.equals(date1)) return false;
         else if (date2.after(date1)) return false;
         else return true;
-
     }
 
     //CallApiProvince
@@ -368,6 +349,10 @@ public class Filter_Activity extends AppCompatActivity {
                 Toast.makeText(Filter_Activity.this, "Call Api Error", Toast.LENGTH_SHORT).show();
             }
         });
+    }
+    public void nextPageHotelList(){
+        Intent intent=new Intent(this,HotelListActivity.class);
+        startActivity(intent);
     }
 
 }

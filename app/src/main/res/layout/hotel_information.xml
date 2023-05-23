@@ -25,7 +25,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
                 <TextView
-                    android:id="@+id/textView28"
+                    android:id="@+id/txtTripGuide"
                     android:layout_width="wrap_content"
                     android:layout_height="48dp"
                     android:layout_marginStart="10dp"
@@ -46,7 +46,7 @@
                     android:layout_marginStart="50dp"
                     android:layout_weight="2"
                     android:contentDescription="language"
-                    app:layout_constraintStart_toEndOf="@+id/textView28"
+                    app:layout_constraintStart_toEndOf="@+id/txtTripGuide"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <ImageView
@@ -230,14 +230,14 @@
                 </Button>
 
                 <Button
-                    android:id="@+id/btnFeatures"
+                    android:id="@+id/btnCustomerService"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="3"
                     android:background="#F9F7F7"
                     android:fontFamily="@font/alegreya_sans_bold"
                     android:gravity="center"
-                    android:text="Features"
+                    android:text="Customer Service"
                     android:textColor="#99000000"
                     android:textSize="12sp"
                     tools:ignore="TouchTargetSizeCheck">
@@ -245,14 +245,14 @@
                 </Button>
 
                 <Button
-                    android:id="@+id/btnRoomandprice"
+                    android:id="@+id/btnSafety"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="3"
                     android:background="#F9F7F7"
                     android:fontFamily="@font/alegreya_sans_bold"
                     android:gravity="center"
-                    android:text="Room and price"
+                    android:text="Safety"
                     android:textColor="#99000000"
                     android:textSize="12sp"
                     tools:ignore="TouchTargetSizeCheck">

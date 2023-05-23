@@ -1,22 +1,27 @@
 package com.example.hotelbooking;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 public class ProfileActivity extends AppCompatActivity {
 
+    private ImageView removeHomePage;
     private TextView orderHistoryTxtView;
     private TextView logOutTxtView;
+    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
 
+        removeHomePage=findViewById(R.id.btnRemoveHomePage);
         orderHistoryTxtView = findViewById(R.id.bookingHistoryTxtView);
         logOutTxtView = findViewById(R.id.logout);
         orderHistoryTxtView.setOnClickListener(new View.OnClickListener() {
@@ -33,14 +38,23 @@ public class ProfileActivity extends AppCompatActivity {
             editor.apply();
             openSigIn();
         });
+        removeHomePage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                removeHomePage();
+            }
+        });
     }
-
     public void openOrderHistory(){
         Intent intent = new Intent(this, OrderHistory.class);
         startActivity(intent);
     }
     public void openSigIn(){
         Intent intent = new Intent(this, SignInActivity.class);
+        startActivity(intent);
+    }
+    public void removeHomePage(){
+        Intent intent = new Intent(this, HomePageActivity.class);
         startActivity(intent);
     }
 }

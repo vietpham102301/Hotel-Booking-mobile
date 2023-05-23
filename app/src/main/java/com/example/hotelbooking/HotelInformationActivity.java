@@ -64,10 +64,10 @@ public class HotelInformationActivity extends AppCompatActivity implements Adapt
     private int idHotel;
     private String checkIn;
     private String checkOut;
-    TextView txtNoiDung;
-    Button btnDescription;
-    Button btnFeatures;
-    Button btnRoomandprice;
+    private TextView txtNoiDung;
+    private Button btnDescription;
+    private Button btnCustomerService;
+    private Button btnSafety;
     private TextView txtNameHotelInf;
     private TextView txtRatingHotelInf;
     private TextView txtNumRatingHotelInf;
@@ -75,6 +75,7 @@ public class HotelInformationActivity extends AppCompatActivity implements Adapt
     private TextView txtNameHotelInfSub;
     private TextView txtAddressHotelInf;
     private TextView customerNameTxtView;
+    private TextView removeHomePage;
     private RecyclerView rcvRoomList;
     private RoomAdapter roomAdapter;
     private ArrayList<Room> mRoomList;
@@ -94,78 +95,96 @@ public class HotelInformationActivity extends AppCompatActivity implements Adapt
         showDataToConsole();
 
 
-
         //Declare
+
+            //Navigation-Bar
+            removeHomePage=findViewById(R.id.txtTripGuide);
             customerNameTxtView = findViewById(R.id.customerNameTxtView);
+            Spinner spinner = findViewById(R.id.spinner);
+
             //Header
                 txtNameHotelInf=findViewById(R.id.txtNameHotelInf);
                 txtRatingHotelInf=findViewById(R.id.txtRatingHotelInf);
                 txtNumRatingHotelInf=findViewById(R.id.txtNumRatingHotelInf);
                 txtProvinceHotelInf=findViewById(R.id.txtProviceHotelInf);
+
             //Body
                 txtNameHotelInfSub=findViewById(R.id.txtNameHotelInfSub);
                 txtAddressHotelInf=findViewById(R.id.txtAddressHotelInf);
+
             //View ImageHotel
                 viewPager2 = findViewById(R.id.pager);
-            //Description-Features-Roomandprice
-                btnDescription = (Button) findViewById(R.id.btnDescription);
-                btnFeatures = (Button) findViewById(R.id.btnFeatures);
-                btnRoomandprice = (Button) findViewById(R.id.btnRoomandprice);
-                txtNoiDung = (TextView) findViewById(R.id.textDescription);
-            //Room
-                mRoomList=new ArrayList<Room>();
-                rcvRoomList=findViewById(R.id.rcvRoomList);
-                rcvRoomList.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
-                roomAdapter=new RoomAdapter(HotelInformationActivity.this,mRoomList);
-                rcvRoomList.setAdapter(roomAdapter);
-            //Comments
-                mCommnetList=new ArrayList<>();
-                rcvCommentList=findViewById(R.id.rcvCommentList);
-                rcvCommentList.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
-                commentAdapter=new CommentAdapter(HotelInformationActivity.this,mCommnetList);
-                rcvCommentList.setAdapter(commentAdapter);
 
-        //CustomeName
-        customerNameTxtView.setText(customerName);
-        customerNameTxtView.setOnClickListener(view -> {
-            openProfile();
-        });
-        Spinner spinner = findViewById(R.id.spinner);
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.lang, R.layout.payment_spinner_item);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinner.setAdapter(adapter);
-        spinner.setSelected(false);
-        spinner.setSelection(0,true);
-        spinner.setOnItemSelectedListener(this);
+            //Description-Features-Roomandprice
+                btnDescription =  findViewById(R.id.btnDescription);
+                btnCustomerService =  findViewById(R.id.btnCustomerService);
+                btnSafety = findViewById(R.id.btnSafety);
+                txtNoiDung = findViewById(R.id.textDescription);
+
+            //Room
+                rcvRoomList=findViewById(R.id.rcvRoomList);
+
+            //Comment
+                rcvCommentList=findViewById(R.id.rcvCommentList);
+
+
+        //Navigation-Bar
+
+            //Btn-RemoveHomePage
+                removeHomePage.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        removeHomePage();
+                    }
+                });
+
+            //Customer-Name
+                customerNameTxtView.setText(customerName);
+                customerNameTxtView.setOnClickListener(view -> {
+                    openProfile();
+                });
+
+            //Language
+                ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.lang, R.layout.payment_spinner_item);
+                adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                spinner.setAdapter(adapter);
+                spinner.setSelected(false);
+                spinner.setSelection(0,true);
+                spinner.setOnItemSelectedListener(this);
+
 
         //Description-Features-Roomandprice
-        btnFeatures.setOnClickListener(new View.OnClickListener() {
+
+        btnCustomerService.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                btnFeatures.setTextColor(Color.parseColor("#3F72AF"));
-                btnRoomandprice.setTextColor(Color.parseColor("#99000000"));
+                btnCustomerService.setTextColor(Color.parseColor("#3F72AF"));
+                btnSafety.setTextColor(Color.parseColor("#99000000"));
                 btnDescription.setTextColor(Color.parseColor("#99000000"));
-                txtNoiDung.setText(" btn Features");
+                txtNoiDung.setText("Hotel is all about people and service provision. A Hotel that puts its customer’s needs first always have a good reputation. Guests want hotels where they are given personalized services. When they get such kind of hotels, they can come back over and over again because they cannot forget the experience they had at that particular hote");
             }
         });
-        btnRoomandprice.setOnClickListener(new View.OnClickListener() {
+
+        btnSafety.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                btnRoomandprice.setTextColor(Color.parseColor("#3F72AF"));
+                btnSafety.setTextColor(Color.parseColor("#3F72AF"));
                 btnDescription.setTextColor(Color.parseColor("#99000000"));
-                btnFeatures.setTextColor(Color.parseColor("#99000000"));
-                txtNoiDung.setText("Phuong");
+                btnCustomerService.setTextColor(Color.parseColor("#99000000"));
+                txtNoiDung.setText("For many, a hotel functions as a home away from home. With that comes a hefty expectation for the most diligent safety and security measures. Many hotels now focus on providing personalized safety and security measures for different guest profiles such as women, children, and the elderly.");
             }
         });
+
         btnDescription.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 btnDescription.setTextColor(Color.parseColor("#3F72AF"));
-                btnRoomandprice.setTextColor(Color.parseColor("#99000000"));
-                btnFeatures.setTextColor(Color.parseColor("#99000000"));
+                btnSafety.setTextColor(Color.parseColor("#99000000"));
+                btnCustomerService.setTextColor(Color.parseColor("#99000000"));
                 txtNoiDung.setText("Claiming a spectacular stretch of Vietnam’s coastline withinthe verdant embrace of Nui Chua National Park and UNESCO Biosphere Reserve,Amanoi is a natural paradise overlooking Vinh Hy Bay. From its remote location - a rich and diverse mosaic of ecosystems – the resort’s clifftop restaurants and pool, lakeside AmanSpa and private golden sand beach, offer limitless opportunities for outdoor exploration, cultural immersion and serene time out.");
             }
         });
+
 
         //ViewPage2 ImageHotel
         List<SliderItem> sliderItemArrayList = new ArrayList<>();
@@ -201,26 +220,46 @@ public class HotelInformationActivity extends AppCompatActivity implements Adapt
             }
         });
 
+
+        //Rooms
+        mRoomList=new ArrayList<Room>();
+        rcvRoomList.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
+        roomAdapter=new RoomAdapter(HotelInformationActivity.this,mRoomList);
+        rcvRoomList.setAdapter(roomAdapter);
+
+        //Comments
+        mCommnetList=new ArrayList<>();
+        rcvCommentList.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
+        commentAdapter=new CommentAdapter(HotelInformationActivity.this,mCommnetList);
+        rcvCommentList.setAdapter(commentAdapter);
+
+        //Call-API
 //        System.out.println(idHotel+"mmmm");
         callApiRoomInHotel(idHotel,checkIn,checkOut);
         callApiHotelInformation(idHotel);
         callApiCommentInHotel(idHotel,5,1);
-
 //        callApiRoomInHotel(1,"2023-04-16","2023-04-20");
 //        callApiHotelInformation(1);
 //        callApiCommentInHotel(1,5,1);
     }
+
+
     private Runnable sliderRunnable = new Runnable() {
         @Override
         public void run() {
             viewPager2.setCurrentItem(viewPager2.getCurrentItem() + 1);
         }};
+
+
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {}
+
     @Override
     public void onNothingSelected(AdapterView<?> parent) {}
+
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {}
+
 
     private void callApiHotelInformation(int id){
         Appclient.getClient().create(Api.class).getHotelInformation(id).enqueue(new Callback<HotelOutfit>() {
@@ -246,13 +285,14 @@ public class HotelInformationActivity extends AppCompatActivity implements Adapt
                 }
 //                else System.out.println("error");
             }
-
             @Override
             public void onFailure(Call<HotelOutfit> call, Throwable t) {
                 System.out.println("Error");
             }
         });
     }
+
+
     private void callApiRoomInHotel(int id, String ci, String co){
         Appclient.getClient().create(Api.class).getRoomInHotel(id, ci, co).enqueue(new Callback<RoomOutFit>() {
             @Override
@@ -281,6 +321,8 @@ public class HotelInformationActivity extends AppCompatActivity implements Adapt
             }
         });
     }
+
+
     private void callApiCommentInHotel(int id, int size, int page){
         Appclient.getClient().create(Api.class).getCommentsHotel(id,page,size).enqueue(new Callback<CommentsOutfit>() {
             @Override
@@ -298,16 +340,19 @@ public class HotelInformationActivity extends AppCompatActivity implements Adapt
             }
         });
     }
+
+
     public void saveData(String hotelName, Float rating,int idHotel,String hotelImgUrl){
         SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREFS,MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
-
         editor.putString(HOTEL_NAME, hotelName);
         editor.putFloat(RATING, rating);
         editor.putInt(HOTEL_ID, idHotel);
         editor.putString(HOTEL_IMG_URL, hotelImgUrl);
         editor.apply();
     }
+
+
     public void showDataToConsole(){
         SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREFS,MODE_PRIVATE);
 //        price = sharedPreferences.getFloat(PRICE, 0f);
@@ -318,8 +363,16 @@ public class HotelInformationActivity extends AppCompatActivity implements Adapt
         customerName = sharedPreferences.getString(CUSTOMER_NAME, "");
         System.out.println(idHotel+"llllllll");
     }
+
+
     public void openProfile(){
         Intent intent = new Intent(this, ProfileActivity.class);
+        startActivity(intent);
+    }
+
+
+    public void removeHomePage(){
+        Intent intent = new Intent(this, HomePageActivity.class);
         startActivity(intent);
     }
 
