@@ -94,7 +94,7 @@ public class HotelListAdapter extends RecyclerView.Adapter<HotelListAdapter.Hote
         }
         public void blind(Hotel hotel){
             txtNameHotel.setText(hotel.getName());
-            txtRating.setText(String.valueOf((double)Math.round((hotel.getRating())*10)/10));
+            txtRating.setText(String.valueOf((double)Math.round(hotel.getRating())));
             txtNumrating.setText("( "+String.valueOf(hotel.getNumRating())+" reviews)");
             txtProvice.setText(hotel.getProvinceId());
             txtAddress.setText(hotel.getAddress());
