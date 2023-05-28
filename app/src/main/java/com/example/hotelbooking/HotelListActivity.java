@@ -114,7 +114,7 @@ public class HotelListActivity extends AppCompatActivity implements AdapterView.
             System.out.println(Collector.rating);
             System.out.println(Collector.typeHotel);
             System.out.println(Collector.price);
-            callApiGetHotel(Collector.prv,Collector.ci,Collector.co);
+            callApiGetHotel(Collector.prv,Collector.ci,Collector.co,Collector.typeHotel,Collector.rating,Collector.price);
             Toast.makeText(HotelListActivity.this,"Success",Toast.LENGTH_SHORT).show();
         }
         else {
@@ -124,8 +124,8 @@ public class HotelListActivity extends AppCompatActivity implements AdapterView.
     }
 
 
-    private void callApiGetHotel(String prv, String ci, String co){
-        Appclient.getClient().create(Api.class).getHotelList(prv,ci,co).enqueue(new Callback<HotelsOutfit>() {
+    private void callApiGetHotel(String prv, String ci, String co, String ht, String rt, String pri){
+        Appclient.getClient().create(Api.class).getHotelList(prv,ci,co,ht,rt,pri).enqueue(new Callback<HotelsOutfit>() {
             @Override
             public void onResponse(Call<HotelsOutfit> call, Response<HotelsOutfit> response) {
                 if(response.code()==200){

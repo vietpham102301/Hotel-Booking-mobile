@@ -10,5 +10,8 @@ public interface Api {
     @GET("api/v1/hotels")
     Call<HotelsOutfit> getHotelList(@Query("prv") String prv,
                                  @Query("ci") String ci,
-                                 @Query("co") String co);
+                                 @Query("co") String co,
+                                    @Query("ht") String ht,
+                                    @Query("rt") String rt,
+                                    @Query("pri") String pri);
 }
