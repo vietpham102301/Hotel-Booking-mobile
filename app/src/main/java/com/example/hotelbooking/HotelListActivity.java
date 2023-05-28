@@ -92,7 +92,7 @@ public class HotelListActivity extends AppCompatActivity implements AdapterView.
         fltLocationAndHotel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                nextHotelInf();
+                RemoverFilter();
             }
         });
 
@@ -173,7 +173,13 @@ public class HotelListActivity extends AppCompatActivity implements AdapterView.
     }
 
 
-    public void nextHotelInf(){
+    public void RemoverFilter(){
+        Collector.prv=null;
+        Collector.ci=null;
+        Collector.co=null;
+        Collector.typeHotel=null;
+        Collector.rating=null;
+        Collector.price=null;
         Intent intent=new Intent(this,Filter_Activity.class);
         startActivity(intent);
     }
@@ -183,4 +189,5 @@ public class HotelListActivity extends AppCompatActivity implements AdapterView.
         Intent intent = new Intent(this, HomePageActivity.class);
         startActivity(intent);
     }
+
 }
