@@ -11,6 +11,7 @@ import android.os.Looper;
 import android.util.Log;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.hotelbooking.order.model.HotelOrder;
@@ -33,6 +34,7 @@ public class SignInActivity extends AppCompatActivity {
     private EditText usernameEditTxt;
     private EditText passwordEditTxt;
     private Button signinBtn;
+    private TextView signUpTxtView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,6 +55,11 @@ public class SignInActivity extends AppCompatActivity {
                 new SignInActivity.ApiTask().execute();
             }
 
+        });
+
+        signUpTxtView = findViewById(R.id.signupTxtView);
+        signUpTxtView.setOnClickListener(view -> {
+            openSignup();
         });
 
     }
@@ -171,6 +178,10 @@ public class SignInActivity extends AppCompatActivity {
     }
     public void openHotelAdmin(){
         Intent intent = new Intent(this, HotelAdminActivity.class);
+        startActivity(intent);
+    }
+    public void openSignup(){
+        Intent intent = new Intent(this, SignUpActivity.class);
         startActivity(intent);
     }
 }

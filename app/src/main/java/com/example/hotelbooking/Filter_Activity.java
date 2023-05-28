@@ -337,7 +337,7 @@ public class Filter_Activity extends AppCompatActivity {
         ApiService.apiService.provinces().enqueue(new Callback<ProvicesOutFit>() {
             @Override
             public void onResponse(Call<ProvicesOutFit> call, Response<ProvicesOutFit> response) {
-                Toast.makeText(Filter_Activity.this, "Call Api Success", Toast.LENGTH_SHORT).show();
+//                Toast.makeText(Filter_Activity.this, "Call Api Success", Toast.LENGTH_SHORT).show();
                 ProvicesOutFit data = response.body();
                 for (int i=0;i<data.getData().size();i++) {
                     System.out.println(data.getData().get(i).getId());
