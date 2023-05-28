@@ -136,7 +136,7 @@
                     android:layout_alignParentStart="true"
                     android:layout_marginStart="50dp"
                     android:layout_marginTop="0dp"
-                    android:text="1 Star - 1.5 Star"
+                    android:text="1 Star"
                     tools:ignore="TouchTargetSizeCheck" />
             </LinearLayout>
             <LinearLayout
@@ -151,7 +151,7 @@
                     android:layout_alignParentStart="true"
                     android:layout_marginStart="50dp"
                     android:layout_marginTop="0dp"
-                    android:text="1.5 Star - 2.5 Star"
+                    android:text="2 Star"
                     tools:ignore="TouchTargetSizeCheck" />
             </LinearLayout>
             <LinearLayout
@@ -167,7 +167,7 @@
                     android:layout_alignParentStart="true"
                     android:layout_marginStart="50dp"
                     android:layout_marginTop="0dp"
-                    android:text="2.5 Star - 3.5 Star"
+                    android:text="3 Star "
                     tools:ignore="TouchTargetSizeCheck" />
             </LinearLayout>
             <LinearLayout
@@ -183,7 +183,7 @@
                     android:layout_alignParentStart="true"
                     android:layout_marginStart="50dp"
                     android:layout_marginTop="0dp"
-                    android:text="3.5 Star - 4.5 Star"
+                    android:text="4 Star"
                     tools:ignore="TouchTargetSizeCheck" />
             </LinearLayout>
             <LinearLayout
@@ -199,7 +199,7 @@
                     android:layout_alignParentStart="true"
                     android:layout_marginStart="50dp"
                     android:layout_marginTop="0dp"
-                    android:text="4.5 Star - 5 Star"
+                    android:text="5 Star"
                     tools:ignore="TouchTargetSizeCheck" />
             </LinearLayout>
             <View

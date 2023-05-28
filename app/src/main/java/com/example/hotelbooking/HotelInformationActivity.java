@@ -226,11 +226,11 @@ public class HotelInformationActivity extends AppCompatActivity implements Adapt
                 if (hotel!=null) {
                     txtNameHotelInf.setText(hotel.getData().getName());
                     txtNameHotelInfSub.setText(hotel.getData().getName());
-                    txtRatingHotelInf.setText(String.valueOf((double) Math.round((hotel.getData().getRating())*10)/10));
+                    txtRatingHotelInf.setText(String.valueOf((double) Math.round(hotel.getData().getRating())));
                     txtNumRatingHotelInf.setText("( " + String.valueOf(hotel.getData().getNumRating()) + " reviews)");
                     txtProvinceHotelInf.setText(hotel.getData().getProvinceId());
                     txtAddressHotelInf.setText(hotel.getData().getAddress());
-                    saveData(hotel.getData().getName(),Float.valueOf(String.valueOf((double)Math.round((hotel.getData().getRating())*10)/10)),hotel.getData().getId(),"http://14.225.255.238/booking"+hotel.getData().getAvatar());
+                    saveData(hotel.getData().getName(),Float.valueOf(String.valueOf((double)Math.round(hotel.getData().getRating()))),hotel.getData().getId(),"http://14.225.255.238/booking"+hotel.getData().getAvatar());
 //                    if(hotel.getData().getRoomTypes()!=null) {
 //                        mRoomTypesList.addAll(hotel.getData().getRoomTypes());
 //                        roomTypesAdapter.notifyDataSetChanged();
