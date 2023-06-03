@@ -93,9 +93,9 @@
                     android:layout_width="310dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
+                    android:layout_marginStart="35dp"
                     android:background="@drawable/shape"
                     android:contextClickable="true"
-                    android:layout_marginStart="25dp"
                     android:orientation="vertical">
 
                     <LinearLayout
@@ -171,12 +171,12 @@
                         android:background="@drawable/border_shape"
                         android:drawableEnd="@drawable/icon_search"
                         android:fontFamily="@font/andada"
-                        android:textStyle="bold"
-                        android:textColorHint="#252323"
                         android:gravity="center_vertical"
                         android:hint="Search Location And Hotel"
                         android:padding="12dp"
-                        android:textSize="16sp"></TextView>
+                        android:textColorHint="#252323"
+                        android:textSize="16sp"
+                        android:textStyle="bold"></TextView>
 
                     <LinearLayout
                         android:layout_width="match_parent"

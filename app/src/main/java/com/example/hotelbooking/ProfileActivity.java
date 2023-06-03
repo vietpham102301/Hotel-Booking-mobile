@@ -15,6 +15,7 @@ public class ProfileActivity extends AppCompatActivity {
     private ImageView removeHomePage;
     private TextView orderHistoryTxtView;
     private TextView logOutTxtView;
+    private TextView cusnameTxtView;
     @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +45,11 @@ public class ProfileActivity extends AppCompatActivity {
                 removeHomePage();
             }
         });
+
+        cusnameTxtView = findViewById(R.id.nameTxtView);
+        SharedPreferences sharedPreferences = getSharedPreferences(PaymentActivity.SHARED_PREFS,MODE_PRIVATE);
+        String cusname = sharedPreferences.getString("customer_name", "");
+        cusnameTxtView.setText(cusname);
     }
     public void openOrderHistory(){
         Intent intent = new Intent(this, OrderHistory.class);

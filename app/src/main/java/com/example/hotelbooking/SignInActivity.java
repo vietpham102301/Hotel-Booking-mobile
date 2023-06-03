@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
@@ -35,6 +36,7 @@ public class SignInActivity extends AppCompatActivity {
     private EditText passwordEditTxt;
     private Button signinBtn;
     private TextView signUpTxtView;
+    private TextView forgotTxtView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,7 +63,12 @@ public class SignInActivity extends AppCompatActivity {
         signUpTxtView.setOnClickListener(view -> {
             openSignup();
         });
-
+        forgotTxtView = findViewById(R.id.forgotPassTxtView);
+        forgotTxtView.setOnClickListener(view->{
+            Uri uri = Uri.parse("http://10.252.1.172:3000/forgot");
+            Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+            startActivity(intent);
+        });
     }
 
     private class ApiTask extends AsyncTask<Void, Void, SignInRes> {
