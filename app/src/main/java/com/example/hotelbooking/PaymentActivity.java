@@ -3,6 +3,7 @@ package com.example.hotelbooking;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
@@ -21,11 +22,13 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.bumptech.glide.Glide;
+import com.example.hotelbooking.constant.Constant;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.time.LocalDate;
 import java.time.Month;
@@ -240,7 +243,10 @@ public class PaymentActivity extends AppCompatActivity implements AdapterView.On
         //bit map
 //        String imgURL = "https://media-cdn.tripadvisor.com/media/photo-s/23/ca/38/3a/au-lac-charner-hotel.jpg";
         Glide.with(this).asBitmap().load(hotelImgURL).into(hotelImg);
-
+        Log.d("img url", "+"+hotelImgURL+"+");
+//        Glide.with(this).asBitmap()
+//                .load(Uri.parse("http://192.168.1.41:80/api/v1/images/11"))
+//                .into(hotelImg);
     }
 
 
@@ -257,7 +263,7 @@ public class PaymentActivity extends AppCompatActivity implements AdapterView.On
     public void makeOrderRequest(){
         Thread thread = new Thread(() -> {
             try  {
-                URL url = new URL("http://14.225.255.238/booking/api/v1/order");
+                URL url = new URL(Constant.HOST+"/api/v1/order");
                 HttpURLConnection connection = (HttpURLConnection) url.openConnection();
                 connection.setRequestMethod("POST");
                 connection.setRequestProperty("Content-Type", "application/json");

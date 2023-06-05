@@ -17,6 +17,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.hotelbooking.constant.Constant;
 import com.example.hotelbooking.order.adapter.HotelRecViewAdapter;
 import com.example.hotelbooking.order.model.Hotel;
 import com.example.hotelbooking.order.model.HotelOrder;
@@ -100,7 +101,7 @@ public class OrderHistory extends AppCompatActivity implements AdapterView.OnIte
             try {
                 SharedPreferences sharedPreferences = getSharedPreferences(PaymentActivity.SHARED_PREFS,MODE_PRIVATE);
                 userID = sharedPreferences.getInt(PaymentActivity.USER_ID, 0);
-                    String orderRes = makeRequest("GET","http://14.225.255.238/booking/api/v1/order/user/" + userID);
+                    String orderRes = makeRequest("GET", Constant.HOST+"/api/v1/order/user/" + userID);
 
                     Gson gson = new Gson();
 
@@ -110,7 +111,7 @@ public class OrderHistory extends AppCompatActivity implements AdapterView.OnIte
                     if(orderResponse != null){
                         for(Order order: orderResponse.getData()){
                             int hotelId = order.getHotelId();
-                            String hotelRes = makeRequest("GET", "http://14.225.255.238/booking/api/v1/hotels/"+hotelId);
+                            String hotelRes = makeRequest("GET", Constant.HOST+"/api/v1/hotels/"+hotelId);
                             HotelResposne hotelResposne = gson.fromJson(hotelRes, HotelResposne.class);
                             Hotel hotel = hotelResposne.getData();
                             String roomType = "";
@@ -140,7 +141,7 @@ public class OrderHistory extends AppCompatActivity implements AdapterView.OnIte
                             Double totalPrice = pricePerNight*quantity*stayedDays;
                             String cmt = order.getComment();
                             Double cmtRating = order.getRating();
-                            HotelOrder hotelOrder = new HotelOrder(hotel.getName(), hotel.getRating(), roomType, order.getCheckin(), order.getCheckout(),"http://14.225.255.238/booking"+ hotel.getAvatar(), order.getStatusId(), totalPrice, order.getId(), order.getComment(), order.getRating());
+                            HotelOrder hotelOrder = new HotelOrder(hotel.getName(), hotel.getRating(), roomType, order.getCheckin(), order.getCheckout(),Constant.HOST+ hotel.getAvatar(), order.getStatusId(), totalPrice, order.getId(), order.getComment(), order.getRating());
                             res.add(hotelOrder);
                         }
 

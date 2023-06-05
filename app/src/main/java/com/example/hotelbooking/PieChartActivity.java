@@ -9,6 +9,7 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.hotelbooking.constant.Constant;
 import com.example.hotelbooking.pieChart.BookedRoomRes;
 import com.github.mikephil.charting.charts.PieChart;
 import com.github.mikephil.charting.data.PieData;
@@ -60,7 +61,7 @@ public class PieChartActivity extends AppCompatActivity {
                 headers.put("Authorization", header);
                 headers.put("Content-Type", "application/json");
 
-                String bookedRoomRes = makeRequest("GET","http://14.225.255.238/booking/api/v1/hotels/precent", headers);
+                String bookedRoomRes = makeRequest("GET", Constant.HOST+"/api/v1/hotels/precent", headers);
 
                 Gson gson = new Gson();
 

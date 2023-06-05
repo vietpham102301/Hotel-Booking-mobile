@@ -22,6 +22,7 @@ import com.example.hotelbooking.Filter_Activity;
 import com.example.hotelbooking.HotelInformationActivity;
 import com.example.hotelbooking.HotelListActivity;
 import com.example.hotelbooking.R;
+import com.example.hotelbooking.constant.Constant;
 import com.example.hotelbooking.hotelListp.model.Hotel;
 import com.example.hotelbooking.hotelListp.model.HotelList;
 
@@ -100,7 +101,7 @@ public class HotelListAdapter extends RecyclerView.Adapter<HotelListAdapter.Hote
             txtAddress.setText(hotel.getAddress());
             txtPhone.setText(hotel.getPhone());
             txtPrice.setText("$"+String.valueOf(hotel.getPriceMin()));
-            Glide.with(context).load("http://14.225.255.238/booking"+hotel.getAvatar()).into(imgViewHotel);
+            Glide.with(context).load(Constant.HOST+hotel.getAvatar()).into(imgViewHotel);
             idHotel=hotel.getId();
 
         }

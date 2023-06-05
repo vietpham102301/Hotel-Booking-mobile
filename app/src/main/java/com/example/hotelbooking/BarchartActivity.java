@@ -12,6 +12,7 @@ import android.widget.Toast;
 
 import com.example.hotelbooking.barChart.model.BarChartData;
 import com.example.hotelbooking.barChart.model.RevenueRes;
+import com.example.hotelbooking.constant.Constant;
 import com.example.hotelbooking.order.adapter.HotelRecViewAdapter;
 import com.example.hotelbooking.order.model.Hotel;
 import com.example.hotelbooking.order.model.HotelOrder;
@@ -76,7 +77,7 @@ public class BarchartActivity extends AppCompatActivity {
                 headers.put("Authorization", header);
                 headers.put("Content-Type", "application/json");
 
-                String revenueRes = makeRequest("GET","http://14.225.255.238/booking/api/v1/hotels/revenue", headers);
+                String revenueRes = makeRequest("GET", Constant.HOST+"/api/v1/hotels/revenue", headers);
 
                 Gson gson = new Gson();
 

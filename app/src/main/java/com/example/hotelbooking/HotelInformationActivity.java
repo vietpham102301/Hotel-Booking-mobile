@@ -24,6 +24,7 @@ import androidx.viewpager2.widget.ViewPager2;
 
 import com.denzcoskun.imageslider.ImageSlider;
 import com.denzcoskun.imageslider.models.SlideModel;
+import com.example.hotelbooking.constant.Constant;
 import com.example.hotelbooking.hotelinformation.adapter.CommentAdapter;
 import com.example.hotelbooking.hotelinformation.adapter.RoomAdapter;
 import com.example.hotelbooking.hotelinformation.api.Api;
@@ -230,7 +231,7 @@ public class HotelInformationActivity extends AppCompatActivity implements Adapt
                     txtNumRatingHotelInf.setText("( " + String.valueOf(hotel.getData().getNumRating()) + " reviews)");
                     txtProvinceHotelInf.setText(hotel.getData().getProvinceId());
                     txtAddressHotelInf.setText(hotel.getData().getAddress());
-                    saveData(hotel.getData().getName(),Float.valueOf(String.valueOf((double)Math.round(hotel.getData().getRating()))),hotel.getData().getId(),"http://14.225.255.238/booking"+hotel.getData().getAvatar());
+                    saveData(hotel.getData().getName(),Float.valueOf(String.valueOf((double)Math.round(hotel.getData().getRating()))),hotel.getData().getId(), Constant.HOST+hotel.getData().getAvatar());
 //                    if(hotel.getData().getRoomTypes()!=null) {
 //                        mRoomTypesList.addAll(hotel.getData().getRoomTypes());
 //                        roomTypesAdapter.notifyDataSetChanged();
@@ -257,7 +258,7 @@ public class HotelInformationActivity extends AppCompatActivity implements Adapt
                 ImageOutFit image=response.body();
                 for (int i=0;i<image.getData().size();i++) {
                     //System.out.println("http://14.225.255.238/booking"+image.getData().get(i).getUrl());
-                    images.add(new SlideModel("http://14.225.255.238/booking"+image.getData().get(i).getUrl(),null));
+                    images.add(new SlideModel(Constant.HOST+image.getData().get(i).getUrl(),null));
                     imgSlider.setImageList(images);
                 }
 

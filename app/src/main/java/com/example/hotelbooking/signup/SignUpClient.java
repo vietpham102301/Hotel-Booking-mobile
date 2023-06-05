@@ -4,7 +4,7 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class SignUpClient {
-    private static final String BASE_URL = "http://14.225.255.238/booking/";
+    private static final String BASE_URL = "http:/127.0.0.1/booking/";
     private static SignUpClient mInstance;
     private Retrofit retrofit;
 

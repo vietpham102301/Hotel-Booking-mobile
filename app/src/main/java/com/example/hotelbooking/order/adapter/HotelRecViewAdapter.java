@@ -20,6 +20,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.example.hotelbooking.PaymentActivity;
 import com.example.hotelbooking.R;
+import com.example.hotelbooking.constant.Constant;
 import com.example.hotelbooking.order.model.HotelOrder;
 
 import java.io.BufferedReader;
@@ -167,7 +168,7 @@ public class HotelRecViewAdapter extends RecyclerView.Adapter<HotelRecViewAdapte
                     String cmt = String.valueOf(holder.commentEditTxt.getText());
 
                     if (!cmt.equals("") && status.equals("DAHOANTHANH") && !(rating[0] == -1)) {
-                        String url = "http://14.225.255.238/booking/api/v1/order/" + hotelOrders.get(position).getOrderID() + "/rating?comment=" + cmt + "&rating=" + (int)rating[0];
+                        String url = Constant.HOST+"/api/v1/order/" + hotelOrders.get(position).getOrderID() + "/rating?comment=" + cmt + "&rating=" + (int)rating[0];
                         try{
                             makeRequest("PATCH", url);
                             holder.submitButton.setEnabled(false);

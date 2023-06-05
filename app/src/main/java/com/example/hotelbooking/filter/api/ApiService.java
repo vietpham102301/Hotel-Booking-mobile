@@ -1,5 +1,6 @@
 package com.example.hotelbooking.filter.api;
 
+import com.example.hotelbooking.constant.Constant;
 import com.example.hotelbooking.filter.model.ProvicesOutFit;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -14,7 +15,7 @@ public interface ApiService {
     Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd HH:mm:ss").create();
 
     ApiService apiService = new Retrofit.Builder()
-            .baseUrl("http://14.225.255.238/booking/")
+            .baseUrl(Constant.HOST+"/")
             .addConverterFactory(GsonConverterFactory.create(gson))
             .build()
             .create(ApiService.class);

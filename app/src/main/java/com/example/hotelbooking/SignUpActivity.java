@@ -15,6 +15,7 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.hotelbooking.constant.Constant;
 import com.example.hotelbooking.signup.SignUpClient;
 
 import java.io.BufferedReader;
@@ -96,7 +97,7 @@ public class SignUpActivity extends AppCompatActivity {
                         "    \"phone\": \"%s\",\n" +
                         "    \"username\": \"%s\"\n" +
                         "}", bday, email, fName, gender, lName, pass, phone, username);
-                makeRequest("POST", "http://14.225.255.238/booking/api/v1/users/signup", requestBody, new RequestCallback() {
+                makeRequest("POST", Constant.HOST+"/api/v1/users/signup", requestBody, new RequestCallback() {
                     @Override
                     public void onResponse(int responseCode) {
                         if(responseCode == 201){

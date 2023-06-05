@@ -15,6 +15,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.hotelbooking.constant.Constant;
 import com.example.hotelbooking.order.model.HotelOrder;
 import com.example.hotelbooking.order.model.OrderResponse;
 import com.example.hotelbooking.signin.SignInRes;
@@ -88,7 +89,7 @@ public class SignInActivity extends AppCompatActivity {
                 } else {
                     String requestBody = String.format("{ \"password\": \"%s\", \"username\": \"%s\"}\n", pass, username);
 
-                    signInRes = makeRequest("POST", "http://14.225.255.238/booking/api/v1/users/signin", requestBody, responseHeaders);
+                    signInRes = makeRequest("POST", Constant.HOST+"/api/v1/users/signin", requestBody, responseHeaders);
                 }
 
                 Gson gson = new Gson();
